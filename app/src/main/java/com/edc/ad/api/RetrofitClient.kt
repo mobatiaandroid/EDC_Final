@@ -1,8 +1,10 @@
 package com.edc.ad.api
 
 import com.edc.ad.model.*
+import com.edc.ad.util.PreferenceManager
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
+import com.mobatia.edcsurvey.survey.model.SurveyResponseModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.json.JSONObject
@@ -74,4 +76,22 @@ interface RetrofitClient {
         @Header("Authorization") authHeader: String?,
         @Body json: JsonObject
     ): FeedbackResponse
+
+
+    @Headers("Content-Type: application/json;charset=UTF-8")
+    @POST("survey/submit")
+    suspend fun surveySubmit(
+        @Header("Authorization") authHeader: String?,
+        @Body json: JsonObject
+    ): SurveyResponseModel
+
+
+    @Headers("Content-Type: application/json;charset=UTF-8")
+    @GET("survey/get")
+    suspend fun getSurvey(
+        @Header("Authorization") authHeader: String?,
+        @Query("student_id") student_id: String?
+    ): SurveyResponseModel
+
+
 }
