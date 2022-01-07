@@ -38,99 +38,104 @@ class SignupActivity : AppCompatActivity() {
                         && editPassword.text!!.trim().isNotEmpty()){
                         submitBtn.isEnabled = true
                         submitBtn.isClickable = true
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
+                    } else {
+                            submitBtn.isEnabled = false
+                            submitBtn.isClickable = false
+                            submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
                     }
-                }
+                } else {
+                        submitBtn.isEnabled = false
+                        submitBtn.isClickable = false
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                    }
             }
             override fun afterTextChanged(s: Editable?) {
             }
         })
 
+        editEmail.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
 
-//        try{
-//            editEmail.addTextChangedListener(object : TextWatcher {
-//                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//
-//                }
-//
-//                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//                    if (p0?.length!! > 0) {
-//                        if (editname.text?.trim()?.length!! > 0 && editPassword.text?.trim()?.length!! > 0 && editConfirmPassword.text?.trim()?.length!! > 0) {
-//                            submitBtn.isEnabled = true
-//                            submitBtn.isClickable = true
-//                            submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
-//                        } else {
-//                            submitBtn.isEnabled = false
-//                            submitBtn.isClickable = false
-//                            submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
-//                        }
-//                    } else {
-//                        submitBtn.isEnabled = false
-//                        submitBtn.isClickable = false
-//                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
-//                    }
-//                }
-//
-//                override fun afterTextChanged(p0: Editable?) {
-//
-//
-//                }
-//
-//            })
-//        }catch (e:Exception){
-//            Log.e("Error",e.toString())
-//        }
-//        try{
-//            editPassword.addTextChangedListener(object : TextWatcher {
-//                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//
-//                }
-//
-//                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//                    if (p0?.length!! > 0) {
-//                        if (editEmail.text?.trim()?.length!! > 0 && editname.text?.trim()?.length!! > 0 && editConfirmPassword.text?.trim()?.length!! > 0) {
-//                            submitBtn.isEnabled = true
-//                            submitBtn.isClickable = true
-//                            submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
-//                        } else {
-//                            submitBtn.isEnabled = false
-//                            submitBtn.isClickable = false
-//                            submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
-//                        }
-//                    } else {
-//                        submitBtn.isEnabled = false
-//                        submitBtn.isClickable = false
-//                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
-//                    }
-//                }
-//
-//                override fun afterTextChanged(p0: Editable?) {
-//                }
-//
-//            })
-//        }catch (e: Exception){
-//            Log.e("Error",e.toString())
-//        }
-//
-//        try{
-//            editConfirmPassword.addTextChangedListener(object : TextWatcher {
-//                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//
-//                }
-//
-//                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//                    if (p0?.length!! > 0) {
-//                        if (editEmail.text?.trim()?.length!! > 0 && editPassword.text?.trim()?.length!! > 0 && editname.text?.trim()?.length!! > 0) {
-//                            submitBtn.isEnabled = true
-//                            submitBtn.isClickable = true
-//                            submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
-//                        } else {
-//                            submitBtn.isEnabled = false
-//                            submitBtn.isClickable = false
-//                            submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
-//                        }
-//
-//                        if (editPassword.length() == p0.length) {
-//                            if (editPassword.text?.trim()!!.equals(p0)) {
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s!!.isNotEmpty()){
+                    if (editEmail.text!!.trim().isNotEmpty()
+                        && editname.text!!.trim().isNotEmpty()
+                        && editConfirmPassword.text!!.trim().isNotEmpty()
+                        && editPassword.text!!.trim().isNotEmpty()
+                    ) {
+                        submitBtn.isEnabled = true
+                        submitBtn.isClickable = true
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
+                    } else {
+                        submitBtn.isEnabled = false
+                        submitBtn.isClickable = false
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                    }
+                } else {
+                        submitBtn.isEnabled = false
+                        submitBtn.isClickable = false
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                    }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+        })
+        editPassword.addTextChangedListener(object :TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s!!.isNotEmpty()){
+                    if (editEmail.text!!.trim().isNotEmpty()
+                        && editname.text!!.trim().isNotEmpty()
+                        && editConfirmPassword.text!!.trim().isNotEmpty()
+                        && editPassword.text!!.trim().isNotEmpty()
+                    ) {
+                        submitBtn.isEnabled = true
+                        submitBtn.isClickable = true
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
+                    } else {
+                        submitBtn.isEnabled = false
+                        submitBtn.isClickable = false
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                    }
+                } else {
+                    submitBtn.isEnabled = false
+                    submitBtn.isClickable = false
+                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+        })
+        editConfirmPassword.addTextChangedListener(object :TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s!!.isNotEmpty()){
+                    if (editEmail.text!!.trim().isNotEmpty()
+                        && editname.text!!.trim().isNotEmpty()
+                        && editConfirmPassword.text!!.trim().isNotEmpty()
+                        && editPassword.text!!.trim().isNotEmpty()
+                    ) {
+                        submitBtn.isEnabled = true
+                        submitBtn.isClickable = true
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
+                    } else {
+                        submitBtn.isEnabled = false
+                        submitBtn.isClickable = false
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                    }
+//                    try{
+//                        if (editPassword.length() == s.length) {
+//                            if (editPassword.text?.trim()!!.equals(s)) {
 //
 //                            } else {
 //                                CommonMethods.showLoginErrorPopUp(
@@ -141,24 +146,22 @@ class SignupActivity : AppCompatActivity() {
 //                                editConfirmPassword.text!!.clear()
 //                            }
 //                        }
-//                    } else {
-//                        try {
-//                            submitBtn.isEnabled = false
-//                            submitBtn.isClickable = false
-//                            submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
-//                        } catch (e: Exception) {
-//                            Log.e("errir", e.toString())
-//                        }
+//                    }catch (e:Exception){
+//                        Log.e("Error",e.toString())
 //                    }
-//                }
-//
-//                override fun afterTextChanged(p0: Editable?) {
-//                }
-//
-//            })
-//        }catch (e: Exception){
-//            Log.e("Error",e.toString())
-//        }
+                } else {
+                    submitBtn.isEnabled = false
+                    submitBtn.isClickable = false
+                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+        })
+
         try{
             submitBtn.setOnClickListener {
 
@@ -218,8 +221,8 @@ class SignupActivity : AppCompatActivity() {
 
     private fun callAPI() {
         var progressBarDialog: ProgressBarDialog? = null
-        progressBarDialog = this?.let { ProgressBarDialog(it) }
-        progressBarDialog?.show()
+        progressBarDialog = ProgressBarDialog(this)
+        progressBarDialog.show()
 
         lifecycleScope.launch {
             try {
@@ -233,12 +236,10 @@ class SignupActivity : AppCompatActivity() {
                 //  paramObject.put("email", edtEmail.text.toString())
                 //    paramObject.put("password", edtPassword.text.toString())
                 val call = RetrofitClient.get.userRegister(paramObject)
-
+                Log.e("response",call.status.toString())
                 when (call.status) {
                     200 -> {
-                        progressBarDialog?.dismiss()
-
-
+                        progressBarDialog.dismiss()
                         Toast.makeText(
                             this@SignupActivity,
                             "Registration Successfull",
@@ -251,6 +252,14 @@ class SignupActivity : AppCompatActivity() {
 
                         overridePendingTransition(0, 0)
                         finish()
+                    }
+                    400 -> {
+                        progressBarDialog.dismiss()
+                        Toast.makeText(
+                            this@SignupActivity,
+                            "The email has already been taken.",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                 }
 
