@@ -99,7 +99,9 @@ class SurveyFragment : Fragment() {
                     }
                 }
 
-            } catch (e: Exception){
+            }
+
+            catch (e: Exception){
                 e.printStackTrace()
             }
         }
