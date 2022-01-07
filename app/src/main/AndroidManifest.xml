@@ -16,6 +16,9 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.NewsDetailActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.PDFViewActivity"
             android:exported="true" />
         <activity
@@ -61,7 +64,10 @@
             </intent-filter>
         </activity>
 
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBpWX2Nn71gvKT-PvlTRmTFIuy8zIECV08"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBpWX2Nn71gvKT-PvlTRmTFIuy8zIECV08" />
+
         <receiver
             android:name=".util.ConnectivityReceiver"
             android:enabled="true">

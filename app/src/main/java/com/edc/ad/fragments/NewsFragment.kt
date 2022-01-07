@@ -1,5 +1,6 @@
 package com.edc.ad.Fragments
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -43,11 +44,12 @@ class NewsFragment : Fragment() {
             }
         }
 
-        newsRec.adapter = NewsAdapter(newsArray) {
-            //
-
-            //Intent intent=
-        }
+//        newsRec.adapter = NewsAdapter(newsArray) {
+//            //
+//
+//            //Intent intent=
+//        }
+        newsRec.adapter = NewsAdapter(newsArray, context as Activity)
 
         callAPI()
     }
