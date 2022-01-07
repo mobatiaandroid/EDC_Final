@@ -1,5 +1,6 @@
 package com.edc.ad.activity
 
+import android.app.ProgressDialog
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,15 @@ import android.webkit.WebView
 import com.edc.ad.R
 import android.webkit.WebViewClient
 import android.widget.ImageView
+
+import android.webkit.WebChromeClient
+import android.widget.Toast
+
+
+
+
+
+
 
 
 class WebViewActivity : AppCompatActivity() {
@@ -28,8 +38,32 @@ class WebViewActivity : AppCompatActivity() {
         Log.e("URL",url)
         webView = findViewById(R.id.webView)
         backButton = findViewById(R.id.backBtn)
+        var progressDialog = ProgressDialog(context);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.webViewClient = WebViewClient()
+        webView.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+                view.loadUrl(url)
+                return true
+            }
+
+            override fun onPageFinished(view: WebView, url: String) {
+                if (progressDialog.isShowing) {
+                    progressDialog.dismiss()
+                }
+            }
+
+            override fun onReceivedError(
+                view: WebView,
+                errorCode: Int,
+                description: String,
+                failingUrl: String
+            ) {
+                Toast.makeText(this@WebViewActivity, "Error:$description", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
         webView.loadUrl(url)
         backButton.setOnClickListener {
             finish()

@@ -28,6 +28,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/nav_icn" />
+    <ImageView
+        android:id="@+id/temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/nav_icn" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideBottom"
@@ -387,6 +398,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/logo_white"
+        app:layout_constraintEnd_toStartOf="@+id/temp"
+        app:layout_constraintStart_toEndOf="@+id/navBtn"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

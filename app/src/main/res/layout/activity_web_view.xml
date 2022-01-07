@@ -22,12 +22,11 @@
             android:background="@color/edc_green"
             android:ellipsize="end"
             android:gravity="center"
-            android:layout_marginEnd="8dp"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:singleLine="true"
-            android:text="@string/news"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/social_media"
+            app:layout_constraintEnd_toStartOf="@+id/temp"
             app:layout_constraintStart_toEndOf="@+id/backBtn" />
         <ImageView
             android:id="@+id/backBtn"
@@ -37,6 +36,17 @@
             android:layout_marginStart="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/constraintLayout3"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/back_arrow_white" />
+        <ImageView
+            android:id="@+id/temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:padding="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout3"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/back_arrow_white" />
 
@@ -57,7 +67,6 @@
         android:id="@+id/webView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

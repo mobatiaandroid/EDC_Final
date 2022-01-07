@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -25,152 +26,174 @@ class SignupActivity : AppCompatActivity() {
         setContentView(R.layout.activity_signup)
 
         submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
-        editname.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
+        editname.addTextChangedListener(object :TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                //  TODO("Not yet implemented")
-
-                if (p0?.length!! > 0) {
-                    if (editEmail.text?.trim()?.length!! > 0 && editPassword.text?.trim()?.length!! > 0 && editConfirmPassword.text?.trim()?.length!! > 0) {
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s!!.isNotEmpty()){
+                    if (editEmail.text!!.trim().isNotEmpty()
+                        && editname.text!!.trim().isNotEmpty()
+                        && editConfirmPassword.text!!.trim().isNotEmpty()
+                        && editPassword.text!!.trim().isNotEmpty()){
                         submitBtn.isEnabled = true
                         submitBtn.isClickable = true
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
-                    } else {
-                        submitBtn.isEnabled = false
-                        submitBtn.isClickable = false
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
                     }
-                } else {
-                    submitBtn.isEnabled = false
-                    submitBtn.isClickable = false
-                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
                 }
             }
-
-            override fun afterTextChanged(p0: Editable?) {
-                //  TODO("Not yet implemented")
+            override fun afterTextChanged(s: Editable?) {
             }
-
         })
 
-        editEmail.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
-            }
+//        try{
+//            editEmail.addTextChangedListener(object : TextWatcher {
+//                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//
+//                }
+//
+//                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//                    if (p0?.length!! > 0) {
+//                        if (editname.text?.trim()?.length!! > 0 && editPassword.text?.trim()?.length!! > 0 && editConfirmPassword.text?.trim()?.length!! > 0) {
+//                            submitBtn.isEnabled = true
+//                            submitBtn.isClickable = true
+//                            submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
+//                        } else {
+//                            submitBtn.isEnabled = false
+//                            submitBtn.isClickable = false
+//                            submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+//                        }
+//                    } else {
+//                        submitBtn.isEnabled = false
+//                        submitBtn.isClickable = false
+//                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+//                    }
+//                }
+//
+//                override fun afterTextChanged(p0: Editable?) {
+//
+//
+//                }
+//
+//            })
+//        }catch (e:Exception){
+//            Log.e("Error",e.toString())
+//        }
+//        try{
+//            editPassword.addTextChangedListener(object : TextWatcher {
+//                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//
+//                }
+//
+//                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//                    if (p0?.length!! > 0) {
+//                        if (editEmail.text?.trim()?.length!! > 0 && editname.text?.trim()?.length!! > 0 && editConfirmPassword.text?.trim()?.length!! > 0) {
+//                            submitBtn.isEnabled = true
+//                            submitBtn.isClickable = true
+//                            submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
+//                        } else {
+//                            submitBtn.isEnabled = false
+//                            submitBtn.isClickable = false
+//                            submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+//                        }
+//                    } else {
+//                        submitBtn.isEnabled = false
+//                        submitBtn.isClickable = false
+//                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+//                    }
+//                }
+//
+//                override fun afterTextChanged(p0: Editable?) {
+//                }
+//
+//            })
+//        }catch (e: Exception){
+//            Log.e("Error",e.toString())
+//        }
+//
+//        try{
+//            editConfirmPassword.addTextChangedListener(object : TextWatcher {
+//                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//
+//                }
+//
+//                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//                    if (p0?.length!! > 0) {
+//                        if (editEmail.text?.trim()?.length!! > 0 && editPassword.text?.trim()?.length!! > 0 && editname.text?.trim()?.length!! > 0) {
+//                            submitBtn.isEnabled = true
+//                            submitBtn.isClickable = true
+//                            submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
+//                        } else {
+//                            submitBtn.isEnabled = false
+//                            submitBtn.isClickable = false
+//                            submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+//                        }
+//
+//                        if (editPassword.length() == p0.length) {
+//                            if (editPassword.text?.trim()!!.equals(p0)) {
+//
+//                            } else {
+//                                CommonMethods.showLoginErrorPopUp(
+//                                    this@SignupActivity,
+//                                    "Alert",
+//                                    "Password Mismatch"
+//                                )
+//                                editConfirmPassword.text!!.clear()
+//                            }
+//                        }
+//                    } else {
+//                        try {
+//                            submitBtn.isEnabled = false
+//                            submitBtn.isClickable = false
+//                            submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+//                        } catch (e: Exception) {
+//                            Log.e("errir", e.toString())
+//                        }
+//                    }
+//                }
+//
+//                override fun afterTextChanged(p0: Editable?) {
+//                }
+//
+//            })
+//        }catch (e: Exception){
+//            Log.e("Error",e.toString())
+//        }
+        try{
+            submitBtn.setOnClickListener {
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (p0?.length!! > 0) {
-                    if (editname.text?.trim()?.length!! > 0 && editPassword.text?.trim()?.length!! > 0 && editConfirmPassword.text?.trim()?.length!! > 0) {
-                        submitBtn.isEnabled = true
-                        submitBtn.isClickable = true
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
+                if (editname.text.toString().trim().equals("")) {
+
+                    CommonMethods.showLoginErrorPopUp(this, "Alert", "Please fill all the fields.")
+                } else if (editEmail.text.toString().trim().equals("")) {
+
+                    CommonMethods.showLoginErrorPopUp(this, "Alert", "Please fill all the fields.")
+                } else if (!editEmail.text.toString().trim().equals("")) {
+                    var emailPattern = CommonMethods.isEmailValid(editEmail.text.toString())
+                    if (!emailPattern) {
+                        CommonMethods.showLoginErrorPopUp(
+                            this@SignupActivity,
+                            "Alert",
+                            "Enter a Valid Email."
+                        )
+                    } else if (editPassword.text.toString().trim().equals("")) {
+
+                        CommonMethods.showLoginErrorPopUp(
+                            this,
+                            "Alert",
+                            "Please fill all the fields."
+                        )
+                    } else if (editConfirmPassword.text.toString().trim().equals("")) {
+
+                        CommonMethods.showLoginErrorPopUp(
+                            this,
+                            "Alert",
+                            "Please fill all the fields."
+                        )
                     } else {
-                        submitBtn.isEnabled = false
-                        submitBtn.isClickable = false
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                        callAPI()
+
                     }
-                } else {
-                    submitBtn.isEnabled = false
-                    submitBtn.isClickable = false
-                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
-                }
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-
-
-            }
-
-        })
-        editPassword.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (p0?.length!! > 0) {
-                    if (editEmail.text?.trim()?.length!! > 0 && editname.text?.trim()?.length!! > 0 && editConfirmPassword.text?.trim()?.length!! > 0) {
-                        submitBtn.isEnabled = true
-                        submitBtn.isClickable = true
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
-                    } else {
-                        submitBtn.isEnabled = false
-                        submitBtn.isClickable = false
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
-                    }
-                } else {
-                    submitBtn.isEnabled = false
-                    submitBtn.isClickable = false
-                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
-                }
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-                //  TODO("Not yet implemented")
-            }
-
-        })
-
-        editConfirmPassword.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (p0?.length!! > 0) {
-                    if (editEmail.text?.trim()?.length!! > 0 && editPassword.text?.trim()?.length!! > 0 && editname.text?.trim()?.length!! > 0) {
-                        submitBtn.isEnabled = true
-                        submitBtn.isClickable = true
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
-                    } else {
-                        submitBtn.isEnabled = false
-                        submitBtn.isClickable = false
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
-                    }
-
-                    if (editPassword.length() == p0.length) {
-                        if (editPassword.text?.trim()!!.equals(p0)) {
-
-                        } else {
-                            CommonMethods.showLoginErrorPopUp(
-                                this@SignupActivity,
-                                "Alert",
-                                "Password Mismatch"
-                            )
-                            editConfirmPassword.text!!.clear()
-                        }
-                    }
-                } else {
-                    submitBtn.isEnabled = false
-                    submitBtn.isClickable = false
-                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
-                }
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-                //  TODO("Not yet implemented")
-            }
-
-        })
-        submitBtn.setOnClickListener {
-
-            if (editname.text.toString().trim().equals("")) {
-
-                CommonMethods.showLoginErrorPopUp(this, "Alert", "Please fill all the fields.")
-            } else if (editEmail.text.toString().trim().equals("")) {
-
-                CommonMethods.showLoginErrorPopUp(this, "Alert", "Please fill all the fields.")
-            } else if (!editEmail.text.toString().trim().equals("")) {
-                var emailPattern = CommonMethods.isEmailValid(editEmail.text.toString())
-                if (!emailPattern) {
-                    CommonMethods.showLoginErrorPopUp(
-                        this@SignupActivity,
-                        "Alert",
-                        "Enter a Valid Email."
-                    )
                 } else if (editPassword.text.toString().trim().equals("")) {
 
                     CommonMethods.showLoginErrorPopUp(this, "Alert", "Please fill all the fields.")
@@ -181,17 +204,10 @@ class SignupActivity : AppCompatActivity() {
                     callAPI()
 
                 }
-            } else if (editPassword.text.toString().trim().equals("")) {
-
-                CommonMethods.showLoginErrorPopUp(this, "Alert", "Please fill all the fields.")
-            } else if (editConfirmPassword.text.toString().trim().equals("")) {
-
-                CommonMethods.showLoginErrorPopUp(this, "Alert", "Please fill all the fields.")
-            } else {
-                callAPI()
 
             }
-
+        }catch (e: Exception){
+            Log.e("Error",e.toString())
         }
 
         backButton.setOnClickListener {
