@@ -16,7 +16,6 @@ import com.edc.ad.api.RetrofitClient
 import com.edc.ad.model.ContactUsResponse
 import com.edc.ad.util.PreferenceManager
 import com.edc.ad.util.ProgressBarDialog
-import kotlinx.android.synthetic.main.fragment_about.navBtn
 import kotlinx.android.synthetic.main.fragment_contact.*
 import kotlinx.coroutines.launch
 

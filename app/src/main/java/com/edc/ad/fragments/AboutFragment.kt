@@ -12,7 +12,7 @@ import com.edc.ad.activity.HomeBaseGuestActivity
 import com.edc.ad.api.RetrofitClient
 import com.edc.ad.util.PreferenceManager
 import com.edc.ad.util.ProgressBarDialog
-import kotlinx.android.synthetic.main.fragment_about.*
+import kotlinx.android.synthetic.main.fragment_about_new.*
 import kotlinx.coroutines.launch
 
 class AboutFragment : Fragment() {
@@ -26,7 +26,7 @@ class AboutFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_about, container, false)
+        return inflater.inflate(R.layout.fragment_about_new, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -65,7 +65,7 @@ class AboutFragment : Fragment() {
                         var aboutdata = call.data.about
                         var dataLoad = "<html><body>" + aboutdata + "</body></html>"
                         dataLoad?.let {
-//                            webAbout.loadData(it, "text/html", "utf-8")
+                            webAbout.loadData(it, "text/html", "utf-8")
                         }
                     }
                 }

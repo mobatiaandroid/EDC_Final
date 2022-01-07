@@ -25,7 +25,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/edc_green"
                 android:gravity="center"
-                android:text="@string/notifications" />
+                android:text="@string/about" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <WebView

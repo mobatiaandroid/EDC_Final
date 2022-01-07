@@ -85,13 +85,13 @@
         android:id="@+id/submitBtn"
         android:layout_width="0dp"
         android:layout_height="60dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/curved_rectangle"
         android:text="@string/submit"
         android:textColor="@color/white"
         android:textSize="14sp"
         android:textStyle="bold"
 
-        app:layout_constraintBottom_toTopOf="@+id/guideBottom"
         app:layout_constraintEnd_toEndOf="@+id/editData"
         app:layout_constraintStart_toStartOf="@+id/editData"
         app:layout_constraintTop_toBottomOf="@+id/editData" />

@@ -7,7 +7,15 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.edc.ad.R
+import kotlinx.android.synthetic.main.activity_guest_base.*
 import kotlinx.android.synthetic.main.activity_user_base.*
+import kotlinx.android.synthetic.main.activity_user_base.aboutBtn
+import kotlinx.android.synthetic.main.activity_user_base.contactBtn
+import kotlinx.android.synthetic.main.activity_user_base.homeBtn
+import kotlinx.android.synthetic.main.activity_user_base.newsBtn
+import kotlinx.android.synthetic.main.activity_user_base.newsLttrBtn
+import kotlinx.android.synthetic.main.activity_user_base.notificationBtn
+import kotlinx.android.synthetic.main.activity_user_base.servicesBtn
 
 class HomeBaseUserActivity : AppCompatActivity() {
 
@@ -47,6 +55,11 @@ class HomeBaseUserActivity : AppCompatActivity() {
 
             navControl?.navigate(R.id.homeFragment)
         }
+//        contactBtn.setOnClickListener { _ ->
+//            if (drawerLayout.isOpen) drawerLayout.close()
+//
+//            navControl?.navigate(R.id.contactFragment)
+//        }
         contactBtn.setOnClickListener { _ ->
             if (drawerLayout.isOpen) drawerLayout.close()
 

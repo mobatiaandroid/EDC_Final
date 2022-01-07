@@ -9,7 +9,7 @@ import com.edc.ad.BaseActivities.HomeBaseUserActivity
 import com.edc.ad.R
 import com.edc.ad.activity.HomeBaseGuestActivity
 import com.edc.ad.util.PreferenceManager
-import kotlinx.android.synthetic.main.fragment_about.*
+import kotlinx.android.synthetic.main.fragment_survey.*
 
 class SurveyFragment : Fragment() {
 
@@ -22,7 +22,7 @@ class SurveyFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_about, container, false)
+        return inflater.inflate(R.layout.fragment_notification_new, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
