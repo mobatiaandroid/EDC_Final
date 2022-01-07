@@ -22,7 +22,7 @@ import com.edc.ad.util.addOnItemClickListener
 import com.google.gson.JsonObject
 import com.mobatia.edcsurvey.survey.model.SurveyDataModel
 import kotlinx.android.synthetic.main.activity_feedback.*
-import kotlinx.android.synthetic.main.fragment_about.*
+import kotlinx.android.synthetic.main.fragment_survey.*
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Response
