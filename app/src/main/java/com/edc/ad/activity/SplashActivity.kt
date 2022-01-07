@@ -1,0 +1,68 @@
+package com.edc.ad.activity
+
+import android.content.Intent
+import android.os.Bundle
+import android.util.DisplayMetrics
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.view.animation.TranslateAnimation
+import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
+import com.edc.ad.BaseActivities.HomeBaseUserActivity
+import com.edc.ad.R
+import com.edc.ad.util.PreferenceManager
+import java.util.concurrent.Executors
+import java.util.concurrent.ScheduledExecutorService
+
+class SplashActivity : AppCompatActivity() {
+    lateinit var logo: ImageView
+    lateinit var car: ImageView
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_splash)
+        logo = findViewById(R.id.imgLogo)
+        car = findViewById(R.id.car)
+
+
+        val metrics = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(metrics)
+        val calculatedWidth = metrics.widthPixels * 1.0f
+
+
+        val animation: Animation = TranslateAnimation(0F, calculatedWidth / 3.8f, 0F, 0F)
+        animation.duration = 1000
+        animation.fillAfter = true
+        /*val cityAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.city_left)
+        val carAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.car_right)*/
+        val fadeInAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.fade_in)
+        logo.startAnimation(fadeInAnimation)
+        val animUpDown: Animation = AnimationUtils.loadAnimation(
+            applicationContext,
+            R.anim.logo_animation
+        )
+
+
+        logo.startAnimation(animUpDown)
+        car.startAnimation(animation)
+        val backgroundExecutor: ScheduledExecutorService =
+            Executors.newSingleThreadScheduledExecutor()
+
+        backgroundExecutor.schedule({
+
+
+            if (this?.let { PreferenceManager.getLoginStatus(it) } == "no") {
+                val intent: Intent = Intent(this, HomeBaseGuestActivity::class.java)
+                startActivity(intent)
+                overridePendingTransition(0, 0)
+                finish()
+            } else {
+                val intent: Intent = Intent(this, HomeBaseUserActivity::class.java)
+                startActivity(intent)
+                overridePendingTransition(0, 0)
+                finish()
+            }
+
+        }, 2, java.util.concurrent.TimeUnit.SECONDS)
+
+    }
+}

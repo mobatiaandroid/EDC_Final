@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "525899884441",
+    "project_id": "edcproject-337106",
+    "storage_bucket": "edcproject-337106.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:525899884441:android:c64177f07ec0d7c4401508",
+        "android_client_info": {
+          "package_name": "com.edc.ad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "525899884441-tlml07plhpmlouvn2lob9eo9vje58c36.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1Zzkr4n75bqWkE6mW9bJE_ceiChBykwQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "525899884441-tlml07plhpmlouvn2lob9eo9vje58c36.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
