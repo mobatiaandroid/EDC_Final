@@ -1,5 +1,7 @@
 package com.edc.ad.activity
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import androidx.appcompat.app.AppCompatActivity
@@ -16,15 +18,18 @@ import kotlinx.android.synthetic.main.activity_guest_base.newsLttrBtn
 import kotlinx.android.synthetic.main.activity_guest_base.notificationBtn
 import kotlinx.android.synthetic.main.activity_guest_base.servicesBtn
 import kotlinx.android.synthetic.main.activity_user_base.*
+import kotlinx.android.synthetic.main.fragment_home_guest.*
 
 class HomeBaseGuestActivity : AppCompatActivity() {
 
+    lateinit var context: Context
     private lateinit var drawerLayout: DrawerLayout
     public var navControl: NavController? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_guest_base)
+        context = this
         notificationBtn.setOnClickListener { _ ->
             if (drawerLayout.isOpen) drawerLayout.close()
 
@@ -60,6 +65,7 @@ class HomeBaseGuestActivity : AppCompatActivity() {
 
             navControl?.navigate(R.id.contactFragment)
         }
+
     }
 
     override fun onStart() {

@@ -4,12 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_account_base.xml" value="0.14166666666666666" />
-        <entry key="app/src/main/res/layout/activity_complaint.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_feedback.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_complaint.xml" value="0.14" />
+        <entry key="app/src/main/res/layout/activity_feedback.xml" value="0.14" />
         <entry key="app/src/main/res/layout/activity_guest_base.xml" value="0.14" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_news_detail.xml" value="0.16" />
-        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.14" />
+        <entry key="app/src/main/res/layout/activity_pdfview.xml" value="0.14166666666666666" />
+        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_user_base.xml" value="0.14166666666666666" />
+        <entry key="app/src/main/res/layout/activity_web_view.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_about.xml" value="0.14166666666666666" />
         <entry key="app/src/main/res/layout/fragment_contact_bottom_sheet.xml" value="0.5060449050086355" />
         <entry key="app/src/main/res/layout/fragment_home2.xml" value="0.14166666666666666" />

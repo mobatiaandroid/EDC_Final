@@ -17,8 +17,13 @@ import kotlinx.android.synthetic.main.fragment_home_guest.*
 import kotlinx.android.synthetic.main.fragment_home_guest.navBtn
 import kotlinx.coroutines.launch
 import java.util.*
+import android.app.Activity
+import com.edc.ad.activity.WebViewActivity
+import com.edc.ad.model.SocialmediaModel
+
 
 class GuestHomeFragment : Fragment() {
+    var socialData: List<SocialmediaModel> = emptyList()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -63,6 +68,7 @@ class GuestHomeFragment : Fragment() {
 
         }
 
+
         txtGreeting.text = getGreetingMessage()
         constraintLogin.setOnClickListener {
 
@@ -103,7 +109,7 @@ class GuestHomeFragment : Fragment() {
                 when (call.status) {
                     200 -> {
                        // progressBarDialog?.dismiss()
-                        var socialData = call.data.socialmedia
+                        socialData = call.data.socialmedia
 
                     }
                 }
@@ -112,6 +118,22 @@ class GuestHomeFragment : Fragment() {
 
 
             }
+        }
+        imgFacebook.setOnClickListener {
+            val i = Intent(activity, WebViewActivity::class.java)
+            i.putExtra("url",socialData[0].url)
+            startActivity(i)
+            (activity as Activity?)!!.overridePendingTransition(0, 0)
+        }
+        imgInstagram.setOnClickListener {
+            val i = Intent(activity, WebViewActivity::class.java)
+            i.putExtra("url",socialData[1].url)
+            startActivity(i)
+        }
+        imgTwitter.setOnClickListener {
+            val i = Intent(activity, WebViewActivity::class.java)
+            i.putExtra("url",socialData[2].url)
+            startActivity(i)
         }
     }
 }

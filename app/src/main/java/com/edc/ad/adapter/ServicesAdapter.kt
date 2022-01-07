@@ -34,18 +34,11 @@ class ServicesAdapter(
     override fun onBindViewHolder(holder: VH, position: Int) {
         holder.serviceTitle!!.text = arrayList[position].title
         holder.itemView.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 //                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(pdf)))
                 val intent = Intent(activity, PDFViewActivity::class.java)
                 intent.putExtra("position", position)
                 intent.putExtra("url",arrayList[position].file)
                 activity.startActivity(intent)
-            } else {
-//                val intent = Intent(mContext, PDFViewActivity::class.java)
-//                intent.putExtra("pdf_url", pdf)
-//                startActivity(intent)
-                Log.e("Here","Here")
-            }
         }
     }
 

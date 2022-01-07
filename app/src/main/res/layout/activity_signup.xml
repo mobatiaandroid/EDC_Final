@@ -11,6 +11,7 @@
         android:id="@+id/city1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toTopOf="@+id/imageView4"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,6 +22,7 @@
         android:id="@+id/city2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toTopOf="@id/imageView4"
         app:layout_constraintStart_toEndOf="@+id/city1"
@@ -30,6 +32,7 @@
         android:id="@+id/imageView4"
         android:layout_width="match_parent"
         android:layout_height="42dp"
+        android:visibility="gone"
         android:background="#C4C4C4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,21 +63,21 @@
 
     <com.dev.edc.manager.CustomEditTextBlack
         android:id="@+id/editname"
-        android:padding="5dp"
-
         android:layout_width="0dp"
         android:layout_height="60dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/roundedbg"
-android:layout_marginBottom="10dp"
         android:hint="@string/fullname"
-        app:layout_constraintBottom_toTopOf="@+id/editEmail"
+        android:padding="5dp"
         app:layout_constraintEnd_toEndOf="@+id/textView3"
-        app:layout_constraintStart_toStartOf="@+id/textView3" />
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="match_parent"
         android:layout_height="10dp"
+        android:visibility="gone"
         android:background="#C4C4C4"
         app:layout_constraintBottom_toTopOf="@+id/imageView4"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -83,15 +86,16 @@ android:layout_marginBottom="10dp"
         android:id="@+id/submitBtn"
         android:layout_width="0dp"
         android:layout_height="60dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/curved_rectangle"
         android:text="@string/signup"
         android:textColor="@color/white"
         android:textSize="14sp"
         android:textStyle="bold"
 
-        app:layout_constraintBottom_toTopOf="@+id/guideBottom"
         app:layout_constraintEnd_toEndOf="@+id/editConfirmPassword"
-        app:layout_constraintStart_toStartOf="@+id/editConfirmPassword" />
+        app:layout_constraintStart_toStartOf="@+id/editConfirmPassword"
+        app:layout_constraintTop_toBottomOf="@+id/editConfirmPassword" />
 
 
     <ImageView
@@ -116,45 +120,45 @@ android:layout_marginBottom="10dp"
         android:id="@+id/editConfirmPassword"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/roundedbg"
         android:ems="10"
         android:hint="@string/confirmpassword"
         android:inputType="textPassword"
         android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/submitBtn"
         app:layout_constraintEnd_toEndOf="@+id/editname"
-        app:layout_constraintStart_toStartOf="@+id/editname" />
+        app:layout_constraintStart_toStartOf="@+id/editname"
+        app:layout_constraintTop_toBottomOf="@+id/editPassword" />
 
     <com.dev.edc.manager.CustomEditTextBlack
         android:id="@+id/editPassword"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/roundedbg"
         android:ems="10"
 
         android:hint="@string/password"
         android:inputType="textPassword"
         android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/editConfirmPassword"
         app:layout_constraintEnd_toEndOf="@+id/editConfirmPassword"
-        app:layout_constraintStart_toStartOf="@+id/editConfirmPassword" />
+        app:layout_constraintStart_toStartOf="@+id/editConfirmPassword"
+        app:layout_constraintTop_toBottomOf="@+id/editEmail" />
 
     <com.dev.edc.manager.CustomEditTextBlack
         android:id="@+id/editEmail"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/roundedbg"
         android:ems="10"
         android:hint="@string/email_hint"
         android:inputType="textEmailAddress"
 
         android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/editPassword"
         app:layout_constraintEnd_toEndOf="@+id/editPassword"
-        app:layout_constraintStart_toStartOf="@+id/editPassword" />
+        app:layout_constraintStart_toStartOf="@+id/editPassword"
+        app:layout_constraintTop_toBottomOf="@+id/editname" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideTop"

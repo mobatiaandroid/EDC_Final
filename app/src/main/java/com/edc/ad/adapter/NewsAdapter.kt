@@ -9,11 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.edc.ad.R
 import com.edc.ad.activity.NewsDetailActivity
-import com.edc.ad.activity.PDFViewActivity
 import com.edc.ad.model.NewsResponseModel
-import kotlinx.android.synthetic.main.item_news.view.*
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 class NewsAdapter(val arrayList: ArrayList<NewsResponseModel.Data>, val activity: Activity): RecyclerView.Adapter<NewsAdapter.VH>(){
