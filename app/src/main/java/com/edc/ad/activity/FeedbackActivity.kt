@@ -26,7 +26,8 @@ class FeedbackActivity : AppCompatActivity() {
         setContentView(R.layout.activity_feedback)
         submitBtn.isEnabled = false
         submitBtn.isClickable = false
-        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+        submitBtn.alpha=0.5f
+        submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
         editSubject.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
@@ -39,16 +40,19 @@ class FeedbackActivity : AppCompatActivity() {
                     if (editData.text?.trim()?.length!! > 0) {
                         submitBtn.isEnabled = true
                         submitBtn.isClickable = true
+                        submitBtn.alpha=1.0f
                         submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
                     } else {
                         submitBtn.isEnabled = false
                         submitBtn.isClickable = false
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                        submitBtn.alpha=0.5f
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
                     }
                 } else {
                     submitBtn.isEnabled = false
                     submitBtn.isClickable = false
-                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                    submitBtn.alpha=0.5f
+                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
                 }
             }
 
@@ -68,16 +72,19 @@ class FeedbackActivity : AppCompatActivity() {
                     if (editSubject.text?.trim()?.length!! > 0) {
                         submitBtn.isEnabled = true
                         submitBtn.isClickable = true
+                        submitBtn.alpha=1.0f
                         submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
                     } else {
                         submitBtn.isEnabled = false
                         submitBtn.isClickable = false
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                        submitBtn.alpha=0.5f
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
                     }
                 } else {
                     submitBtn.isEnabled = false
                     submitBtn.isClickable = false
-                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                    submitBtn.alpha=0.5f
+                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
                 }
             }
 
@@ -127,6 +134,7 @@ class FeedbackActivity : AppCompatActivity() {
                 when (call.status){
                     200,201 -> {
                         Toast.makeText(this@FeedbackActivity, "Feedback registered Successfully", Toast.LENGTH_SHORT).show()
+                        finish()
                     }
                     else -> {
                         println("Error")
@@ -134,6 +142,8 @@ class FeedbackActivity : AppCompatActivity() {
                 }
 
             } catch (e: Exception){
+                Toast.makeText(this@FeedbackActivity, "Something went wrong", Toast.LENGTH_SHORT).show()
+
                 e.printStackTrace()
             }
         }

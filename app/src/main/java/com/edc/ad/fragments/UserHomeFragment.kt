@@ -53,11 +53,15 @@ class UserHomeFragment : Fragment() {
         }
 
         constraintAbout.setOnClickListener {
-            findNavController().navigate(R.id.aboutFragment)
+            findNavController().navigate(R.id.surveyFragment)
 
         }
         constraintNotification.setOnClickListener {
             findNavController().navigate(R.id.notificationFragment)
+
+        }
+        constraintContact.setOnClickListener {
+            findNavController().navigate(R.id.contactFragment)
 
         }
         constraintFeedback.setOnClickListener {

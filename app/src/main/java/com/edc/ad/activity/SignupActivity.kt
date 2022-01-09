@@ -25,7 +25,8 @@ class SignupActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_signup)
 
-        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+        submitBtn.alpha=0.5f
+        submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
         editname.addTextChangedListener(object :TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
@@ -38,16 +39,19 @@ class SignupActivity : AppCompatActivity() {
                         && editPassword.text!!.trim().isNotEmpty()){
                         submitBtn.isEnabled = true
                         submitBtn.isClickable = true
+                        submitBtn.alpha=1.0f
                         submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
                     } else {
                             submitBtn.isEnabled = false
                             submitBtn.isClickable = false
-                            submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                        submitBtn.alpha=0.5f
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
                     }
                 } else {
                         submitBtn.isEnabled = false
                         submitBtn.isClickable = false
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                    submitBtn.alpha=0.5f
+                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
                     }
             }
             override fun afterTextChanged(s: Editable?) {
@@ -67,16 +71,19 @@ class SignupActivity : AppCompatActivity() {
                     ) {
                         submitBtn.isEnabled = true
                         submitBtn.isClickable = true
+                        submitBtn.alpha=1.0f
                         submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
                     } else {
                         submitBtn.isEnabled = false
                         submitBtn.isClickable = false
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                        submitBtn.alpha=0.5f
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
                     }
                 } else {
                         submitBtn.isEnabled = false
                         submitBtn.isClickable = false
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                    submitBtn.alpha=0.5f
+                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
                     }
             }
 
@@ -97,16 +104,19 @@ class SignupActivity : AppCompatActivity() {
                     ) {
                         submitBtn.isEnabled = true
                         submitBtn.isClickable = true
+                        submitBtn.alpha=1.0f
                         submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
                     } else {
                         submitBtn.isEnabled = false
                         submitBtn.isClickable = false
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                        submitBtn.alpha=0.5f
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
                     }
                 } else {
                     submitBtn.isEnabled = false
                     submitBtn.isClickable = false
-                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                    submitBtn.alpha=0.5f
+                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
                 }
             }
 
@@ -127,11 +137,13 @@ class SignupActivity : AppCompatActivity() {
                     ) {
                         submitBtn.isEnabled = true
                         submitBtn.isClickable = true
+                        submitBtn.alpha=1.0f
                         submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
                     } else {
                         submitBtn.isEnabled = false
                         submitBtn.isClickable = false
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                        submitBtn.alpha=0.5f
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
                     }
 //                    try{
 //                        if (editPassword.length() == s.length) {
@@ -152,7 +164,8 @@ class SignupActivity : AppCompatActivity() {
                 } else {
                     submitBtn.isEnabled = false
                     submitBtn.isClickable = false
-                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                    submitBtn.alpha=0.5f
+                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
                 }
             }
 
@@ -236,7 +249,9 @@ class SignupActivity : AppCompatActivity() {
                 //  paramObject.put("email", edtEmail.text.toString())
                 //    paramObject.put("password", edtPassword.text.toString())
                 val call = RetrofitClient.get.userRegister(paramObject)
+                Log.e("WORKS","ENTERS")
                 Log.e("response",call.status.toString())
+
                 when (call.status) {
                     200 -> {
                         progressBarDialog.dismiss()
@@ -263,7 +278,20 @@ class SignupActivity : AppCompatActivity() {
                     }
                 }
 
-            } catch (e: Exception) {
+            }
+
+            catch (e: Exception) {
+                Log.e("WORKS","ENTERS")
+               if (e.toString().equals("retrofit2.HttpException: HTTP 400 Bad Request"))
+               {
+
+                   progressBarDialog.dismiss()
+                   Toast.makeText(
+                           this@SignupActivity,
+                           "Something went wrong",
+                           Toast.LENGTH_LONG
+                   ).show()
+               }
                 e.printStackTrace()
             }
         }

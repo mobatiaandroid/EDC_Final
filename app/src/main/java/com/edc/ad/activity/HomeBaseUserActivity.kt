@@ -55,6 +55,16 @@ class HomeBaseUserActivity : AppCompatActivity() {
 
             navControl?.navigate(R.id.homeFragment)
         }
+        feedbackBtn.setOnClickListener { _ ->
+            if (drawerLayout.isOpen) drawerLayout.close()
+
+            navControl?.navigate(R.id.feedbackFragment)
+        }
+        complaintBtn.setOnClickListener { _ ->
+            if (drawerLayout.isOpen) drawerLayout.close()
+
+            navControl?.navigate(R.id.complaintFragment)
+        }
 //        contactBtn.setOnClickListener { _ ->
 //            if (drawerLayout.isOpen) drawerLayout.close()
 //

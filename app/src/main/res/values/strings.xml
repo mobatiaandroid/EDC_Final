@@ -17,16 +17,17 @@
     <string name="creatAccount" translatable="false"><u>Create Account</u></string>
     <string name="password_hint">Password</string>
     <string name="email_hint">Email ID</string>
+    <string name="email_hint_signup">Email</string>
     <string name="email">Email ID</string>
     <string name="password">Password</string>
-    <string name="newsletter">Newsletter</string>
+    <string name="newsletter">NewsLetter</string>
     <string name="survey">Survey</string>
     <string name="complaint">Complaint</string>
     <string name="about">About Us</string>
     <string name="contactus">Contact Us</string>
     <string name="news">News</string>
     <string name="logout">LOGOUT</string>
-    <string name="login">LOGIN</string>
+    <string name="login">Sign in</string>
 
     <string name="home">Home</string>
     <!-- TODO: Remove or change this placeholder text -->

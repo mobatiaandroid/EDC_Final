@@ -44,12 +44,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/nav_icn" />
+
     <ImageView
         android:id="@+id/imageView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:src="@drawable/logo_white"
+        app:layout_constraintBottom_toBottomOf="@+id/navBtn"
         app:layout_constraintEnd_toStartOf="@+id/temp"
         app:layout_constraintStart_toEndOf="@+id/navBtn"
         app:layout_constraintTop_toTopOf="parent" />
@@ -60,7 +62,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".90" />
+        app:layout_constraintGuide_percent=".85" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -112,7 +114,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".08" />
+        app:layout_constraintGuide_percent="0.04" />
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -120,28 +122,28 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".36" />
+        app:layout_constraintGuide_percent="0.34" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideRight1"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".64" />
+        app:layout_constraintGuide_percent="0.66" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideMenuBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".77" />
+        app:layout_constraintGuide_percent="0.75" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideRight"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".92" />
+        app:layout_constraintGuide_percent="0.96" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideMenuTop"
@@ -166,16 +168,18 @@
             android:id="@+id/imageView3"
             android:layout_width="match_parent"
             android:layout_height="7dp"
+
             android:background="@drawable/rounded_rect_orange_home"
             app:layout_constraintBottom_toBottomOf="parent" />
 
-        <!--        <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:src="@drawable/ic_news_letter"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />-->
+        <ImageView
+            android:id="@+id/imageView19"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/notifications"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.edc.ad.util.CustomTextViewBlack
             android:layout_width="match_parent"
@@ -184,7 +188,8 @@
             android:text="@string/notifications"
             app:layout_constraintBottom_toTopOf="@+id/imageView3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView19" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -206,10 +211,11 @@
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/imageView17"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_margin="10dp"
-            android:src="@drawable/ic_news_letter"
+            android:src="@drawable/newsletter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -220,7 +226,8 @@
             android:text="@string/newsletter"
             app:layout_constraintBottom_toTopOf="@+id/imageVieworng"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView17" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -245,10 +252,11 @@
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/imageView16"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_margin="10dp"
-            android:src="@drawable/ic_feedback"
+            android:src="@drawable/feedback"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -259,7 +267,8 @@
             android:text="@string/feedback"
             app:layout_constraintBottom_toTopOf="@+id/imageView5"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView16" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -284,10 +293,11 @@
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/imageView14"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_margin="10dp"
-            android:src="@drawable/ic_complaint"
+            android:src="@drawable/complaint"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -295,10 +305,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:layout_marginBottom="8dp"
             android:text="@string/complaint"
             app:layout_constraintBottom_toTopOf="@+id/imageView6"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView14" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -322,13 +334,14 @@
             android:background="@drawable/rounded_rect_orange_home"
             app:layout_constraintBottom_toBottomOf="parent" />
 
-        <!--<ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/imageView20"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_margin="10dp"
-            android:src="@drawable/ic_about"
+            android:src="@drawable/contact_us"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />-->
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.edc.ad.util.CustomTextViewBlack
             android:layout_width="match_parent"
@@ -337,7 +350,8 @@
             android:text="@string/contactus"
             app:layout_constraintBottom_toTopOf="@+id/imageView8"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView20" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -361,10 +375,11 @@
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/imageView15"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_margin="10dp"
-            android:src="@drawable/ic_about"
+            android:src="@drawable/ic_survey"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -372,11 +387,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="@string/about"
+            android:text="@string/survey"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/imageView9"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView15" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.Guideline
@@ -389,7 +405,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLogin"
         android:layout_width="140dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:background="@drawable/rounded_rect_logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideLogout">
@@ -407,8 +423,8 @@
 
         <ImageView
             android:id="@+id/imgLogout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginRight="10dp"
             android:src="@drawable/ic_logout"
             app:layout_constraintBottom_toBottomOf="parent"

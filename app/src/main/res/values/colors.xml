@@ -15,4 +15,5 @@
     <color name="edc_green">#24966E</color>
     <color name="edc_header_green">#24966E</color>
     <color name="dark_grey">#A9A9A9</color>
+    <color name="dark_grey_text">#808080</color>
 </resources>

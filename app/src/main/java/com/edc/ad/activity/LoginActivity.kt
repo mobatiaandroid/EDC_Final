@@ -73,17 +73,17 @@ class LoginActivity : AppCompatActivity() {
         constraintPassword = findViewById(R.id.clPasword)
 
 //        carImg = findViewById(R.id.carImg)
-        txtEmailHint = findViewById(R.id.emailHintTxt)
-        txtPasswordHint = findViewById(R.id.passwordHintTxt)
+    //    txtEmailHint = findViewById(R.id.emailHintTxt)
+      //  txtPasswordHint = findViewById(R.id.passwordHintTxt)
         logo = findViewById(R.id.logo)
 
         emailTxt.setOnFocusChangeListener { view, b ->
             if (b) {
-                txtEmailHint.visibility = View.VISIBLE
+              //  txtEmailHint.visibility = View.VISIBLE
                 emailTxt.hint = " "
 
             } else {
-                txtEmailHint.visibility = View.INVISIBLE
+                //txtEmailHint.visibility = View.INVISIBLE
                 emailTxt.hint = resources.getString(R.string.email_hint)
 
             }
@@ -92,12 +92,12 @@ class LoginActivity : AppCompatActivity() {
 
         passwordTxt.setOnFocusChangeListener { view, b ->
             if (b) {
-                txtPasswordHint.visibility = View.VISIBLE
+               // txtPasswordHint.visibility = View.VISIBLE
                 passwordTxt.hint = " "
 
 
             } else {
-                txtPasswordHint.visibility = View.INVISIBLE
+               // txtPasswordHint.visibility = View.INVISIBLE
                 passwordTxt.hint = resources.getString(R.string.password_hint)
 
             }
@@ -108,8 +108,9 @@ class LoginActivity : AppCompatActivity() {
         windowManager.defaultDisplay.getMetrics(metrics)
         val calculatedWidth = metrics.widthPixels
 
-        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+        submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
 
+        submitBtn.alpha = 0.5f
         submitBtn.isEnabled = false
         submitBtn.isClickable = false
 
@@ -136,19 +137,22 @@ class LoginActivity : AppCompatActivity() {
 
                         submitBtn.isEnabled = true
                         submitBtn.isClickable = true
+                        submitBtn.alpha=1.0f
                         submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
 
                     } else {
                         submitBtn.isEnabled = false
                         submitBtn.isClickable = false
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                        submitBtn.alpha=0.5f
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
 
 
                     }
                 } else {
                     submitBtn.isEnabled = false
                     submitBtn.isClickable = false
-                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                    submitBtn.alpha=0.5f
+                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
                 }
             }
 
@@ -173,18 +177,21 @@ class LoginActivity : AppCompatActivity() {
 
                         submitBtn.isEnabled = true
                         submitBtn.isClickable = true
+                        submitBtn.alpha=1.0f
                         submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
 
                     } else {
                         submitBtn.isEnabled = false
                         submitBtn.isClickable = false
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                        submitBtn.alpha=0.5f
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
 
                     }
                 } else {
                     submitBtn.isEnabled = false
                     submitBtn.isClickable = false
-                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                    submitBtn.alpha=0.5f
+                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
                 }
             }
 

@@ -83,11 +83,11 @@
                 android:gravity="center|start">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/ic_about"
-                    android:visibility="invisible" />
+                    android:src="@drawable/home"
+                    android:visibility="visible" />
 
                 <com.edc.ad.util.CustomTextViewWhite
                     android:layout_width="wrap_content"
@@ -104,11 +104,11 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginLeft="20dp"
 
-                    android:src="@drawable/ic_news_letter" />
+                    android:src="@drawable/newsletter" />
 
                 <com.edc.ad.util.CustomTextViewWhite
                     android:layout_width="wrap_content"
@@ -125,11 +125,11 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/ic_about"
-                    android:visibility="invisible" />
+                    android:src="@drawable/news"
+                    android:visibility="visible" />
 
                 <com.edc.ad.util.CustomTextViewWhite
                     android:layout_width="wrap_content"
@@ -146,11 +146,11 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/ic_about"
-                    android:visibility="invisible" />
+                    android:src="@drawable/notifications"
+                    android:visibility="visible" />
 
                 <com.edc.ad.util.CustomTextViewWhite
                     android:layout_width="wrap_content"
@@ -167,11 +167,11 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/ic_about"
-                    android:visibility="invisible" />
+                    android:src="@drawable/services"
+                    android:visibility="visible" />
 
                 <com.edc.ad.util.CustomTextViewWhite
                     android:layout_width="wrap_content"
@@ -181,6 +181,67 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/surveyBtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center|start">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/ic_survey"
+                    android:visibility="visible" />
+
+                <com.edc.ad.util.CustomTextViewWhite
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/survey" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/complaintBtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center|start">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/complaint"
+                    android:visibility="visible" />
+
+                <com.edc.ad.util.CustomTextViewWhite
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/complaint" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/feedbackBtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center|start">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/feedback"
+                    android:visibility="visible" />
+
+                <com.edc.ad.util.CustomTextViewWhite
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/feedback" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/contactBtn"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -188,11 +249,11 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/ic_about"
-                    android:visibility="invisible" />
+                    android:src="@drawable/contact_us"
+                    android:visibility="visible" />
 
                 <com.edc.ad.util.CustomTextViewWhite
                     android:layout_width="wrap_content"
@@ -208,8 +269,8 @@
                 android:gravity="center|start">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/ic_about" />
 
@@ -220,25 +281,6 @@
                     android:text="@string/about" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/surveyBtn"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center|start">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:src="@drawable/ic_about"
-                    android:visibility="invisible" />
-
-                <com.edc.ad.util.CustomTextViewWhite
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:text="@string/survey" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

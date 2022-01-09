@@ -20,6 +20,7 @@ import java.util.*
 import android.app.Activity
 import com.edc.ad.activity.WebViewActivity
 import com.edc.ad.model.SocialmediaModel
+import java.util.Collections.emptyList
 
 
 class GuestHomeFragment : Fragment() {
@@ -74,7 +75,6 @@ class GuestHomeFragment : Fragment() {
 
             val intent = Intent(activity, LoginActivity::class.java)
             startActivity(intent)
-            activity?.finish()
         }
 
         callHomeAPI()

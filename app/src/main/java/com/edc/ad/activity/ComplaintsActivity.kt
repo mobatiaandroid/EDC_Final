@@ -3,6 +3,7 @@ package com.edc.ad.activity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log.println
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -17,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_complaint.submitBtn
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import java.sql.DriverManager.println
 
 
 class ComplaintsActivity : AppCompatActivity() {
@@ -27,7 +29,8 @@ class ComplaintsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_complaint)
         submitBtn.isEnabled = false
         submitBtn.isClickable = false
-        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+        submitBtn.alpha=0.5f
+        submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
         editSubject.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
@@ -40,16 +43,19 @@ class ComplaintsActivity : AppCompatActivity() {
                     if (editData.text?.trim()?.length!! > 0) {
                         submitBtn.isEnabled = true
                         submitBtn.isClickable = true
+                        submitBtn.alpha=1.0f
                         submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
                     } else {
                         submitBtn.isEnabled = false
                         submitBtn.isClickable = false
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                        submitBtn.alpha=0.5f
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
                     }
                 } else {
                     submitBtn.isEnabled = false
                     submitBtn.isClickable = false
-                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                    submitBtn.alpha=0.5f
+                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
                 }
             }
 
@@ -69,16 +75,19 @@ class ComplaintsActivity : AppCompatActivity() {
                     if (editSubject.text?.trim()?.length!! > 0) {
                         submitBtn.isEnabled = true
                         submitBtn.isClickable = true
+                        submitBtn.alpha=1.0f
                         submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
                     } else {
                         submitBtn.isEnabled = false
                         submitBtn.isClickable = false
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                        submitBtn.alpha=0.5f
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
                     }
                 } else {
                     submitBtn.isEnabled = false
                     submitBtn.isClickable = false
-                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle_grey);
+                    submitBtn.alpha=0.5f
+                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
                 }
             }
 
@@ -124,6 +133,7 @@ class ComplaintsActivity : AppCompatActivity() {
                 when(call.status){
                     200,201 -> {
                         Toast.makeText(this@ComplaintsActivity, "Complaint registered Successfully", Toast.LENGTH_SHORT).show()
+                        finish()
                     }
                     else -> {
                         println("Error")
@@ -132,6 +142,8 @@ class ComplaintsActivity : AppCompatActivity() {
 
 
             } catch (e: Exception){
+                Toast.makeText(this@ComplaintsActivity, "Something went wrong.", Toast.LENGTH_SHORT).show()
+
                 e.printStackTrace()
             }
 

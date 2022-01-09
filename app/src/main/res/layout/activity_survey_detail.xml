@@ -20,11 +20,14 @@
         android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
         android:gravity="center"
+        android:maxLines="1"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/backBtn"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -103,24 +106,28 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
             app:srcCompat="@drawable/next" />
 
+        <ImageView
+            android:id="@+id/previousImg"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/curved_rec_orange_high"
+            android:padding="15dp"
+            android:rotation="180"
+            app:layout_constraintBottom_toBottomOf="@+id/nextImg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/nextImg"
+            app:srcCompat="@drawable/next" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="@+id/nextImg"
             app:layout_constraintEnd_toStartOf="@+id/nextImg"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/nextImg">
-
-            <com.edc.ad.util.CustomTextViewSemiBoldWhite
-                android:id="@+id/textView8"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:text="Questions"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/previousImg"
+            app:layout_constraintTop_toTopOf="@+id/nextImg"
+            app:layout_constraintVertical_bias="0.0">
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -132,6 +139,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textView8"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+            <com.edc.ad.util.CustomTextViewSemiBoldWhite
+                android:id="@+id/textView8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="Questions"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

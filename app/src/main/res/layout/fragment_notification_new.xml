@@ -16,6 +16,7 @@
             android:id="@+id/constraintLayout3"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:alpha="0.5"
             android:background="@color/edc_green"
             app:layout_constraintTop_toTopOf="parent">
             <ImageView
@@ -43,9 +44,9 @@
             <com.edc.ad.util.CustomTextViewBoldWhite
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:background="@color/edc_green"
                 android:gravity="center"
                 android:text="@string/notifications"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toStartOf="@+id/temp"
                 app:layout_constraintStart_toEndOf="@+id/navBtn" />
         </androidx.constraintlayout.widget.ConstraintLayout>
