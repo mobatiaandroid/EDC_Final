@@ -118,62 +118,13 @@ class SurveyAnswerAdapter (private var surveyArrayList: ArrayList<OptionsModel>,
             holder.smileyConstraint.visibility=View.GONE
             holder.numberConstraint.visibility=View.GONE
             holder.starConstraint.visibility=View.VISIBLE
-
-            if(CommonMethods.clickedPos==-1)
+            if (surveyArrayList.get(position).selectedPos0==1)
+            {
+                holder.starImg.setImageResource(R.drawable.star_selected)
+            }
+            else
             {
                 holder.starImg.setImageResource(R.drawable.star)
-            }
-            else{
-                Log.e(" CLICKED POS",CommonMethods.clickedPos.toString())
-                if (CommonMethods.clickedPos==0)
-                {
-                    if (position==0)
-                    {
-                        holder.starImg.setImageResource(R.drawable.star_selected)
-                    }
-                    else{
-                        holder.starImg.setImageResource(R.drawable.star)
-                    }
-                }
-                else if (CommonMethods.clickedPos==1)
-                {
-                    if (position==0 || position==1)
-                    {
-                        holder.starImg.setImageResource(R.drawable.star_selected)
-                    }
-
-                }
-                else if (CommonMethods.clickedPos==2)
-                {
-                    if (position==0 || position==1 || position==2 )
-                    {
-                        holder.starImg.setImageResource(R.drawable.star_selected)
-                    }
-
-                }
-                else if (CommonMethods.clickedPos==3)
-                {
-                    if (position==0 || position==1 || position==2 || position==3)
-                    {
-                        holder.starImg.setImageResource(R.drawable.star_selected)
-                    }
-
-                }
-                else if (CommonMethods.clickedPos==4)
-                {
-                    if (position==0 || position==1 || position==2 || position==3 || position==4 )
-                    {
-                        holder.starImg.setImageResource(R.drawable.star_selected)
-                    }
-
-                }else if (CommonMethods.clickedPos==5)
-                {
-                    if (position==0 || position==1 || position==2 || position==3 || position==4 || position==5)
-                    {
-                        holder.starImg.setImageResource(R.drawable.star_selected)
-                    }
-
-                }
             }
             holder.starTxt.setText(surveyArrayList.get(position).label)
         }

@@ -140,21 +140,16 @@ class SurveyDetailActivity : AppCompatActivity() {
                         questionsArrayList.get(currentQuestionCount-1).options.get(position).select=0
                         if(questionsArrayList.get(currentQuestionCount-1).answer_type==3)
                         {
-                            if (position==0)
-                            {
 
-                            }
-                            else if(position==1)
+                            if (questionsArrayList.get(currentQuestionCount-1).options.size==5)
                             {
-
+                                questionsArrayList.get(currentQuestionCount-1).options.get(0).selectedPos0=0
+                                questionsArrayList.get(currentQuestionCount-1).options.get(1).selectedPos0=0
+                                questionsArrayList.get(currentQuestionCount-1).options.get(2).selectedPos0=0
+                                questionsArrayList.get(currentQuestionCount-1).options.get(3).selectedPos0=0
+                                questionsArrayList.get(currentQuestionCount-1).options.get(4).selectedPos0=0
                             }
-                            else if(position==2)
-                            {
-
-                            }
-                            questionsArrayList.get(currentQuestionCount-1).options.get(position).selectedPos0=0
                         }
-
 
                         var surveyQuestionAdapter= SurveyAnswerAdapter(questionsArrayList.get(currentQuestionCount-1).options,mContext,questionsArrayList.get(currentQuestionCount-1).answer_type)
                         surveyAnswerRecycler.adapter=surveyQuestionAdapter
@@ -164,7 +159,56 @@ class SurveyDetailActivity : AppCompatActivity() {
                         questionsArrayList.get(currentQuestionCount-1).options.get(position).select=1
                         if(questionsArrayList.get(currentQuestionCount-1).answer_type==3)
                         {
-                            CommonMethods.clickedPos=position
+
+                            if (questionsArrayList.get(currentQuestionCount-1).options.size==5)
+                            {
+                                if(position==0)
+                                {
+                                    questionsArrayList.get(currentQuestionCount-1).options.get(0).selectedPos0=1
+                                    questionsArrayList.get(currentQuestionCount-1).options.get(1).selectedPos0=0
+                                    questionsArrayList.get(currentQuestionCount-1).options.get(2).selectedPos0=0
+                                    questionsArrayList.get(currentQuestionCount-1).options.get(3).selectedPos0=0
+                                    questionsArrayList.get(currentQuestionCount-1).options.get(4).selectedPos0=0
+
+                                }
+                                else  if(position==1)
+                                {
+                                    questionsArrayList.get(currentQuestionCount-1).options.get(0).selectedPos0=1
+                                    questionsArrayList.get(currentQuestionCount-1).options.get(1).selectedPos0=1
+                                    questionsArrayList.get(currentQuestionCount-1).options.get(2).selectedPos0=0
+                                    questionsArrayList.get(currentQuestionCount-1).options.get(3).selectedPos0=0
+                                    questionsArrayList.get(currentQuestionCount-1).options.get(4).selectedPos0=0
+
+                                }
+                                else  if(position==2)
+                                {
+                                    questionsArrayList.get(currentQuestionCount-1).options.get(0).selectedPos0=1
+                                    questionsArrayList.get(currentQuestionCount-1).options.get(1).selectedPos0=1
+                                    questionsArrayList.get(currentQuestionCount-1).options.get(2).selectedPos0=1
+                                    questionsArrayList.get(currentQuestionCount-1).options.get(3).selectedPos0=0
+                                    questionsArrayList.get(currentQuestionCount-1).options.get(4).selectedPos0=0
+
+                                }
+                                else  if(position==3)
+                                {
+                                    questionsArrayList.get(currentQuestionCount-1).options.get(0).selectedPos0=1
+                                    questionsArrayList.get(currentQuestionCount-1).options.get(1).selectedPos0=1
+                                    questionsArrayList.get(currentQuestionCount-1).options.get(2).selectedPos0=1
+                                    questionsArrayList.get(currentQuestionCount-1).options.get(3).selectedPos0=1
+                                    questionsArrayList.get(currentQuestionCount-1).options.get(4).selectedPos0=0
+
+                                }
+                                else  if(position==4)
+                                {
+                                    questionsArrayList.get(currentQuestionCount-1).options.get(0).selectedPos0=1
+                                    questionsArrayList.get(currentQuestionCount-1).options.get(1).selectedPos0=1
+                                    questionsArrayList.get(currentQuestionCount-1).options.get(2).selectedPos0=1
+                                    questionsArrayList.get(currentQuestionCount-1).options.get(3).selectedPos0=1
+                                    questionsArrayList.get(currentQuestionCount-1).options.get(4).selectedPos0=1
+
+                                }
+                            }
+
                         }
 
                         questionsArrayList.get(currentQuestionCount-1).options.get(pos).select=0
@@ -177,8 +221,60 @@ class SurveyDetailActivity : AppCompatActivity() {
                     questionsArrayList.get(currentQuestionCount-1).options.get(position).select=1
                     if(questionsArrayList.get(currentQuestionCount-1).answer_type==3)
                     {
-                        CommonMethods.clickedPos=position
+                        Log.e("IT 0","WORKS")
+                        if (questionsArrayList.get(currentQuestionCount-1).options.size==5)
+                        {
+
+                            if(position==0)
+                            {
+
+                                questionsArrayList.get(currentQuestionCount-1).options.get(0).selectedPos0=1
+                                questionsArrayList.get(currentQuestionCount-1).options.get(1).selectedPos0=0
+                                questionsArrayList.get(currentQuestionCount-1).options.get(2).selectedPos0=0
+                                questionsArrayList.get(currentQuestionCount-1).options.get(3).selectedPos0=0
+                                questionsArrayList.get(currentQuestionCount-1).options.get(4).selectedPos0=0
+
+                            }
+                            else  if(position==1)
+                            {
+                                questionsArrayList.get(currentQuestionCount-1).options.get(0).selectedPos0=1
+                                questionsArrayList.get(currentQuestionCount-1).options.get(1).selectedPos0=1
+                                questionsArrayList.get(currentQuestionCount-1).options.get(2).selectedPos0=0
+                                questionsArrayList.get(currentQuestionCount-1).options.get(3).selectedPos0=0
+                                questionsArrayList.get(currentQuestionCount-1).options.get(4).selectedPos0=0
+
+                            }
+                            else  if(position==2)
+                            {
+                                questionsArrayList.get(currentQuestionCount-1).options.get(0).selectedPos0=1
+                                questionsArrayList.get(currentQuestionCount-1).options.get(1).selectedPos0=1
+                                questionsArrayList.get(currentQuestionCount-1).options.get(2).selectedPos0=1
+                                questionsArrayList.get(currentQuestionCount-1).options.get(3).selectedPos0=0
+                                questionsArrayList.get(currentQuestionCount-1).options.get(4).selectedPos0=0
+
+                            }
+                            else  if(position==3)
+                            {
+                                questionsArrayList.get(currentQuestionCount-1).options.get(0).selectedPos0=1
+                                questionsArrayList.get(currentQuestionCount-1).options.get(1).selectedPos0=1
+                                questionsArrayList.get(currentQuestionCount-1).options.get(2).selectedPos0=1
+                                questionsArrayList.get(currentQuestionCount-1).options.get(3).selectedPos0=1
+                                questionsArrayList.get(currentQuestionCount-1).options.get(4).selectedPos0=0
+
+                            }
+                            else  if(position==4)
+                            {
+                                questionsArrayList.get(currentQuestionCount-1).options.get(0).selectedPos0=1
+                                questionsArrayList.get(currentQuestionCount-1).options.get(1).selectedPos0=1
+                                questionsArrayList.get(currentQuestionCount-1).options.get(2).selectedPos0=1
+                                questionsArrayList.get(currentQuestionCount-1).options.get(3).selectedPos0=1
+                                questionsArrayList.get(currentQuestionCount-1).options.get(4).selectedPos0=1
+
+                            }
+                        }
+
                     }
+
 
                     var surveyQuestionAdapter= SurveyAnswerAdapter(questionsArrayList.get(currentQuestionCount-1).options,mContext,questionsArrayList.get(currentQuestionCount-1).answer_type)
                     surveyAnswerRecycler.adapter=surveyQuestionAdapter

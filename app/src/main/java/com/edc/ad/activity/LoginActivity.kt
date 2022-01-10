@@ -33,6 +33,7 @@ import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.fragment_contact.*
 import kotlinx.coroutines.launch
 import org.json.JSONObject
+import retrofit2.HttpException
 
 
 class LoginActivity : AppCompatActivity() {
@@ -306,13 +307,20 @@ class LoginActivity : AppCompatActivity() {
                 }
 
             } catch (httpException: HttpException) {
-progressBarDialog?.dismiss()
+                progressBarDialog?.dismiss()
 
                 val responseErrorBody = httpException.response()!!.errorBody()
                 val response = responseErrorBody!!.string()
                 val obj = JSONObject(response)
                 var status_code=obj.getString("status")
-                var message = obj.getString("message")            }
+                var message = obj.getString("message")
+                CommonMethods.showLoginErrorPopUp(
+                    context,
+                    "Alert",
+                    message
+                )
+
+            }
         }
     }
 

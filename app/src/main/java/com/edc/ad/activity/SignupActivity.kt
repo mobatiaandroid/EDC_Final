@@ -19,7 +19,9 @@ import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.activity_signup.submitBtn
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 import retrofit2.Call
+import retrofit2.HttpException
 import retrofit2.Response
 
 class SignupActivity : AppCompatActivity() {
@@ -236,97 +238,29 @@ class SignupActivity : AppCompatActivity() {
     }
 
 
-//    private fun callAPI() {
-//        var progressBarDialog: ProgressBarDialog? = null
-//        progressBarDialog = ProgressBarDialog(this)
-//        progressBarDialog.show()
-//
-//        lifecycleScope.launch {
-//            try {
-//
-//                val paramObject = JsonObject().apply {
-//                    addProperty("fullname", editname.text.toString());
-//                    addProperty("email", editEmail.text.toString());
-//                    addProperty("password", editPassword.text.toString());
-//                    addProperty("c_password", editConfirmPassword.text.toString())
-//                }
-//                //  paramObject.put("email", edtEmail.text.toString())
-//                //    paramObject.put("password", edtPassword.text.toString())
-//                val call = RetrofitClient.get.userRegister(paramObject)
-//                Log.e("WORKS","ENTERS")
-//                Log.e("response",call.status.toString())
-//
-//                when (call.status) {
-//                    200 -> {
-//                        progressBarDialog.dismiss()
-//                        Toast.makeText(
-//                            this@SignupActivity,
-//                            "Registration Successfull",
-//                            Toast.LENGTH_LONG
-//                        ).show()
-//                        val intent: Intent = Intent(this@SignupActivity, LoginActivity::class.java)
-//                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-//                        startActivity(intent)
-//
-//
-//                        overridePendingTransition(0, 0)
-//                        finish()
-//                    }
-//                    400 -> {
-//                        progressBarDialog.dismiss()
-//                        Toast.makeText(
-//                            this@SignupActivity,
-//                            "The email has already been taken.",
-//                            Toast.LENGTH_LONG
-//                        ).show()
-//                    }
-//                }
-//
-//            }
-//
-//            catch (e: Exception) {
-//                Log.e("WORKS","ENTERS")
-//               if (e.toString().equals("retrofit2.HttpException: HTTP 400 Bad Request"))
-//               {
-//
-//                   progressBarDialog.dismiss()
-//                   Toast.makeText(
-//                           this@SignupActivity,
-//                           "Something went wrong",
-//                           Toast.LENGTH_LONG
-//                   ).show()
-//               }
-//                e.printStackTrace()
-//            }
-//        }
-//    }
-
-
-
-    private fun callAPI()
-    {
+    private fun callAPI() {
         var progressBarDialog: ProgressBarDialog? = null
         progressBarDialog = ProgressBarDialog(this)
         progressBarDialog.show()
 
-        val paramObject = JsonObject().apply {
-            addProperty("fullname", editname.text.toString());
-            addProperty("email", editEmail.text.toString());
-            addProperty("password", editPassword.text.toString());
-            addProperty("c_password", editConfirmPassword.text.toString())
-        }
-        val  call: Call<RegisterResponseModel> = RetrofitClient.get.userRegister(paramObject)
-        call.enqueue(object :retrofit2.Callback<RegisterResponseModel>{
-            override fun onFailure(call: Call<RegisterResponseModel>, t: Throwable)
-            {
-                progressBarDialog.dismiss()
-            }
-            override fun onResponse(call: Call<RegisterResponseModel>, response: Response<RegisterResponseModel>)
-            {
-                progressBarDialog.dismiss()
-                if (response.isSuccessful)
-                {
-                       progressBarDialog.dismiss()
+        lifecycleScope.launch {
+            try {
+
+                val paramObject = JsonObject().apply {
+                    addProperty("fullname", editname.text.toString());
+                    addProperty("email", editEmail.text.toString());
+                    addProperty("password", editPassword.text.toString());
+                    addProperty("c_password", editConfirmPassword.text.toString())
+                }
+                //  paramObject.put("email", edtEmail.text.toString())
+                //    paramObject.put("password", edtPassword.text.toString())
+                val call = RetrofitClient.get.userRegister(paramObject)
+                Log.e("WORKS","ENTERS")
+                Log.e("response",call.status.toString())
+
+                when (call.status) {
+                    200 -> {
+                        progressBarDialog.dismiss()
                         Toast.makeText(
                             this@SignupActivity,
                             "Registration Successfull",
@@ -339,34 +273,103 @@ class SignupActivity : AppCompatActivity() {
 
                         overridePendingTransition(0, 0)
                         finish()
+                    }
+                    400 -> {
+                        progressBarDialog.dismiss()
+                        Toast.makeText(
+                            this@SignupActivity,
+                            "The email has already been taken.",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
                 }
-                else{
-
-//                   progressBarDialog.dismiss()
-//                   Toast.makeText(
-//                           this@SignupActivity,
-//                       response.body()!!.validation,
-//                           Toast.LENGTH_LONG
-//                   ).show()
-
-                  if(response.code()==400)
-                  {
-                    progressBarDialog.dismiss()
-                   Toast.makeText(
-                           this@SignupActivity,
-                      "Validation Error",
-                           Toast.LENGTH_LONG
-                   ).show()
-                  }
-
-                }
-
-
 
             }
 
-        })
+            catch (httpException: HttpException) {
+                progressBarDialog?.dismiss()
 
+                val responseErrorBody = httpException.response()!!.errorBody()
+                val response = responseErrorBody!!.string()
+                val obj = JSONObject(response)
+                var status_code=obj.getString("status")
+                var message = obj.getString("validation")
+                Toast.makeText(
+                    this@SignupActivity,
+                    message,
+                    Toast.LENGTH_LONG
+                ).show()
+
+            }
+        }
     }
+
+
+
+//    private fun callAPI()
+//    {
+//        var progressBarDialog: ProgressBarDialog? = null
+//        progressBarDialog = ProgressBarDialog(this)
+//        progressBarDialog.show()
+//
+//        val paramObject = JsonObject().apply {
+//            addProperty("fullname", editname.text.toString());
+//            addProperty("email", editEmail.text.toString());
+//            addProperty("password", editPassword.text.toString());
+//            addProperty("c_password", editConfirmPassword.text.toString())
+//        }
+//        val  call: Call<RegisterResponseModel> = RetrofitClient.get.userRegister(paramObject)
+//        call.enqueue(object :retrofit2.Callback<RegisterResponseModel>{
+//            override fun onFailure(call: Call<RegisterResponseModel>, t: Throwable)
+//            {
+//                progressBarDialog.dismiss()
+//            }
+//            override fun onResponse(call: Call<RegisterResponseModel>, response: Response<RegisterResponseModel>)
+//            {
+//                progressBarDialog.dismiss()
+//                if (response.isSuccessful)
+//                {
+//                       progressBarDialog.dismiss()
+//                        Toast.makeText(
+//                            this@SignupActivity,
+//                            "Registration Successfull",
+//                            Toast.LENGTH_LONG
+//                        ).show()
+//                        val intent: Intent = Intent(this@SignupActivity, LoginActivity::class.java)
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                        startActivity(intent)
+//
+//
+//                        overridePendingTransition(0, 0)
+//                        finish()
+//                }
+//                else{
+//
+////                   progressBarDialog.dismiss()
+////                   Toast.makeText(
+////                           this@SignupActivity,
+////                       response.body()!!.validation,
+////                           Toast.LENGTH_LONG
+////                   ).show()
+//
+//                  if(response.code()==400)
+//                  {
+//                    progressBarDialog.dismiss()
+//                   Toast.makeText(
+//                           this@SignupActivity,
+//                      "Validation Error",
+//                           Toast.LENGTH_LONG
+//                   ).show()
+//                  }
+//
+//                }
+//
+//
+//
+//            }
+//
+//        })
+//
+//    }
 
 }
