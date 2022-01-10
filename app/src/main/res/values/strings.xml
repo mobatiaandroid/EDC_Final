@@ -21,6 +21,7 @@
     <string name="email">Email ID</string>
     <string name="password">Password</string>
     <string name="newsletter">Newsletter</string>
+    <string name="payment_instruction">Payment Instructions</string>
     <string name="survey">Survey</string>
     <string name="complaint">Complaint</string>
     <string name="about">About Us</string>

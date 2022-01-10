@@ -46,7 +46,7 @@ class SurveyAnswerAdapter (private var surveyArrayList: ArrayList<OptionsModel>,
         {
             if (surveyArrayList.get(position).select==1)
             {
-                holder.textAnswerConst.setBackgroundResource(R.drawable.curved_rectangle)
+                holder.textAnswerConst.setBackgroundResource(R.drawable.curved_rectangle_orange_survey)
                 holder.textImg.setImageResource(R.drawable.check)
             }
             else{
@@ -87,7 +87,7 @@ class SurveyAnswerAdapter (private var surveyArrayList: ArrayList<OptionsModel>,
                 {
                     holder.smileyImg.setImageResource(R.drawable.angry)
                 }
-                holder.smileyConstraint.setBackgroundResource(R.drawable.curved_rectangle)
+                holder.smileyConstraint.setBackgroundResource(R.drawable.curved_rectangle_orange_survey)
             }
             else{
                 if (surveyArrayList.get(position).label.equals("Happy"))
@@ -137,7 +137,7 @@ class SurveyAnswerAdapter (private var surveyArrayList: ArrayList<OptionsModel>,
             holder.numberTxt.setText(surveyArrayList.get(position).label)
             if (surveyArrayList.get(position).select==1)
             {
-                holder.imageView18.setBackgroundResource(R.drawable.curved_rectangle)
+                holder.imageView18.setBackgroundResource(R.drawable.curved_rectangle_orange_survey)
             }
             else{
                 holder.imageView18.setBackgroundResource(R.drawable.rectangle_rect_white_with_grey)

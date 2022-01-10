@@ -80,7 +80,7 @@ class SurveyFragment : Fragment() {
     }
     private fun getSurveyApi() {
 
-        dataArrayList= ArrayList()
+      //  dataArrayList= ArrayList()
 
         lifecycleScope.launch {
             try {
@@ -92,6 +92,7 @@ class SurveyFragment : Fragment() {
 
                 when(call.status){
                     200,201 -> {
+                        dataArrayList= ArrayList()
                         dataArrayList.addAll(call.data!!)
                         var surveyAdapter= SurveyListAdapter(dataArrayList,mContext)
                         surveyListRecycler.adapter=surveyAdapter
@@ -111,6 +112,7 @@ class SurveyFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+
         getSurveyApi()
     }
 

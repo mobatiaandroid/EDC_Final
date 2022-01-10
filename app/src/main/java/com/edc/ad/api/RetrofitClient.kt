@@ -53,7 +53,7 @@ interface RetrofitClient {
     @GET("guest/notifications")
     suspend fun getNotifications(
         @Query("start") start: Int = 0,
-        @Query("limit") limit: Int = 10
+        @Query("limit") limit: Int = 100
     ): NotificationResponse
 
     //@FormUrlEncoded

@@ -255,6 +255,26 @@
                     android:text="@string/feedback" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/paymentInstructionBtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center|start">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/ic_feedback"
+                    android:visibility="visible" />
+
+                <com.edc.ad.util.CustomTextViewBlack
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/payment_instruction" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/contactBtn"

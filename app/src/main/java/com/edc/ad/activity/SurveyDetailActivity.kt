@@ -1,16 +1,17 @@
 package com.edc.ad.activity
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.PorterDuff
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
+import android.view.Window
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -446,8 +447,11 @@ class SurveyDetailActivity : AppCompatActivity() {
 
                 when (call.status){
                     200,201 -> {
-                        Toast.makeText(this@SurveyDetailActivity, "Your Survey has been submitted successfully", Toast.LENGTH_SHORT).show()
-                        finish()
+//
+//                        Toast.makeText(this@SurveyDetailActivity, "Your Survey has been submitted successfully", Toast.LENGTH_SHORT).show()
+//                        finish()
+
+                        showSurveySuccess(mContext)
                     }
                     else -> {
                         println("Error")
@@ -461,5 +465,24 @@ class SurveyDetailActivity : AppCompatActivity() {
             }
         }
     }
+
+
+    fun showSurveySuccess(context:Context) {
+        val dialog = Dialog(context)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setContentView(R.layout.dialog_survey)
+        val text = dialog.findViewById<View>(R.id.textDialog) as TextView
+        val btnOk = dialog.findViewById<View>(R.id.btnOk) as Button
+        text.text = "Thank you,Your survey has been successfully submitted."
+        btnOk.setOnClickListener(View.OnClickListener {
+            dialog.dismiss()
+            finish()
+        })
+        dialog.show()
+
+    }
+
 
 }
