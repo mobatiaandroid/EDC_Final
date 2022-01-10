@@ -62,6 +62,8 @@ class CommonMethods {
         fun isValidEmail(string: String): Boolean {
             return Patterns.EMAIL_ADDRESS.matcher(string).matches()
         }
+
+         var clickedPos:Int=-1
     }
 
 

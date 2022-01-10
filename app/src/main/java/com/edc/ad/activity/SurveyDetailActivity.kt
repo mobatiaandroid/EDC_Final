@@ -21,6 +21,7 @@ import com.edc.ad.adapter.SurveyAnswerAdapter
 import com.edc.ad.api.RetrofitClient
 import com.edc.ad.model.SurveySubmitModel
 import com.edc.ad.model.SurveySubmitQuestionModel
+import com.edc.ad.util.CommonMethods
 import com.edc.ad.util.OnItemClickListener
 import com.edc.ad.util.PreferenceManager
 import com.edc.ad.util.addOnItemClickListener
@@ -138,7 +139,7 @@ class SurveyDetailActivity : AppCompatActivity() {
                     {
                         questionsArrayList.get(currentQuestionCount-1).options.get(position).select=0
                         questionsArrayList.get(currentQuestionCount-1).options.get(position).selectedPos=-1
-
+                        CommonMethods.clickedPos=-1
                         var surveyQuestionAdapter= SurveyAnswerAdapter(questionsArrayList.get(currentQuestionCount-1).options,mContext,questionsArrayList.get(currentQuestionCount-1).answer_type)
                         surveyAnswerRecycler.adapter=surveyQuestionAdapter
                     }
@@ -146,6 +147,7 @@ class SurveyDetailActivity : AppCompatActivity() {
                     {
                         questionsArrayList.get(currentQuestionCount-1).options.get(position).select=1
                         questionsArrayList.get(currentQuestionCount-1).options.get(position).selectedPos=position
+                        CommonMethods.clickedPos=position
                         questionsArrayList.get(currentQuestionCount-1).options.get(pos).select=0
                         var surveyQuestionAdapter= SurveyAnswerAdapter(questionsArrayList.get(currentQuestionCount-1).options,mContext,questionsArrayList.get(currentQuestionCount-1).answer_type)
                         surveyAnswerRecycler.adapter=surveyQuestionAdapter
@@ -155,6 +157,7 @@ class SurveyDetailActivity : AppCompatActivity() {
                 {
                     questionsArrayList.get(currentQuestionCount-1).options.get(position).select=1
                     questionsArrayList.get(currentQuestionCount-1).options.get(position).selectedPos=position
+                    CommonMethods.clickedPos=position
                     var surveyQuestionAdapter= SurveyAnswerAdapter(questionsArrayList.get(currentQuestionCount-1).options,mContext,questionsArrayList.get(currentQuestionCount-1).answer_type)
                     surveyAnswerRecycler.adapter=surveyQuestionAdapter
                 }
