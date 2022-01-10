@@ -1,5 +1,6 @@
 package com.edc.ad.Fragments
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,8 +19,12 @@ import kotlinx.android.synthetic.main.fragment_home_guest.navBtn
 import kotlinx.coroutines.launch
 import java.util.*
 import android.app.Activity
+import android.provider.Settings
+import android.util.Log
 import com.edc.ad.activity.WebViewActivity
+import com.edc.ad.model.DevRegResponseModel
 import com.edc.ad.model.SocialmediaModel
+import com.google.gson.JsonObject
 import java.util.Collections.emptyList
 
 
@@ -76,8 +81,43 @@ class GuestHomeFragment : Fragment() {
             val intent = Intent(activity, LoginActivity::class.java)
             startActivity(intent)
         }
-
+        callDeviceRegistrationAPI()
         callHomeAPI()
+    }
+
+    @SuppressLint("HardwareIds")
+    private fun callDeviceRegistrationAPI() {
+        var devRegResponse: DevRegResponseModel
+        var androidId = Settings.Secure.getString(
+            requireContext().contentResolver,
+            Settings.Secure.ANDROID_ID
+        );
+        var deviceToken = PreferenceManager.getFCMToken(context as Activity)
+
+        Log.e("gotData",androidId+deviceToken)
+        val rawData = JsonObject().apply {
+            addProperty("device_type","2")
+            addProperty("device_id",deviceToken)
+            addProperty("device_identifier",androidId)
+        }
+
+        lifecycleScope.launch {
+            try {
+                val call = RetrofitClient.get.getDevRegResponse("Bearer "+PreferenceManager.getAccessToken(
+                    context as Activity),rawData)
+                Log.e("Response", call.toString())
+                when (call.status) {
+                    201 -> {
+                        // progressBarDialog?.dismiss()
+                        devRegResponse = call
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+
+
+            }
+        }
     }
 
     fun getGreetingMessage(): String {

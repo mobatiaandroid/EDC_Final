@@ -1,5 +1,6 @@
 package com.edc.ad.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -11,18 +12,31 @@ import androidx.appcompat.app.AppCompatActivity
 import com.edc.ad.BaseActivities.HomeBaseUserActivity
 import com.edc.ad.R
 import com.edc.ad.util.PreferenceManager
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.FirebaseApp
+import com.google.firebase.messaging.FirebaseMessaging
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
 
 class SplashActivity : AppCompatActivity() {
     lateinit var logo: ImageView
     lateinit var car: ImageView
+    lateinit var context: Context
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+        context = this
         logo = findViewById(R.id.imgLogo)
         car = findViewById(R.id.car)
+        FirebaseApp.initializeApp(context)
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                return@OnCompleteListener
+            }
 
+            val token = task.result
+            PreferenceManager.setFCMToken(context as SplashActivity, token)
+        })
 
         val metrics = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(metrics)

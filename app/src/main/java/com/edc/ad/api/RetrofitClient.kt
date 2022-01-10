@@ -101,5 +101,12 @@ interface RetrofitClient {
         @Body model: SurveySubmitModel
     ): FeedbackResponse
 
+    @Headers("Content-Type: application/json;charset=UTF-8")
+    @POST("guest/device-register")
+    suspend fun getDevRegResponse(
+        @Header("Authorization") authHeader: String?,
+        @Body json: JsonObject
+    ): DevRegResponseModel
+
 
 }

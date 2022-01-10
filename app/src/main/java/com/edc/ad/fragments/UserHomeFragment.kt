@@ -1,7 +1,10 @@
 package com.edc.ad.fragments
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +18,9 @@ import com.edc.ad.activity.FeedbackActivity
 import com.edc.ad.activity.HomeBaseGuestActivity
 import com.edc.ad.activity.LoginActivity
 import com.edc.ad.api.RetrofitClient
+import com.edc.ad.model.DevRegResponseModel
 import com.edc.ad.util.PreferenceManager
+import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.fragment_home_user.*
 import kotlinx.coroutines.launch
 import java.util.*
@@ -47,6 +52,8 @@ class UserHomeFragment : Fragment() {
 
             }
         }
+        callDeviceRegistrationAPI()
+
         callHomeAPI()
         constraintNewsLetter.setOnClickListener {
             findNavController().navigate(R.id.newsLetterFragment)
@@ -89,6 +96,41 @@ class UserHomeFragment : Fragment() {
             startActivity(intent)
             activity?.finish()
 
+        }
+    }
+
+    private fun callDeviceRegistrationAPI() {
+        var devRegResponse: DevRegResponseModel
+        var androidId = Settings.Secure.getString(
+            requireContext().contentResolver,
+            Settings.Secure.ANDROID_ID
+        );
+        var deviceToken = PreferenceManager.getFCMToken(context as Activity)
+
+        Log.e("gotData",androidId+deviceToken)
+        val rawData = JsonObject().apply {
+            addProperty("device_type","2")
+            addProperty("device_id",deviceToken)
+            addProperty("device_identifier",androidId)
+        }
+
+        lifecycleScope.launch {
+            try {
+                val call = RetrofitClient.get.getDevRegResponse("Bearer "+PreferenceManager.getAccessToken(
+                    context as Activity
+                ),rawData)
+                Log.e("Response", call.toString())
+                when (call.status) {
+                    201 -> {
+                        // progressBarDialog?.dismiss()
+                        devRegResponse = call
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+
+
+            }
         }
     }
 

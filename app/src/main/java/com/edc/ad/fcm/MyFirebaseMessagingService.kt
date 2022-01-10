@@ -185,7 +185,7 @@ lateinit var mContext: Activity
 
     override fun onNewToken(s: String) {
         super.onNewToken(s)
-        //PreferenceManager.saveToken(getApplicationContext(), s)
+        PreferenceManager.setFCMToken(applicationContext, s)
     }
 
 
