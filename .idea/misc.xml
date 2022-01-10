@@ -15,7 +15,7 @@
         <entry key="app/src/main/res/layout/activity_pdfview.xml" value="0.14166666666666666" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1287037037037037" />
-        <entry key="app/src/main/res/layout/activity_survey_detail.xml" value="0.1287037037037037" />
+        <entry key="app/src/main/res/layout/activity_survey_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_user_base.xml" value="0.14166666666666666" />
         <entry key="app/src/main/res/layout/activity_web_view.xml" value="0.22" />
         <entry key="app/src/main/res/layout/adapter_survey_answer.xml" value="0.20989583333333334" />
@@ -29,7 +29,7 @@
         <entry key="app/src/main/res/layout/fragment_contact_bottom_sheet.xml" value="0.5060449050086355" />
         <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.1287037037037037" />
         <entry key="app/src/main/res/layout/fragment_home2.xml" value="0.14166666666666666" />
-        <entry key="app/src/main/res/layout/fragment_home_guest.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/fragment_home_guest.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_home_user.xml" value="0.21" />
         <entry key="app/src/main/res/layout/fragment_news.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_news_letter.xml" value="0.5" />
