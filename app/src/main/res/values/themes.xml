@@ -14,6 +14,7 @@
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@null</item>
     </style>
+
     <style name="Theme.EDCFullScreen" parent="Widget.MaterialComponents.MaterialCalendar.Fullscreen">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/edc_orange</item>
@@ -29,5 +30,12 @@
         <item name="android:windowBackground">@null</item>
     </style>
 
+    <style name="EDCThemeFULL" parent="Theme.Design.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/edc_orange</item>
+        <item name="colorPrimaryDark">@color/edc_orange</item>
 
+        <item name="colorPrimaryVariant">@color/edc_orange</item>
+    </style>
 </resources>

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.edc.ad" >
+    package="com.edc.ad">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -13,61 +15,69 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-        android:usesCleartextTraffic="true" >
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".activity.WebViewActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/EDCThemeFULL" />
         <activity
             android:name=".activity.NewsDetailActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/EDCThemeFULL" />
         <activity
             android:name=".activity.PDFViewActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/EDCThemeFULL" />
+        />
         <activity
             android:name=".BaseActivities.HomeBaseUserActivity"
             android:label="@string/title_activity_home_"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/EDCThemeFULL" />
         <activity
             android:name=".activity.LoginActivity"
             android:label="@string/title_activity_home_"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/EDCThemeFULL" />
         <activity
             android:name=".activity.HomeBaseGuestActivity"
             android:label="@string/title_activity_home_"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/EDCThemeFULL" />
         <activity
             android:name=".activity.SignupActivity"
             android:label="@string/title_activity_home_"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/EDCThemeFULL" />
         <activity
             android:name=".activity.ComplaintsActivity"
             android:label="@string/title_activity_home_"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/EDCThemeFULL" />
         <activity
             android:name=".activity.FeedbackActivity"
             android:label="@string/title_activity_home_"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/EDCThemeFULL" />
 
         <activity
             android:name=".activity.NotificationDetailActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/EDCThemeFULL" />
         <activity
             android:name=".activity.SurveyDetailActivity"
             android:label="@string/title_activity_home_"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/EDCThemeFULL" />
         <activity
             android:name=".activity.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+            android:theme="@style/EDCThemeFULL">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -81,7 +91,7 @@
 
         <receiver
             android:name=".util.ConnectivityReceiver"
-            android:enabled="true" >
+            android:enabled="true">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
@@ -90,7 +100,7 @@
         <service
             android:name=".fcm.MyFirebaseMessagingService"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
