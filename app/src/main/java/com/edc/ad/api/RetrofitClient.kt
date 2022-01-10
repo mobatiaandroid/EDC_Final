@@ -8,6 +8,7 @@ import com.mobatia.edcsurvey.survey.model.SurveyResponseModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.json.JSONObject
+import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
@@ -61,7 +62,7 @@ interface RetrofitClient {
     suspend fun userLogin(@Body json:JsonObject): LoginResponseModel
 
     @POST("auth/register")
-    suspend fun userRegister(@Body json:JsonObject): RegisterResponseModel
+    fun userRegister(@Body json:JsonObject): Call<RegisterResponseModel>
 
     @Headers("Content-Type: application/json;charset=UTF-8")
     @POST("create/complaint")

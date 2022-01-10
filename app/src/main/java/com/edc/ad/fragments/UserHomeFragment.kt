@@ -13,19 +13,27 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.edc.ad.BaseActivities.HomeBaseUserActivity
 import com.edc.ad.R
-import com.edc.ad.activity.ComplaintsActivity
-import com.edc.ad.activity.FeedbackActivity
-import com.edc.ad.activity.HomeBaseGuestActivity
-import com.edc.ad.activity.LoginActivity
+import com.edc.ad.activity.*
 import com.edc.ad.api.RetrofitClient
 import com.edc.ad.model.DevRegResponseModel
+import com.edc.ad.model.SocialmediaModel
 import com.edc.ad.util.PreferenceManager
 import com.google.gson.JsonObject
+import kotlinx.android.synthetic.main.fragment_home_guest.*
 import kotlinx.android.synthetic.main.fragment_home_user.*
+import kotlinx.android.synthetic.main.fragment_home_user.constraintLogin
+import kotlinx.android.synthetic.main.fragment_home_user.imgFacebook
+import kotlinx.android.synthetic.main.fragment_home_user.imgInstagram
+import kotlinx.android.synthetic.main.fragment_home_user.imgTwitter
+import kotlinx.android.synthetic.main.fragment_home_user.navBtn
+import kotlinx.android.synthetic.main.fragment_home_user.txtGreeting
+import kotlinx.android.synthetic.main.fragment_home_user.txtLogin
+import kotlinx.android.synthetic.main.fragment_home_user.txtUser
 import kotlinx.coroutines.launch
 import java.util.*
 
 class UserHomeFragment : Fragment() {
+    var socialData: List<SocialmediaModel> = Collections.emptyList()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -162,7 +170,7 @@ class UserHomeFragment : Fragment() {
                 when (call.status) {
                     200 -> {
                         // progressBarDialog?.dismiss()
-                        var socialData = call.data.socialmedia
+                       socialData = call.data.socialmedia
 
                     }
                 }
@@ -172,5 +180,23 @@ class UserHomeFragment : Fragment() {
 
             }
         }
+
+        imgFacebook.setOnClickListener {
+            val i = Intent(activity, WebViewActivity::class.java)
+            i.putExtra("url",socialData[0].url)
+            startActivity(i)
+            (activity as Activity?)!!.overridePendingTransition(0, 0)
+        }
+        imgInstagram.setOnClickListener {
+            val i = Intent(activity, WebViewActivity::class.java)
+            i.putExtra("url",socialData[1].url)
+            startActivity(i)
+        }
+        imgTwitter.setOnClickListener {
+            val i = Intent(activity, WebViewActivity::class.java)
+            i.putExtra("url",socialData[2].url)
+            startActivity(i)
+        }
     }
+
 }

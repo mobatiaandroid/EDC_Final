@@ -4,6 +4,7 @@ data class RegisterResponseModel(
     val `data`: Data,
     val exception: Exception,
     val message: String,
+    val validation: String,
     val status: Int,
     val success: Boolean
 ) {

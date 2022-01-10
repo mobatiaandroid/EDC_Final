@@ -124,7 +124,7 @@ class SurveyAnswerAdapter (private var surveyArrayList: ArrayList<OptionsModel>,
                 holder.starImg.setImageResource(R.drawable.star)
             }
             else{
-                Log.e("POS",CommonMethods.clickedPos.toString())
+                Log.e(" CLICKED POS",CommonMethods.clickedPos.toString())
                 if (CommonMethods.clickedPos==0)
                 {
                     if (position==0)

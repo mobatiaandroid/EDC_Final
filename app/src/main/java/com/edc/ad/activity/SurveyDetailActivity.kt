@@ -138,16 +138,35 @@ class SurveyDetailActivity : AppCompatActivity() {
                     if (position==pos)
                     {
                         questionsArrayList.get(currentQuestionCount-1).options.get(position).select=0
-                        questionsArrayList.get(currentQuestionCount-1).options.get(position).selectedPos=-1
-                        CommonMethods.clickedPos=-1
+                        if(questionsArrayList.get(currentQuestionCount-1).answer_type==3)
+                        {
+                            if (position==0)
+                            {
+
+                            }
+                            else if(position==1)
+                            {
+
+                            }
+                            else if(position==2)
+                            {
+
+                            }
+                            questionsArrayList.get(currentQuestionCount-1).options.get(position).selectedPos0=0
+                        }
+
+
                         var surveyQuestionAdapter= SurveyAnswerAdapter(questionsArrayList.get(currentQuestionCount-1).options,mContext,questionsArrayList.get(currentQuestionCount-1).answer_type)
                         surveyAnswerRecycler.adapter=surveyQuestionAdapter
                     }
                     else
                     {
                         questionsArrayList.get(currentQuestionCount-1).options.get(position).select=1
-                        questionsArrayList.get(currentQuestionCount-1).options.get(position).selectedPos=position
-                        CommonMethods.clickedPos=position
+                        if(questionsArrayList.get(currentQuestionCount-1).answer_type==3)
+                        {
+                            CommonMethods.clickedPos=position
+                        }
+
                         questionsArrayList.get(currentQuestionCount-1).options.get(pos).select=0
                         var surveyQuestionAdapter= SurveyAnswerAdapter(questionsArrayList.get(currentQuestionCount-1).options,mContext,questionsArrayList.get(currentQuestionCount-1).answer_type)
                         surveyAnswerRecycler.adapter=surveyQuestionAdapter
@@ -156,8 +175,11 @@ class SurveyDetailActivity : AppCompatActivity() {
                 else
                 {
                     questionsArrayList.get(currentQuestionCount-1).options.get(position).select=1
-                    questionsArrayList.get(currentQuestionCount-1).options.get(position).selectedPos=position
-                    CommonMethods.clickedPos=position
+                    if(questionsArrayList.get(currentQuestionCount-1).answer_type==3)
+                    {
+                        CommonMethods.clickedPos=position
+                    }
+
                     var surveyQuestionAdapter= SurveyAnswerAdapter(questionsArrayList.get(currentQuestionCount-1).options,mContext,questionsArrayList.get(currentQuestionCount-1).answer_type)
                     surveyAnswerRecycler.adapter=surveyQuestionAdapter
                 }

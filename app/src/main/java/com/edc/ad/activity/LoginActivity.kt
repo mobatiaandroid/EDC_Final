@@ -311,4 +311,11 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent: Intent = Intent(this, HomeBaseGuestActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 }

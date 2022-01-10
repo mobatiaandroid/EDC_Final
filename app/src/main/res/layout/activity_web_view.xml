@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/edc_green"
-
+        android:alpha="0.5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -19,7 +19,6 @@
             android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@color/edc_green"
             android:ellipsize="end"
             android:gravity="center"
             android:paddingStart="8dp"
