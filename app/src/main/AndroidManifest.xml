@@ -53,6 +53,10 @@
             android:label="@string/title_activity_home_"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <activity
+            android:name=".activity.NotificationDetailActivity"
+            android:exported="true" />
         <activity
             android:name=".activity.SurveyDetailActivity"
             android:label="@string/title_activity_home_"

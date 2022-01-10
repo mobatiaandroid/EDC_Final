@@ -1,18 +1,24 @@
 package com.edc.ad.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.RecyclerView
 import com.edc.ad.BaseActivities.HomeBaseUserActivity
 import com.edc.ad.R
 import com.edc.ad.activity.HomeBaseGuestActivity
+import com.edc.ad.activity.NotificationDetailActivity
+import com.edc.ad.activity.SurveyDetailActivity
 import com.edc.ad.adapter.NotificationAdapter
 import com.edc.ad.api.RetrofitClient
 import com.edc.ad.model.NotificationResponse
+import com.edc.ad.util.OnItemClickListener
 import com.edc.ad.util.PreferenceManager
+import com.edc.ad.util.addOnItemClickListener
 import kotlinx.android.synthetic.main.fragment_notification_new.*
 import kotlinx.coroutines.launch
 
@@ -49,6 +55,17 @@ class NotificationFragment : Fragment() {
 
             }
         }
+
+        recyclerView.addOnItemClickListener(object : OnItemClickListener {
+            override fun onItemClicked(position: Int, view: View) {
+
+                val intent = Intent(activity, NotificationDetailActivity::class.java)
+                intent.putExtra("description", notifyArray.get(position).message);
+                intent.putExtra("title", notifyArray.get(position).title);
+                startActivity(intent)
+            }
+
+        })
 
 
     }

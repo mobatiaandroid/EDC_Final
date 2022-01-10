@@ -19,6 +19,7 @@ class NotificationAdapter(val array: ArrayList<NotificationResponse.NotifiData>)
         holder.itemView.apply {
             array[position].let {
                 notifyTitle.text = it.title
+
               //  notifyDesc.text = it.message
             }
         }
