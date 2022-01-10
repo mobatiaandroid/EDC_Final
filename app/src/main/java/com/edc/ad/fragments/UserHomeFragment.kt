@@ -100,7 +100,7 @@ class UserHomeFragment : Fragment() {
         txtUser.text = activity?.let { PreferenceManager.getUserName(it) }
         constraintLogin.setOnClickListener {
             activity?.let { it1 -> PreferenceManager.saveLoginStatusFlag(it1, "no") }
-            val intent = Intent(activity, LoginActivity::class.java)
+            val intent = Intent(activity, HomeBaseGuestActivity::class.java)
             startActivity(intent)
             activity?.finish()
 

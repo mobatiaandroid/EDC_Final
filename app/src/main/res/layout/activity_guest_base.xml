@@ -21,10 +21,10 @@
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/edc_orange">
+        android:background="#FAF9F6">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -70,12 +70,28 @@
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
             -->
-            <ImageView
-                android:layout_width="wrap_content"
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="24dp"
-                android:src="@drawable/logo_white" />
+                android:gravity="center"
+                android:background="@color/edc_orange"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/imageView27"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="16dp"
+                    app:srcCompat="@drawable/login_logo" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
+                    android:src="@drawable/logo_white" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/homeBtn"
@@ -86,9 +102,8 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginStart="16dp"
-                    android:visibility="invisible"
                     android:src="@drawable/home" />
-                <com.edc.ad.util.CustomTextViewWhite
+                <com.edc.ad.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -106,9 +121,9 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginStart="16dp"
-                    android:src="@drawable/newsletter" />
+                    android:src="@drawable/ic_news_letter" />
 
-                <com.edc.ad.util.CustomTextViewWhite
+                <com.edc.ad.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -127,7 +142,7 @@
                     android:layout_marginStart="16dp"
                     android:visibility="visible"
                     android:src="@drawable/news" />
-                <com.edc.ad.util.CustomTextViewWhite
+                <com.edc.ad.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -145,7 +160,7 @@
                     android:layout_marginStart="16dp"
                     android:visibility="visible"
                     android:src="@drawable/notifications" />
-                <com.edc.ad.util.CustomTextViewWhite
+                <com.edc.ad.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -164,7 +179,7 @@
                     android:layout_marginStart="16dp"
                     android:visibility="visible"
                     android:src="@drawable/services" />
-                <com.edc.ad.util.CustomTextViewWhite
+                <com.edc.ad.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -183,7 +198,7 @@
                     android:layout_marginStart="16dp"
                     android:visibility="visible"
                     android:src="@drawable/contact_us" />
-                <com.edc.ad.util.CustomTextViewWhite
+                <com.edc.ad.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -200,14 +215,15 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginStart="16dp"
-                    android:src="@drawable/about" />
+                    android:src="@drawable/ic_about" />
 
-                <com.edc.ad.util.CustomTextViewWhite
+                <com.edc.ad.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="@string/about" />
             </androidx.appcompat.widget.LinearLayoutCompat>
+
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

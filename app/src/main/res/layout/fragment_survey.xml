@@ -16,8 +16,7 @@
             android:id="@+id/constraintLayout3"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@color/edc_green"
-            android:alpha="0.5"
+            android:background="@color/edc_header"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">

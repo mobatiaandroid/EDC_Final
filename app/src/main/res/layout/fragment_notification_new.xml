@@ -16,8 +16,7 @@
             android:id="@+id/constraintLayout3"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:alpha="0.5"
-            android:background="@color/edc_green"
+            android:background="@color/edc_header"
             app:layout_constraintTop_toTopOf="parent">
             <ImageView
                 android:id="@+id/navBtn"
