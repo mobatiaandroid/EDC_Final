@@ -123,7 +123,7 @@
                     android:layout_height="25dp"
                     android:layout_marginStart="20dp"
 
-                    android:src="@drawable/ic_news_letter" />
+                    android:src="@drawable/newsletter_new" />
 
                 <com.edc.ad.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
@@ -143,7 +143,7 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginStart="20dp"
-                    android:src="@drawable/news"
+                    android:src="@drawable/news_new"
                     android:visibility="visible" />
 
                 <com.edc.ad.util.CustomTextViewBlack
@@ -164,7 +164,7 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginStart="20dp"
-                    android:src="@drawable/notifications"
+                    android:src="@drawable/noifications_new"
                     android:visibility="visible" />
 
                 <com.edc.ad.util.CustomTextViewBlack
@@ -185,7 +185,7 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginStart="20dp"
-                    android:src="@drawable/services"
+                    android:src="@drawable/services_new"
                     android:visibility="visible" />
 
                 <com.edc.ad.util.CustomTextViewBlack
@@ -225,7 +225,7 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginStart="20dp"
-                    android:src="@drawable/complaint"
+                    android:src="@drawable/complaint_new"
                     android:visibility="visible" />
 
                 <com.edc.ad.util.CustomTextViewBlack
@@ -245,7 +245,7 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginStart="20dp"
-                    android:src="@drawable/ic_feedback"
+                    android:src="@drawable/feedback_new"
                     android:visibility="visible" />
 
                 <com.edc.ad.util.CustomTextViewBlack
@@ -267,7 +267,7 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginStart="20dp"
-                    android:src="@drawable/contact_us"
+                    android:src="@drawable/contactus_new"
                     android:visibility="visible" />
 
                 <com.edc.ad.util.CustomTextViewBlack
@@ -287,7 +287,7 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginStart="20dp"
-                    android:src="@drawable/ic_about" />
+                    android:src="@drawable/about_new" />
 
                 <com.edc.ad.util.CustomTextViewBlack
                     android:layout_width="wrap_content"

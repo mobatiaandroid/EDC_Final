@@ -121,7 +121,7 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginStart="16dp"
-                    android:src="@drawable/ic_news_letter" />
+                    android:src="@drawable/newsletter_new" />
 
                 <com.edc.ad.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
@@ -141,7 +141,7 @@
                     android:layout_height="25dp"
                     android:layout_marginStart="16dp"
                     android:visibility="visible"
-                    android:src="@drawable/news" />
+                    android:src="@drawable/news_new" />
                 <com.edc.ad.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -159,7 +159,7 @@
                     android:layout_height="25dp"
                     android:layout_marginStart="16dp"
                     android:visibility="visible"
-                    android:src="@drawable/notifications" />
+                    android:src="@drawable/noifications_new" />
                 <com.edc.ad.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -178,7 +178,7 @@
                     android:layout_height="25dp"
                     android:layout_marginStart="16dp"
                     android:visibility="visible"
-                    android:src="@drawable/services" />
+                    android:src="@drawable/services_new" />
                 <com.edc.ad.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -197,7 +197,7 @@
                     android:layout_height="25dp"
                     android:layout_marginStart="16dp"
                     android:visibility="visible"
-                    android:src="@drawable/contact_us" />
+                    android:src="@drawable/contactus_new" />
                 <com.edc.ad.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
