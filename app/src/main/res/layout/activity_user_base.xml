@@ -101,7 +101,7 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginStart="20dp"
-                    android:src="@drawable/home"
+                    android:src="@drawable/hone_new"
                     android:visibility="visible" />
 
                 <com.edc.ad.util.CustomTextViewBlack

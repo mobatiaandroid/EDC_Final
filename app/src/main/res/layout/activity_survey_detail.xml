@@ -10,8 +10,7 @@
         android:id="@+id/textView6"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:alpha="0.5"
-        android:background="@color/edc_header_green"
+        android:background="@color/edc_orange"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -38,7 +37,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView6"
-        app:srcCompat="@drawable/back_white" />
+        app:srcCompat="@drawable/back_arrow_white" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
