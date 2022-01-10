@@ -60,6 +60,12 @@ class HomeBaseUserActivity : AppCompatActivity() {
 
             navControl?.navigate(R.id.feedbackFragment)
         }
+
+        paymentInstructionBtn.setOnClickListener { _ ->
+            if (drawerLayout.isOpen) drawerLayout.close()
+
+            navControl?.navigate(R.id.paymentInstructionFragment)
+        }
         complaintBtn.setOnClickListener { _ ->
             if (drawerLayout.isOpen) drawerLayout.close()
 

@@ -51,6 +51,12 @@
         android:name="com.edc.ad.Fragments.ServiceFragment"
         android:label="fragment_service"
         tools:layout="@layout/fragment_service" />
+
+    <fragment
+        android:id="@+id/paymentInstructionFragment"
+        android:name="com.edc.ad.fragments.PaymentInstructionFragment"
+        android:label="fragment_instruction"
+        tools:layout="@layout/fragment_payment_instruction" />
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.edc.ad.Fragments.AboutFragment"

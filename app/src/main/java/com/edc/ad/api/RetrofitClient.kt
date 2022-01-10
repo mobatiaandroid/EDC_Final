@@ -47,6 +47,9 @@ interface RetrofitClient {
     @GET("guest/services")
     suspend fun getServiceData(): ServiceResponseModel
 
+    @GET("guest/payment-instructions")
+    suspend fun getPaymentInstruction(): PaymentInstructionResponseModel
+
     @GET("guest/news")
     suspend fun getNewsData(): NewsResponseModel
 
