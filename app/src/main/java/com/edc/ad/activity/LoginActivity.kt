@@ -305,9 +305,14 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
 
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+            } catch (httpException: HttpException) {
+progressBarDialog?.dismiss()
+
+                val responseErrorBody = httpException.response()!!.errorBody()
+                val response = responseErrorBody!!.string()
+                val obj = JSONObject(response)
+                var status_code=obj.getString("status")
+                var message = obj.getString("message")            }
         }
     }
 
