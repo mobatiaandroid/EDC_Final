@@ -83,11 +83,11 @@
                 android:layout_height="50dp"
                 android:gravity="center|start">
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginStart="16dp"
                     android:visibility="invisible"
-                    android:src="@drawable/ic_about" />
+                    android:src="@drawable/home" />
                 <com.edc.ad.util.CustomTextViewWhite
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -103,10 +103,10 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginStart="16dp"
-                    android:src="@drawable/ic_news_letter" />
+                    android:src="@drawable/newsletter" />
 
                 <com.edc.ad.util.CustomTextViewWhite
                     android:layout_width="wrap_content"
@@ -122,11 +122,11 @@
                 android:gravity="center|start"
                 android:orientation="horizontal">
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginStart="16dp"
-                    android:visibility="invisible"
-                    android:src="@drawable/ic_about" />
+                    android:visibility="visible"
+                    android:src="@drawable/news" />
                 <com.edc.ad.util.CustomTextViewWhite
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -140,11 +140,11 @@
                 android:gravity="center|start"
                 android:orientation="horizontal">
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginStart="16dp"
-                    android:visibility="invisible"
-                    android:src="@drawable/ic_about" />
+                    android:visibility="visible"
+                    android:src="@drawable/notifications" />
                 <com.edc.ad.util.CustomTextViewWhite
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -159,11 +159,11 @@
                 android:gravity="center|start"
                 android:orientation="horizontal">
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginStart="16dp"
-                    android:visibility="invisible"
-                    android:src="@drawable/ic_about" />
+                    android:visibility="visible"
+                    android:src="@drawable/services" />
                 <com.edc.ad.util.CustomTextViewWhite
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -178,11 +178,11 @@
                 android:gravity="center|start"
                 android:orientation="horizontal">
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginStart="16dp"
-                    android:visibility="invisible"
-                    android:src="@drawable/ic_about" />
+                    android:visibility="visible"
+                    android:src="@drawable/contact_us" />
                 <com.edc.ad.util.CustomTextViewWhite
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -197,10 +197,10 @@
                 android:gravity="center|start">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginStart="16dp"
-                    android:src="@drawable/ic_about" />
+                    android:src="@drawable/about" />
 
                 <com.edc.ad.util.CustomTextViewWhite
                     android:layout_width="wrap_content"

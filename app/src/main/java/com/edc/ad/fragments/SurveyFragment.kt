@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -71,6 +72,7 @@ class SurveyFragment : Fragment() {
                 val intent = Intent(mContext, SurveyDetailActivity::class.java)
                 intent.putExtra("mylist", dataArrayList.get(position).questions);
                 intent.putExtra("survey_name", dataArrayList.get(position).title);
+                intent.putExtra("survey_id", dataArrayList.get(position).id.toString());
                 startActivity(intent)
             }
 
@@ -107,5 +109,9 @@ class SurveyFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        getSurveyApi()
+    }
 
 }

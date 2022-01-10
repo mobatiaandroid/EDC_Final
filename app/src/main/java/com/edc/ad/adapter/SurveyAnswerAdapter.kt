@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -22,6 +23,9 @@ class SurveyAnswerAdapter (private var surveyArrayList: ArrayList<OptionsModel>,
         var smileyTxt: TextView = view.findViewById(R.id.smileyTxt)
         var starTxt: TextView = view.findViewById(R.id.starTxt)
         var numberTxt: TextView = view.findViewById(R.id.numberTxt)
+        var starImg: ImageView = view.findViewById(R.id.starImg)
+        var imageView18: ImageView = view.findViewById(R.id.imageView18)
+        var smileyImg: ImageView = view.findViewById(R.id.smileyImg)
         var textAnswerConst: ConstraintLayout = view.findViewById(R.id.textAnswerConst)
         var smileyConstraint: ConstraintLayout = view.findViewById(R.id.smileyConstraint)
         var starConstraint: ConstraintLayout = view.findViewById(R.id.starConstraint)
@@ -37,6 +41,13 @@ class SurveyAnswerAdapter (private var surveyArrayList: ArrayList<OptionsModel>,
         val list = surveyArrayList[position]
         if (answerType==1)
         {
+            if (surveyArrayList.get(position).select==1)
+            {
+                holder.textAnswerConst.setBackgroundResource(R.drawable.curved_rectangle)
+            }
+            else{
+                holder.textAnswerConst.setBackgroundResource(R.drawable.rectangle_rect_white_with_grey)
+            }
             holder.textAnswerConst.visibility=View.VISIBLE
             holder.smileyConstraint.visibility=View.GONE
             holder.starConstraint.visibility=View.GONE
@@ -50,6 +61,50 @@ class SurveyAnswerAdapter (private var surveyArrayList: ArrayList<OptionsModel>,
             holder.numberConstraint.visibility=View.GONE
             holder.smileyConstraint.visibility=View.VISIBLE
             holder.smileyTxt.setText(surveyArrayList.get(position).label)
+
+            if (surveyArrayList.get(position).select==1)
+            {
+                if (surveyArrayList.get(position).label.equals("Happy"))
+                {
+                    holder.smileyImg.setImageResource(R.drawable.happy)
+                }
+                else if (surveyArrayList.get(position).label.equals("Sad"))
+                {
+                    holder.smileyImg.setImageResource(R.drawable.sad)
+                } else if (surveyArrayList.get(position).label.equals("Neutral"))
+                {
+                    holder.smileyImg.setImageResource(R.drawable.neutral)
+
+                } else if (surveyArrayList.get(position).label.equals("Excited"))
+                {
+                    holder.smileyImg.setImageResource(R.drawable.excited)
+                }  else if (surveyArrayList.get(position).label.equals("Angry"))
+                {
+                    holder.smileyImg.setImageResource(R.drawable.angry)
+                }
+                holder.smileyConstraint.setBackgroundResource(R.drawable.curved_rectangle)
+            }
+            else{
+                if (surveyArrayList.get(position).label.equals("Happy"))
+                {
+                    holder.smileyImg.setImageResource(R.drawable.happy_notselected)
+                }
+                else if (surveyArrayList.get(position).label.equals("Sad"))
+                {
+                    holder.smileyImg.setImageResource(R.drawable.sad_notselected)
+                } else if (surveyArrayList.get(position).label.equals("Neutral"))
+                {
+                    holder.smileyImg.setImageResource(R.drawable.neutral_notselected)
+
+                } else if (surveyArrayList.get(position).label.equals("Excited"))
+                {
+                    holder.smileyImg.setImageResource(R.drawable.excited_notselected)
+                }  else if (surveyArrayList.get(position).label.equals("Angry"))
+                {
+                    holder.smileyImg.setImageResource(R.drawable.angry_notselected)
+                }
+                holder.smileyConstraint.setBackgroundResource(R.drawable.rectangle_rect_white_with_grey)
+            }
         }
         else if (answerType==3)
         {
@@ -58,6 +113,7 @@ class SurveyAnswerAdapter (private var surveyArrayList: ArrayList<OptionsModel>,
             holder.smileyConstraint.visibility=View.GONE
             holder.numberConstraint.visibility=View.GONE
             holder.starConstraint.visibility=View.VISIBLE
+
             holder.starTxt.setText(surveyArrayList.get(position).label)
         }
         else if (answerType==4)
@@ -67,6 +123,13 @@ class SurveyAnswerAdapter (private var surveyArrayList: ArrayList<OptionsModel>,
             holder.numberConstraint.visibility=View.VISIBLE
             holder.starConstraint.visibility=View.GONE
             holder.numberTxt.setText(surveyArrayList.get(position).label)
+            if (surveyArrayList.get(position).select==1)
+            {
+                holder.imageView18.setBackgroundResource(R.drawable.curved_rectangle)
+            }
+            else{
+                holder.imageView18.setBackgroundResource(R.drawable.rectangle_rect_white_with_grey)
+            }
         }
 
 

@@ -6,6 +6,7 @@ import java.io.Serializable
 class OptionsModel :Serializable{
     @SerializedName("value") var value: Int=0
     @SerializedName("isSelected") var select: Int=0
+    @SerializedName("select_pos") var selectedPos: Int=-1
     @SerializedName("label") var label: String=""
 
 }

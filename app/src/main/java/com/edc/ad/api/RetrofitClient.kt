@@ -94,4 +94,12 @@ interface RetrofitClient {
     ): SurveyResponseModel
 
 
+    @Headers("Content-Type: application/json;charset=UTF-8")
+    @POST("survey/submit")
+    suspend fun submitSurvey(
+        @Header("Authorization") authHeader: String?,
+        @Body model: SurveySubmitModel
+    ): FeedbackResponse
+
+
 }
