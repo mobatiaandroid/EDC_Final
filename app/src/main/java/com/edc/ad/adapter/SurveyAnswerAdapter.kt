@@ -26,6 +26,7 @@ class SurveyAnswerAdapter (private var surveyArrayList: ArrayList<OptionsModel>,
         var starTxt: TextView = view.findViewById(R.id.starTxt)
         var numberTxt: TextView = view.findViewById(R.id.numberTxt)
         var starImg: ImageView = view.findViewById(R.id.starImg)
+        var textImg: ImageView = view.findViewById(R.id.textImg)
         var imageView18: ImageView = view.findViewById(R.id.imageView18)
         var smileyImg: ImageView = view.findViewById(R.id.smileyImg)
         var textAnswerConst: ConstraintLayout = view.findViewById(R.id.textAnswerConst)
@@ -46,9 +47,11 @@ class SurveyAnswerAdapter (private var surveyArrayList: ArrayList<OptionsModel>,
             if (surveyArrayList.get(position).select==1)
             {
                 holder.textAnswerConst.setBackgroundResource(R.drawable.curved_rectangle)
+                holder.textImg.setImageResource(R.drawable.check)
             }
             else{
                 holder.textAnswerConst.setBackgroundResource(R.drawable.rectangle_rect_white_with_grey)
+                holder.textImg.setImageResource(R.drawable.curved_rectangle_grey)
             }
             holder.textAnswerConst.visibility=View.VISIBLE
             holder.smileyConstraint.visibility=View.GONE

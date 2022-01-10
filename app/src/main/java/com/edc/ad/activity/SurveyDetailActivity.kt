@@ -243,6 +243,14 @@ class SurveyDetailActivity : AppCompatActivity() {
             else{
                 previousImg.alpha=1.0f
             }
+
+            if(currentQuestionCount==questionsArrayList.size)
+            {
+                nextImg.setImageResource(R.drawable.check_mark)
+            }
+            else{
+                nextImg.setImageResource(R.drawable.next)
+            }
         })
 
         previousImg.setOnClickListener(View.OnClickListener {
@@ -289,6 +297,14 @@ class SurveyDetailActivity : AppCompatActivity() {
             }
             else{
                 previousImg.alpha=1.0f
+            }
+
+            if(currentQuestionCount==questionsArrayList.size)
+            {
+                nextImg.setImageResource(R.drawable.check_mark)
+            }
+            else{
+                nextImg.setImageResource(R.drawable.next)
             }
 
         })
