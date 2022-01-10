@@ -43,28 +43,6 @@ class ContactBottomSheet : BottomSheetDialogFragment() {
         branchAddress.text = passedData?.branchAddresss
         email.text = passedData?.email
         phone.text = passedData?.phone!![0]
-//        val geocoder = Geocoder(context, Locale.getDefault())
-//        var addresses: List<Address>? = null
-//        try {
-//            addresses = geocoder.getFromLocationName(passedData!!.branchAddresss, 1)
-//        } catch (e: IOException) {
-//            e.printStackTrace()
-//        }
-//        val address: Address = addresses!![0]
-//        if (addresses.isNotEmpty()) {
-//            val latitude: Double = addresses[0].latitude
-//            val longitude: Double = addresses[0].longitude
-//            val latLng = LatLng(latitude, longitude)
-////            googleMap.addMarker(MarkerOptions().position(latLng))
-//            googleMap.getMapAsync { p0 ->
-//                p0.addMarker(
-//                    MarkerOptions()
-//                        .position(latLng)
-//                        .title("Marker in Sydney")
-//                )
-//                p0.moveCamera(CameraUpdateFactory.newLatLng(latLng))
-//            }
-//        }
 
     }
 
