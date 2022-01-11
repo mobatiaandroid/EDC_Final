@@ -1,31 +1,27 @@
 package com.edc.ad.model
 
-
 import android.os.Parcelable
-import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 data class ContactUsResponse(
-    @SerializedName("data")
-    var `data`: List<ContactData>?,
-    @SerializedName("exception")
-    var exception: HomeException?,
-    @SerializedName("message")
-    var message: String?,
-    @SerializedName("status")
-    var status: Int?,
-    @SerializedName("success")
-    var success: Boolean?
+    val `data`: List<ContactData>,
+    val exception: Exception,
+    val message: String,
+    val status: Int,
+    val success: Boolean,
+    val validation: String
 ) {
     @Parcelize
+
     data class ContactData(
-        @SerializedName("branch_addresss")
-        var branchAddresss: String?,
-        @SerializedName("branch_name")
-        var branchName: String?,
-        @SerializedName("email")
-        var email: String?,
-        @SerializedName("phone")
-        var phone: List<String>?
+        val branch_addresss: String,
+        val branch_name: String,
+        val email: String,
+        val latitude: String,
+        val longitude: String,
+        val phone: List<String>
     ): Parcelable
+
+    class Exception(
+    )
 }
