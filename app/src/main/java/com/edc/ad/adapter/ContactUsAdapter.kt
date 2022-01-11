@@ -23,11 +23,16 @@ class ContactUsAdapter(
         holder.itemView.apply {
             arrayList[position].let {
 
-                contactUsTitle.text = it.branchName
+                contactUsTitle.text = it.branch_name
 
                 setOnClickListener { _ ->
                     click.invoke(it)
                 }
+                if (position == 0) {
+                    click.invoke(it)
+
+                }
+
             }
         }
     }
