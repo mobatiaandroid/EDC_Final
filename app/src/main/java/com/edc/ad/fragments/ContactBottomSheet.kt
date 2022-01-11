@@ -9,10 +9,13 @@ import com.edc.ad.model.ContactUsResponse
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_contact_bottom_sheet.*
+import android.content.Intent
+import android.net.Uri
 
 
 class ContactBottomSheet : BottomSheetDialogFragment(), OnMapReadyCallback {
@@ -37,7 +40,11 @@ class ContactBottomSheet : BottomSheetDialogFragment(), OnMapReadyCallback {
         branchAddress.text = passedData?.branch_addresss
         email.text = passedData?.email
         phone.text = passedData?.phone!![0]
-
+//        phone.setOnClickListener {
+//            val intent = Intent(Intent.ACTION_DIAL)
+//            intent.data = Uri.parse(passedData!!.phone[0].toString())
+//            startActivity(intent)
+//        }
 
     }
 
