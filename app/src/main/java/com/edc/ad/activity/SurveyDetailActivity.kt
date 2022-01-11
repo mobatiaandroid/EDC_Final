@@ -110,8 +110,10 @@ class SurveyDetailActivity : AppCompatActivity() {
         }
         else  if (questionsArrayList.get(currentQuestionCount-1).answer_type==4)
         {
-            val layoutManager = LinearLayoutManager(mContext,LinearLayoutManager.HORIZONTAL,false)
-            surveyAnswerRecycler.layoutManager = layoutManager
+//            val layoutManager = LinearLayoutManager(mContext,LinearLayoutManager.HORIZONTAL,false)
+//            surveyAnswerRecycler.layoutManager = layoutManager
+            val layoutManager1 = GridLayoutManager(mContext,4)
+            surveyAnswerRecycler.layoutManager = layoutManager1
         }
         var surveyQuestionAdapter= SurveyAnswerAdapter(questionsArrayList.get(currentQuestionCount-1).options,mContext,questionsArrayList.get(currentQuestionCount-1).answer_type)
         surveyAnswerRecycler.adapter=surveyQuestionAdapter

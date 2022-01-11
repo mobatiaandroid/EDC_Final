@@ -44,7 +44,7 @@ class SurveyAnswerAdapter (private var surveyArrayList: ArrayList<OptionsModel>,
         val list = surveyArrayList[position]
         if (answerType==1)
         {
-            if (surveyArrayList.get(position).select==1)
+            if (surveyArrayList[position].select==1)
             {
                 holder.textAnswerConst.setBackgroundResource(R.drawable.curved_rectangle_orange_survey)
                 holder.textImg.setImageResource(R.drawable.check)
