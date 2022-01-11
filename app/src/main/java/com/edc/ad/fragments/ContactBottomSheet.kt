@@ -38,6 +38,7 @@ class ContactBottomSheet : BottomSheetDialogFragment(), OnMapReadyCallback {
         email.text = passedData?.email
         phone.text = passedData?.phone!![0]
 
+
     }
 
     override fun onMapReady(map: GoogleMap) {

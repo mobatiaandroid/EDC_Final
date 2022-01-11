@@ -108,10 +108,11 @@
             android:id="@+id/imgFacebook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="25dp"
             android:src="@drawable/ic_fb"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imgTwitter"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
@@ -120,20 +121,32 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_twitter"
 
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@+id/imgFacebook"
+            app:layout_constraintEnd_toStartOf="@+id/imgInstagram"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imgFacebook"
+            app:layout_constraintTop_toTopOf="@+id/imgFacebook" />
 
         <ImageView
             android:id="@+id/imgInstagram"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
             android:src="@drawable/ic_insta"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/imgTwitter"
+            app:layout_constraintEnd_toStartOf="@+id/imgLinkedIn"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/imgTwitter"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/imgTwitter" />
+
+        <ImageView
+            android:id="@+id/imgLinkedIn"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/linked_in_new"
+            app:layout_constraintBottom_toBottomOf="@+id/imgInstagram"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgInstagram"
+            app:layout_constraintTop_toTopOf="@+id/imgInstagram" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -206,7 +219,7 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_margin="10dp"
-            android:src="@drawable/noifications_new"
+            android:src="@drawable/notifications_new"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

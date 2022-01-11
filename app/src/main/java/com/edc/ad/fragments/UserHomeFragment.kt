@@ -13,22 +13,16 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.edc.ad.BaseActivities.HomeBaseUserActivity
 import com.edc.ad.R
-import com.edc.ad.activity.*
+import com.edc.ad.activity.ComplaintsActivity
+import com.edc.ad.activity.FeedbackActivity
+import com.edc.ad.activity.HomeBaseGuestActivity
+import com.edc.ad.activity.WebViewActivity
 import com.edc.ad.api.RetrofitClient
 import com.edc.ad.model.DevRegResponseModel
 import com.edc.ad.model.SocialmediaModel
 import com.edc.ad.util.PreferenceManager
 import com.google.gson.JsonObject
-import kotlinx.android.synthetic.main.fragment_home_guest.*
 import kotlinx.android.synthetic.main.fragment_home_user.*
-import kotlinx.android.synthetic.main.fragment_home_user.constraintLogin
-import kotlinx.android.synthetic.main.fragment_home_user.imgFacebook
-import kotlinx.android.synthetic.main.fragment_home_user.imgInstagram
-import kotlinx.android.synthetic.main.fragment_home_user.imgTwitter
-import kotlinx.android.synthetic.main.fragment_home_user.navBtn
-import kotlinx.android.synthetic.main.fragment_home_user.txtGreeting
-import kotlinx.android.synthetic.main.fragment_home_user.txtLogin
-import kotlinx.android.synthetic.main.fragment_home_user.txtUser
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -195,6 +189,11 @@ class UserHomeFragment : Fragment() {
         imgTwitter.setOnClickListener {
             val i = Intent(activity, WebViewActivity::class.java)
             i.putExtra("url",socialData[2].url)
+            startActivity(i)
+        }
+        imgLinkedIn.setOnClickListener {
+            val i = Intent(activity, WebViewActivity::class.java)
+            i.putExtra("url",socialData[3].url)
             startActivity(i)
         }
     }

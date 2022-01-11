@@ -91,7 +91,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBpWX2Nn71gvKT-PvlTRmTFIuy8zIECV08" />
+            android:value="AIzaSyC1Zzkr4n75bqWkE6mW9bJE_ceiChBykwQ" />
 
         <receiver
             android:name=".util.ConnectivityReceiver"

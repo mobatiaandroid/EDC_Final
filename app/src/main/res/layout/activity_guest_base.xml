@@ -102,7 +102,7 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginStart="16dp"
-                    android:src="@drawable/hone_new" />
+                    android:src="@drawable/home_new" />
                 <com.edc.ad.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -159,7 +159,7 @@
                     android:layout_height="25dp"
                     android:layout_marginStart="16dp"
                     android:visibility="visible"
-                    android:src="@drawable/noifications_new" />
+                    android:src="@drawable/notifications_new" />
                 <com.edc.ad.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

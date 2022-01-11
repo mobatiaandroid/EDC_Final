@@ -175,5 +175,10 @@ class GuestHomeFragment : Fragment() {
             i.putExtra("url",socialData[2].url)
             startActivity(i)
         }
+        imgLinkedIn.setOnClickListener {
+            val i = Intent(activity, WebViewActivity::class.java)
+            i.putExtra("url",socialData[3].url)
+            startActivity(i)
+        }
     }
 }
