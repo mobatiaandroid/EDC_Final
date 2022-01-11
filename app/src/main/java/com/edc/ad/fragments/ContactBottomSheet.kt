@@ -6,56 +6,71 @@ import android.view.View
 import android.view.ViewGroup
 import com.edc.ad.R
 import com.edc.ad.model.ContactUsResponse
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_contact_bottom_sheet.*
-import android.content.Intent
-import android.net.Uri
 
 
-class ContactBottomSheet : BottomSheetDialogFragment(), OnMapReadyCallback {
+class ContactBottomSheet : BottomSheetDialogFragment() {
 
     var passedData: ContactUsResponse.ContactData? = null
+    lateinit var mapGoogle: GoogleMap
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val mapFragment =
-            activity?.supportFragmentManager?.findFragmentById(R.id.googleMap) as? SupportMapFragment
-        mapFragment?.getMapAsync(this)
+
         return inflater.inflate(R.layout.fragment_contact_bottom_sheet, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         passedData = arguments?.getParcelable("data")
-
         ContactTitle.text = passedData?.branch_name
         branchAddress.text = passedData?.branch_addresss
         email.text = passedData?.email
         phone.text = passedData?.phone!![0]
-//        phone.setOnClickListener {
-//            val intent = Intent(Intent.ACTION_DIAL)
-//            intent.data = Uri.parse(passedData!!.phone[0].toString())
-//            startActivity(intent)
-//        }
+
+        val supportMapFragment =
+            childFragmentManager?.findFragmentById(R.id.map) as? SupportMapFragment
+        supportMapFragment?.getMapAsync(object : OnMapReadyCallback {
+            override fun onMapReady(map: GoogleMap) {
+
+                var location =
+                    LatLng(passedData?.latitude?.toDouble()!!, passedData?.longitude?.toDouble()!!)
+
+                val zoomLevel = 15f
+                map.addMarker(MarkerOptions().position(location))
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(location, zoomLevel))
+                map.animateCamera(CameraUpdateFactory.zoomTo(zoomLevel));
+                map.getUiSettings().setZoomControlsEnabled(true);
+                map.getUiSettings().setScrollGesturesEnabled(true);
+                map.getUiSettings().setZoomGesturesEnabled(true);
+
+            }
+
+        })
+
 
     }
 
-    override fun onMapReady(map: GoogleMap) {
-        var location =
-            LatLng(passedData?.latitude?.toDouble()!!, passedData?.latitude?.toDouble()!!)
-        map.addMarker(
-            MarkerOptions()
-                .position(location)
-                .title(passedData?.branch_name)
-        )
-    }
 
 }
