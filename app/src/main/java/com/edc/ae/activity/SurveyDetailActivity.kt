@@ -466,7 +466,7 @@ class SurveyDetailActivity : AppCompatActivity() {
     fun showSurveySuccess(context:Context) {
         val dialog = Dialog(context)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setCancelable(true)
+        dialog.setCancelable(false)
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.setContentView(R.layout.dialog_survey)
         val text = dialog.findViewById<View>(R.id.textDialog) as TextView
