@@ -39,16 +39,12 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints">
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/login_logo" />
 
             <ImageView
                 android:id="@+id/imageView11"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/logo_white"
+                android:layout_height="40dp"
+                android:src="@drawable/header_white"
                 />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -233,7 +229,7 @@
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="match_parent"
-            android:layout_height="7dp"
+            android:layout_height="4dp"
 
             android:background="@drawable/rounded_rect_orange_home"
             app:layout_constraintBottom_toBottomOf="parent" />
@@ -272,7 +268,7 @@
         <ImageView
             android:id="@+id/imageVieworng"
             android:layout_width="match_parent"
-            android:layout_height="7dp"
+            android:layout_height="4dp"
             android:background="@drawable/rounded_rect_orange_home"
             app:layout_constraintBottom_toBottomOf="parent" />
 
@@ -313,7 +309,7 @@
         <ImageView
             android:id="@+id/imageView5"
             android:layout_width="match_parent"
-            android:layout_height="7dp"
+            android:layout_height="4dp"
             android:background="@drawable/rounded_rect_orange_home"
             app:layout_constraintBottom_toBottomOf="parent" />
 
@@ -354,7 +350,7 @@
         <ImageView
             android:id="@+id/imageView6"
             android:layout_width="match_parent"
-            android:layout_height="7dp"
+            android:layout_height="4dp"
             android:background="@drawable/rounded_rect_orange_home"
             app:layout_constraintBottom_toBottomOf="parent" />
 
@@ -396,7 +392,7 @@
         <ImageView
             android:id="@+id/imageView8"
             android:layout_width="match_parent"
-            android:layout_height="7dp"
+            android:layout_height="4dp"
             android:background="@drawable/rounded_rect_orange_home"
             app:layout_constraintBottom_toBottomOf="parent" />
 
@@ -436,7 +432,7 @@
         <ImageView
             android:id="@+id/imageView9"
             android:layout_width="match_parent"
-            android:layout_height="7dp"
+            android:layout_height="4dp"
             android:background="@drawable/rounded_rect_orange_home"
             app:layout_constraintBottom_toBottomOf="parent" />
 

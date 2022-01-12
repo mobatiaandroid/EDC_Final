@@ -10,6 +10,7 @@ import com.edc.ae.R
 import com.edc.ae.api.RetrofitClient
 import com.edc.ae.util.CommonMethods
 import com.edc.ae.util.PreferenceManager
+import com.edc.ae.util.ProgressBarDialog
 import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_feedback.*
 import kotlinx.android.synthetic.main.activity_feedback.backButton
@@ -116,6 +117,9 @@ class FeedbackActivity : AppCompatActivity() {
 
 
     private fun feedbackAPICall() {
+        var progressBarDialog: ProgressBarDialog? = null
+        progressBarDialog = this.let { ProgressBarDialog(it) }
+        progressBarDialog.show()
 
         val rawData = JsonObject().apply {
             addProperty("title",editSubject.text.toString())
@@ -133,10 +137,12 @@ class FeedbackActivity : AppCompatActivity() {
 
                 when (call.status){
                     200,201 -> {
+                        progressBarDialog.hide()
                         Toast.makeText(this@FeedbackActivity, "Feedback registered Successfully", Toast.LENGTH_SHORT).show()
                         finish()
                     }
                     else -> {
+                        progressBarDialog.hide()
                         println("Error")
                     }
                 }

@@ -10,6 +10,7 @@ import com.edc.ae.R
 import com.edc.ae.api.RetrofitClient
 import com.edc.ae.util.CommonMethods
 import com.edc.ae.util.PreferenceManager
+import com.edc.ae.util.ProgressBarDialog
 import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_complaint.*
 import kotlinx.android.synthetic.main.activity_complaint.backButton
@@ -118,6 +119,9 @@ class ComplaintsActivity : AppCompatActivity() {
 
 
     private fun registerComplain() {
+        val progressBarDialog: ProgressBarDialog?
+        progressBarDialog = ProgressBarDialog(this)
+        progressBarDialog.show()
         lifecycleScope.launch {
 
             val rawData = JsonObject().apply {
@@ -131,10 +135,12 @@ class ComplaintsActivity : AppCompatActivity() {
 
                 when(call.status){
                     200,201 -> {
+                        progressBarDialog.hide()
                         Toast.makeText(this@ComplaintsActivity, "Complaint registered Successfully", Toast.LENGTH_SHORT).show()
                         finish()
                     }
                     else -> {
+                        progressBarDialog.hide()
                         println("Error")
                     }
                 }

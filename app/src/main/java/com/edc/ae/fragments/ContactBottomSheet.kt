@@ -47,27 +47,28 @@ class ContactBottomSheet : BottomSheetDialogFragment() {
         ContactTitle.text = passedData?.branch_name
         branchAddress.text = passedData?.branch_addresss
         email.text = passedData?.email
-        phone.text = passedData?.phone!![0]
+//        phone.text = passedData?.phone!![0]
+        var phoneList = ""
+        for(i in passedData!!.phone.indices){
+            phoneList += passedData!!.phone[i]
+            if (passedData!!.phone.size > 1 && i != passedData!!.phone.size - 1) phoneList += ", "
+        }
+        phone.text = phoneList
 
         val supportMapFragment =
-            childFragmentManager?.findFragmentById(R.id.map) as? SupportMapFragment
-        supportMapFragment?.getMapAsync(object : OnMapReadyCallback {
-            override fun onMapReady(map: GoogleMap) {
+            childFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
+        supportMapFragment?.getMapAsync { map ->
+            val location =
+                LatLng(passedData?.latitude?.toDouble()!!, passedData?.longitude?.toDouble()!!)
 
-                var location =
-                    LatLng(passedData?.latitude?.toDouble()!!, passedData?.longitude?.toDouble()!!)
-
-                val zoomLevel = 15f
-                map.addMarker(MarkerOptions().position(location))
-                map.moveCamera(CameraUpdateFactory.newLatLngZoom(location, zoomLevel))
-                map.animateCamera(CameraUpdateFactory.zoomTo(zoomLevel));
-                map.getUiSettings().setZoomControlsEnabled(true);
-                map.getUiSettings().setScrollGesturesEnabled(true);
-                map.getUiSettings().setZoomGesturesEnabled(true);
-
-            }
-
-        })
+            val zoomLevel = 15f
+            map.addMarker(MarkerOptions().position(location))
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(location, zoomLevel))
+            map.animateCamera(CameraUpdateFactory.zoomTo(zoomLevel));
+            map.uiSettings.isZoomControlsEnabled = true;
+            map.uiSettings.isScrollGesturesEnabled = true;
+            map.uiSettings.isZoomGesturesEnabled = true;
+        }
 
 
     }
