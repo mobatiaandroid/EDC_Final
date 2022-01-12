@@ -61,7 +61,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideTop" />
 
-    <com.dev.edc.manager.CustomEditTextBlack
+    <com.edc.ae.util.CustomEditTextBlack
         android:id="@+id/editSubject"
         android:layout_width="0dp"
 
@@ -120,7 +120,7 @@
         app:layout_constraintGuide_percent=".70" />
 
 
-    <com.dev.edc.manager.CustomEditTextBlack
+    <com.edc.ae.util.CustomEditTextBlack
         android:id="@+id/editData"
         android:layout_width="0dp"
         android:layout_height="200dp"

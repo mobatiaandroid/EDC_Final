@@ -51,7 +51,7 @@ class ContactBottomSheet : BottomSheetDialogFragment() {
         var phoneList = ""
         for(i in passedData!!.phone.indices){
             phoneList += passedData!!.phone[i]
-            if (passedData!!.phone.size > 1 && i != passedData!!.phone.size - 1) phoneList += ", "
+            if (passedData!!.phone.size > 1 && i != passedData!!.phone.size - 1) phoneList += "\n"
         }
         phone.text = phoneList
 

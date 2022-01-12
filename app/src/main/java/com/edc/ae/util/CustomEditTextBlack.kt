@@ -1,4 +1,4 @@
-package com.dev.edc.manager
+package com.edc.ae.util
 
 import android.content.Context
 import android.graphics.Typeface

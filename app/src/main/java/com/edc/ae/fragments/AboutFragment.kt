@@ -63,7 +63,7 @@ class AboutFragment : Fragment() {
                     200 -> {
                         progressBarDialog?.dismiss()
                         var aboutdata = call.data.about
-                        var dataLoad = "<html><body>" + aboutdata + "</body></html>"
+                        var dataLoad = "<html><body style = 'padding: 0.5em; font-family: nunito'>" + aboutdata + "</body></html>"
                         dataLoad?.let {
                             webAbout.loadData(it, "text/html", "utf-8")
                         }

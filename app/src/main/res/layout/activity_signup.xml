@@ -61,7 +61,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideTop" />
 
-    <com.dev.edc.manager.CustomEditTextBlack
+    <com.edc.ae.util.CustomEditTextBlack
         android:id="@+id/editname"
         android:layout_width="0dp"
         android:layout_height="60dp"
@@ -116,7 +116,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent=".70" />
 
-    <com.dev.edc.manager.CustomEditTextBlack
+    <com.edc.ae.util.CustomEditTextBlack
         android:id="@+id/editConfirmPassword"
         android:layout_width="0dp"
         android:layout_height="60dp"
@@ -130,7 +130,7 @@
         app:layout_constraintStart_toStartOf="@+id/editname"
         app:layout_constraintTop_toBottomOf="@+id/editPassword" />
 
-    <com.dev.edc.manager.CustomEditTextBlack
+    <com.edc.ae.util.CustomEditTextBlack
         android:id="@+id/editPassword"
         android:layout_width="0dp"
         android:layout_height="60dp"
@@ -145,7 +145,7 @@
         app:layout_constraintStart_toStartOf="@+id/editConfirmPassword"
         app:layout_constraintTop_toBottomOf="@+id/editEmail" />
 
-    <com.dev.edc.manager.CustomEditTextBlack
+    <com.edc.ae.util.CustomEditTextBlack
         android:id="@+id/editEmail"
         android:layout_width="0dp"
         android:layout_height="60dp"
