@@ -33,7 +33,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/right_arrow" />
 
-            <com.edc.ad.util.CustomTextViewBoldBlack
+            <com.edc.ae.util.CustomTextViewBoldBlack
                 android:id="@+id/serviceTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

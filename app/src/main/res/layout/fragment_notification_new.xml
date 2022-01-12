@@ -40,7 +40,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/nav_icn" />
 
-            <com.edc.ad.util.CustomTextViewBoldWhite
+            <com.edc.ae.util.CustomTextViewBoldWhite
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:gravity="center"

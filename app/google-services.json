@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:525899884441:android:c64177f07ec0d7c4401508",
+        "mobilesdk_app_id": "1:525899884441:android:8f9ce6480c1b498b401508",
         "android_client_info": {
-          "package_name": "com.edc.ad"
+          "package_name": "com.edc.ae"
         }
       },
       "oauth_client": [
@@ -29,6 +29,13 @@
             {
               "client_id": "525899884441-tlml07plhpmlouvn2lob9eo9vje58c36.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "525899884441-1a1pisdui9ldb9p9cvrlhhidjjpr1n6k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mobatia.edc"
+              }
             }
           ]
         }

@@ -52,7 +52,7 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
-                            <com.edc.ad.util.CustomTextViewBoldBlack
+                            <com.edc.ae.util.CustomTextViewBoldBlack
                                 android:id="@+id/txtUserName"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
                                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                                 tools:ignore="MissingConstraints" />
 
-                            <com.edc.ad.util.CustomTextViewBoldBlack
+                            <com.edc.ae.util.CustomTextViewBoldBlack
                                 android:id="@+id/textView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
                     android:src="@drawable/home_new"
                     android:visibility="visible" />
 
-                <com.edc.ad.util.CustomTextViewBlack
+                <com.edc.ae.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -125,7 +125,7 @@
 
                     android:src="@drawable/newsletter_new" />
 
-                <com.edc.ad.util.CustomTextViewBlack
+                <com.edc.ae.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -146,7 +146,7 @@
                     android:src="@drawable/news_new"
                     android:visibility="visible" />
 
-                <com.edc.ad.util.CustomTextViewBlack
+                <com.edc.ae.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -167,7 +167,7 @@
                     android:src="@drawable/notifications_new"
                     android:visibility="visible" />
 
-                <com.edc.ad.util.CustomTextViewBlack
+                <com.edc.ae.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -188,7 +188,7 @@
                     android:src="@drawable/services_new"
                     android:visibility="visible" />
 
-                <com.edc.ad.util.CustomTextViewBlack
+                <com.edc.ae.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -208,7 +208,7 @@
                     android:src="@drawable/ic_survey"
                     android:visibility="visible" />
 
-                <com.edc.ad.util.CustomTextViewBlack
+                <com.edc.ae.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -228,7 +228,7 @@
                     android:src="@drawable/complaint_new"
                     android:visibility="visible" />
 
-                <com.edc.ad.util.CustomTextViewBlack
+                <com.edc.ae.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -248,7 +248,7 @@
                     android:src="@drawable/feedback_new"
                     android:visibility="visible" />
 
-                <com.edc.ad.util.CustomTextViewBlack
+                <com.edc.ae.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -269,7 +269,7 @@
                     android:src="@drawable/ic_feedback"
                     android:visibility="visible" />
 
-                <com.edc.ad.util.CustomTextViewBlack
+                <com.edc.ae.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -291,7 +291,7 @@
                     android:src="@drawable/contactus_new"
                     android:visibility="visible" />
 
-                <com.edc.ad.util.CustomTextViewBlack
+                <com.edc.ae.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -310,7 +310,7 @@
                     android:layout_marginStart="20dp"
                     android:src="@drawable/about_new" />
 
-                <com.edc.ad.util.CustomTextViewBlack
+                <com.edc.ae.util.CustomTextViewBlack
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"

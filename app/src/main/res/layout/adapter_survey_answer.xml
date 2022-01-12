@@ -28,7 +28,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/curved_rectangle" />
 
-        <com.edc.ad.util.CustomTextViewBlack
+        <com.edc.ae.util.CustomTextViewBlack
             android:id="@+id/smileyTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/curved_rectangle_grey" />
 
-        <com.edc.ad.util.CustomTextViewBlack
+        <com.edc.ae.util.CustomTextViewBlack
             android:id="@+id/notifyTitle"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -97,7 +97,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/star" />
 
-        <com.edc.ad.util.CustomTextViewBlack
+        <com.edc.ae.util.CustomTextViewBlack
             android:id="@+id/starTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -130,7 +130,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.edc.ad.util.CustomTextViewBlack
+        <com.edc.ae.util.CustomTextViewBlack
             android:id="@+id/numberTxt"
             android:layout_width="0dp"
             android:layout_height="0dp"

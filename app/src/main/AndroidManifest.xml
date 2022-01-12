@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.edc.ad">
+    package="com.edc.ae">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -17,63 +17,63 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".activity.WebViewActivity"
+            android:name="com.edc.ae.activity.WebViewActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/EDCThemeFULL" />
         <activity
-            android:name=".activity.NewsDetailActivity"
+            android:name="com.edc.ae.activity.NewsDetailActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/EDCThemeFULL" />
         <activity
-            android:name=".activity.PDFViewActivity"
+            android:name="com.edc.ae.activity.PDFViewActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/EDCThemeFULL" />
         />
         <activity
-            android:name=".BaseActivities.HomeBaseUserActivity"
+            android:name="com.edc.ae.BaseActivities.HomeBaseUserActivity"
             android:label="@string/title_activity_home_"
             android:screenOrientation="portrait"
             android:theme="@style/EDCThemeFULL" />
         <activity
-            android:name=".activity.LoginActivity"
+            android:name="com.edc.ae.activity.LoginActivity"
             android:label="@string/title_activity_home_"
             android:screenOrientation="portrait"
             android:theme="@style/EDCThemeFULL" />
         <activity
-            android:name=".activity.HomeBaseGuestActivity"
+            android:name="com.edc.ae.activity.HomeBaseGuestActivity"
             android:label="@string/title_activity_home_"
             android:screenOrientation="portrait"
             android:theme="@style/EDCThemeFULL" />
         <activity
-            android:name=".activity.SignupActivity"
+            android:name="com.edc.ae.activity.SignupActivity"
             android:label="@string/title_activity_home_"
             android:screenOrientation="portrait"
             android:theme="@style/EDCThemeFULL" />
         <activity
-            android:name=".activity.ComplaintsActivity"
+            android:name="com.edc.ae.activity.ComplaintsActivity"
             android:label="@string/title_activity_home_"
             android:screenOrientation="portrait"
             android:theme="@style/EDCThemeFULL" />
         <activity
-            android:name=".activity.FeedbackActivity"
+            android:name="com.edc.ae.activity.FeedbackActivity"
             android:label="@string/title_activity_home_"
             android:screenOrientation="portrait"
             android:theme="@style/EDCThemeFULL" />
 
         <activity
-            android:name=".activity.NotificationDetailActivity"
+            android:name="com.edc.ae.activity.NotificationDetailActivity"
             android:exported="true"
             android:theme="@style/EDCThemeFULL" />
         <activity
-            android:name=".activity.SurveyDetailActivity"
+            android:name="com.edc.ae.activity.SurveyDetailActivity"
             android:label="@string/title_activity_home_"
             android:screenOrientation="portrait"
             android:theme="@style/EDCThemeFULL" />
         <activity
-            android:name=".activity.SplashActivity"
+            android:name="com.edc.ae.activity.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
@@ -94,7 +94,7 @@
             android:value="AIzaSyC1Zzkr4n75bqWkE6mW9bJE_ceiChBykwQ" />
 
         <receiver
-            android:name=".util.ConnectivityReceiver"
+            android:name="com.edc.ae.util.ConnectivityReceiver"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
@@ -102,7 +102,7 @@
         </receiver>
 
         <service
-            android:name=".fcm.MyFirebaseMessagingService"
+            android:name="com.edc.ae.fcm.MyFirebaseMessagingService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>

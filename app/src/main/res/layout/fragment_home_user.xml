@@ -247,7 +247,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.edc.ad.util.CustomTextViewBlack
+        <com.edc.ae.util.CustomTextViewBlack
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -285,7 +285,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.edc.ad.util.CustomTextViewBlack
+        <com.edc.ae.util.CustomTextViewBlack
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -326,7 +326,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.edc.ad.util.CustomTextViewBlack
+        <com.edc.ae.util.CustomTextViewBlack
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -367,7 +367,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.edc.ad.util.CustomTextViewBlack
+        <com.edc.ae.util.CustomTextViewBlack
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -409,7 +409,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.edc.ad.util.CustomTextViewBlack
+        <com.edc.ae.util.CustomTextViewBlack
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -449,7 +449,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.edc.ad.util.CustomTextViewBlack
+        <com.edc.ae.util.CustomTextViewBlack
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -476,7 +476,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideLogout">
 
-        <com.edc.ad.util.CustomTextViewWhite
+        <com.edc.ae.util.CustomTextViewWhite
             android:id="@+id/txtLogin"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -497,7 +497,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <com.edc.ad.util.CustomTextViewSemiBoldWhite
+    <com.edc.ae.util.CustomTextViewSemiBoldWhite
         android:id="@+id/txtGreeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -511,7 +511,7 @@
 
 
 
-    <com.edc.ad.util.CustomTextViewBoldWhite
+    <com.edc.ae.util.CustomTextViewBoldWhite
         android:id="@+id/txtUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

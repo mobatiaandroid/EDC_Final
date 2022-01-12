@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.edc.ad.fragments.UserHomeFragment"
+        android:name="com.edc.ae.fragments.UserHomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home_user">
         <action
@@ -28,48 +28,48 @@
     </fragment>
     <fragment
         android:id="@+id/newsFragment"
-        android:name="com.edc.ad.Fragments.NewsFragment"
+        android:name="com.edc.ae.Fragments.NewsFragment"
         android:label="fragment_news"
         tools:layout="@layout/fragment_news" />
     <fragment
         android:id="@+id/newsLetterFragment"
-        android:name="com.edc.ad.Fragments.NewsLetterFragment"
+        android:name="com.edc.ae.Fragments.NewsLetterFragment"
         android:label="fragment_news_letter"
         tools:layout="@layout/fragment_news_letter" />
     <activity
         android:id="@+id/feedbackFragment"
-        android:name="com.edc.ad.activity.FeedbackActivity"
+        android:name="com.edc.ae.activity.FeedbackActivity"
         android:label="fragment_feed_back"
         tools:layout="@layout/activity_feedback" />
     <activity
         android:id="@+id/complaintFragment"
-        android:name="com.edc.ad.activity.ComplaintsActivity"
+        android:name="com.edc.ae.activity.ComplaintsActivity"
         android:label="fragment_complaint"
         tools:layout="@layout/activity_complaint" />
     <fragment
         android:id="@+id/serviceFragment"
-        android:name="com.edc.ad.Fragments.ServiceFragment"
+        android:name="com.edc.ae.Fragments.ServiceFragment"
         android:label="fragment_service"
         tools:layout="@layout/fragment_service" />
 
     <fragment
         android:id="@+id/paymentInstructionFragment"
-        android:name="com.edc.ad.fragments.PaymentInstructionFragment"
+        android:name="com.edc.ae.fragments.PaymentInstructionFragment"
         android:label="fragment_instruction"
         tools:layout="@layout/fragment_payment_instruction" />
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.edc.ad.Fragments.AboutFragment"
+        android:name="com.edc.ae.Fragments.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about_new" />
     <fragment
         android:id="@+id/contactFragment"
-        android:name="com.edc.ad.fragments.ContactUsFragment"
+        android:name="com.edc.ae.fragments.ContactUsFragment"
         android:label="fragment_contact"
         tools:layout="@layout/fragment_contact" />
     <fragment
         android:id="@+id/notificationFragment"
-        android:name="com.edc.ad.fragments.NotificationFragment"
+        android:name="com.edc.ae.fragments.NotificationFragment"
         android:label="fragment_contact"
         tools:layout="@layout/fragment_about_new">
         <action
@@ -78,13 +78,13 @@
     </fragment>
     <fragment
         android:id="@+id/surveyFragment"
-        android:name="com.edc.ad.fragments.SurveyFragment"
+        android:name="com.edc.ae.fragments.SurveyFragment"
         android:label="fragment_survey"
         tools:layout="@layout/fragment_survey" />
 
     <dialog
         android:id="@+id/contactBottomSheet"
-        android:name="com.edc.ad.fragments.ContactBottomSheet"
+        android:name="com.edc.ae.fragments.ContactBottomSheet"
         android:label="fragment_contact_bottom_sheet"
         tools:layout="@layout/fragment_contact_bottom_sheet" />
 

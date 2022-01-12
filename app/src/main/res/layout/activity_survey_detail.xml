@@ -43,7 +43,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/back_arrow_white" />
 
-        <com.edc.ad.util.CustomTextViewBoldWhite
+        <com.edc.ae.util.CustomTextViewBoldWhite
             android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -81,7 +81,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.edc.ad.util.CustomTextViewBoldBlack
+            <com.edc.ae.util.CustomTextViewBoldBlack
                 android:id="@+id/questionTxt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -154,7 +154,7 @@
                 app:layout_constraintStart_toStartOf="@+id/textView8"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-            <com.edc.ad.util.CustomTextViewSemiBoldWhite
+            <com.edc.ae.util.CustomTextViewSemiBoldWhite
                 android:id="@+id/textView8"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

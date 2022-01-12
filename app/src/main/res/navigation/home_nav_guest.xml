@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.edc.ad.Fragments.GuestHomeFragment"
+        android:name="com.edc.ae.Fragments.GuestHomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home_guest" >
         <action
@@ -29,38 +29,38 @@
     </fragment>
     <fragment
         android:id="@+id/newsFragment"
-        android:name="com.edc.ad.Fragments.NewsFragment"
+        android:name="com.edc.ae.Fragments.NewsFragment"
         android:label="fragment_news"
         tools:layout="@layout/fragment_news" />
     <fragment
         android:id="@+id/newsLetterFragment"
-        android:name="com.edc.ad.Fragments.NewsLetterFragment"
+        android:name="com.edc.ae.Fragments.NewsLetterFragment"
         android:label="fragment_news_letter"
         tools:layout="@layout/fragment_news_letter" />
     <fragment
         android:id="@+id/serviceFragment"
-        android:name="com.edc.ad.Fragments.ServiceFragment"
+        android:name="com.edc.ae.Fragments.ServiceFragment"
         android:label="fragment_service"
         tools:layout="@layout/fragment_service" />
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.edc.ad.Fragments.AboutFragment"
+        android:name="com.edc.ae.Fragments.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_notification_new" />
     <fragment
         android:id="@+id/contactFragment"
-        android:name="com.edc.ad.fragments.ContactUsFragment"
+        android:name="com.edc.ae.fragments.ContactUsFragment"
         android:label="fragment_contact"
         tools:layout="@layout/fragment_contact" />
 
     <fragment
         android:id="@+id/notificationFragment"
-        android:name="com.edc.ad.fragments.NotificationFragment"
+        android:name="com.edc.ae.fragments.NotificationFragment"
         android:label="fragment_notification"
         tools:layout="@layout/fragment_about_new" />
     <dialog
         android:id="@+id/contactBottomSheet"
-        android:name="com.edc.ad.fragments.ContactBottomSheet"
+        android:name="com.edc.ae.fragments.ContactBottomSheet"
         android:label="fragment_contact_bottom_sheet"
         tools:layout="@layout/fragment_contact_bottom_sheet" />
 
