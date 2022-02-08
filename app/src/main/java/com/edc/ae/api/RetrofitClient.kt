@@ -23,6 +23,7 @@ interface RetrofitClient {
 
         fun getApiService(): RetrofitClient = Retrofit.Builder()
             .baseUrl("http://edcapp.mobatia.in:8081/api/v1/")
+//            .baseUrl("http://192.168.1.5/edc-mobileapp/public/api/v1/")
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
             .client(client)
             .build()

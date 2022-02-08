@@ -13,10 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.edc.ae.BaseActivities.HomeBaseUserActivity
 import com.edc.ae.R
-import com.edc.ae.activity.ComplaintsActivity
-import com.edc.ae.activity.FeedbackActivity
-import com.edc.ae.activity.HomeBaseGuestActivity
-import com.edc.ae.activity.WebViewActivity
+import com.edc.ae.activity.*
 import com.edc.ae.api.RetrofitClient
 import com.edc.ae.model.DevRegResponseModel
 import com.edc.ae.model.SocialmediaModel
@@ -98,6 +95,11 @@ class UserHomeFragment : Fragment() {
             startActivity(intent)
             activity?.finish()
 
+        }
+        constraintEnroll.setOnClickListener {
+            val intent: Intent = Intent(activity, EnrollActivity::class.java)
+            startActivity(intent)
+            activity?.overridePendingTransition(0, 0)
         }
     }
 

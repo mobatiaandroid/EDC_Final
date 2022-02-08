@@ -425,9 +425,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideBottom"
         app:layout_constraintEnd_toStartOf="@+id/guideRight"
         app:layout_constraintStart_toStartOf="@+id/guideRight1"
-        app:layout_constraintTop_toTopOf="@+id/guideMenuBottom"
-
-        >
+        app:layout_constraintTop_toTopOf="@+id/guideMenuBottom">
 
         <ImageView
             android:id="@+id/imageView9"
@@ -487,12 +485,44 @@
             android:id="@+id/imgLogout"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:src="@drawable/ic_logout"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintEnroll"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_rect_enroll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLogin">
+        <com.edc.ae.util.CustomTextViewWhite
+            android:id="@+id/txtEnroll"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/enroll"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imgEnroll"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgEnroll"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_logout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <com.edc.ae.util.CustomTextViewSemiBoldWhite
         android:id="@+id/txtGreeting"
         android:layout_width="wrap_content"

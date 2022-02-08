@@ -43,4 +43,6 @@
     <string name="submit">Submit</string>
     <string name="dont_hve_acc">Don\'t have an account? <font fgcolor='#F37021'>Sign Up</font></string>
     <string name="social_media">Social Media</string>
+    <string name="enroll">ENROLL</string>
+    <string name="enroll_title">Enroll</string>
 </resources>

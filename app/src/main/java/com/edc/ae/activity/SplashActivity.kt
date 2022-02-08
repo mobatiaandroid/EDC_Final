@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.animation.TranslateAnimation
@@ -36,6 +37,7 @@ class SplashActivity : AppCompatActivity() {
 
             val token = task.result
             PreferenceManager.setFCMToken(context as SplashActivity, token)
+            Log.e("Token",token.toString())
         })
 
         val metrics = DisplayMetrics()

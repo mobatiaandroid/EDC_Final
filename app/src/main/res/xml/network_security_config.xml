@@ -6,6 +6,8 @@
     <domain-config cleartextTrafficPermitted="true">
 
         <domain includeSubdomains="true">edcapp.mobatia.in:8081</domain>
+        <domain includeSubdomains="true">192.168.1.5/edc-mobileapp</domain>
+        <domain includeSubdomains="true">192.168.1.5</domain>
 
     </domain-config>
 </network-security-config>

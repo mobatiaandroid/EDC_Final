@@ -72,12 +72,12 @@ lateinit var mContext: Activity
         }
 
         // Check if message contains a notification payload.
-//        if (remoteMessage.getNotification() != null) {
-////            sendNotification(remoteMessage.getNotification().getBody());
-//
+        if (remoteMessage.getNotification() != null) {
 //            sendNotification(remoteMessage.getNotification().getBody());
-//            // Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
-//        }
+
+            sendNotification(remoteMessage.getNotification()!!.getBody()!!);
+            // Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
+        }
     }
 
     @TargetApi(26)
