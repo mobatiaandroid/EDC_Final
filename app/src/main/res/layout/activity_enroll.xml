@@ -69,22 +69,25 @@
         android:id="@+id/constraintLayout6"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:background="@color/dark_grey"
+        android:background="@drawable/curved_rectangle_grey"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintNewStudent"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:background="@color/edc_orange"
+            android:background="@drawable/curved_rectangle"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/constraintLayout5"
+            app:layout_constraintEnd_toStartOf="@+id/constraintExistingStudent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:id="@+id/textNew"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New Student"
@@ -96,7 +99,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout5"
+            android:id="@+id/constraintExistingStudent"
             android:layout_width="150dp"
             android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -104,6 +107,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:id="@+id/textExisting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Existing Student"
@@ -119,6 +123,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -148,6 +153,7 @@
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="16dp"
+                android:visibility="gone"
                 android:background="@drawable/roundedbg"
                 app:layout_constraintEnd_toStartOf="@+id/guideline9"
                 app:layout_constraintStart_toStartOf="@+id/guideline8"
@@ -615,13 +621,12 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.95" />
 
-        <com.dev.edc.manager.CustomTextViewOrange
+        <TextView
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_margin="4dp"
             android:gravity="center"
             android:background="@color/edc_orange"
-            android:enabled="false"
             android:text="Register"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"

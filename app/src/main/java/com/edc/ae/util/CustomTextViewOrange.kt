@@ -29,7 +29,7 @@ class CustomTextViewOrange : AppCompatTextView {
 
     private fun setFont() {
         val font =
-            Typeface.createFromAsset(context.assets, "font/Nunito-Light.ttf")
+            Typeface.createFromAsset(context.assets, "font/Nunito-Regular.ttf")
         //    setTypeface(font, Typeface.NORMAL);
         setTextColor(ContextCompat.getColor(context, R.color.edc_orange))
     }
