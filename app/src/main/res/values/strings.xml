@@ -45,4 +45,7 @@
     <string name="social_media">Social Media</string>
     <string name="enroll">ENROLL</string>
     <string name="enroll_title">Enroll</string>
+    <string name="forgot_password"><font fgcolor='#F37021'>Forgot Password?</font></string>
+    <string name="forgot_password_title">Forgot Password?</string>
+    <string name="forgot_password_message">Enter your email for the verification process.We will send instructions to reset password to your email.</string>
 </resources>

@@ -22,10 +22,6 @@ import kotlinx.coroutines.launch
 class ContactUsFragment : Fragment() {
     val contactUsArray = arrayListOf<ContactUsResponse.ContactData>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -70,7 +66,7 @@ class ContactUsFragment : Fragment() {
                     200 -> {
                         progressBarDialog?.dismiss()
 
-                        contactUsArray.addAll(call.data!!)
+                        contactUsArray.addAll(call.data)
                         contactRec.adapter?.notifyDataSetChanged()
                     }
                 }

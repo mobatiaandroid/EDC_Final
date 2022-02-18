@@ -37,10 +37,10 @@ class WebViewActivity : AppCompatActivity() {
         Log.e("URL",url)
         webView = findViewById(R.id.webView)
         backButton = findViewById(R.id.backBtn)
-        var progressDialog = ProgressDialog(context);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
-        webView.getSettings().setJavaScriptEnabled(true);
+        var progressDialog = ProgressDialog(context)
+        progressDialog.setMessage("Loading...")
+        progressDialog.show()
+        webView.settings.javaScriptEnabled = true
         webView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
                 view.loadUrl(url)

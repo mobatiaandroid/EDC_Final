@@ -14,6 +14,5 @@ data class ServiceResponseModel(
         val title: String
     )
 
-    class Exception(
-    )
+    class Exception
 }

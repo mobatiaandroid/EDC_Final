@@ -30,7 +30,7 @@ class CustomTextViewExtraBoldWhite : AppCompatTextView {
     private fun setFont() {
         val font =
             Typeface.createFromAsset(context.assets, "font/Nunito-ExtraBold.ttf")
-        setTypeface(font, Typeface.BOLD);
+        setTypeface(font, Typeface.BOLD)
         setTextColor(ContextCompat.getColor(context, R.color.white))
     }
 }

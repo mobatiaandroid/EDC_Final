@@ -22,6 +22,5 @@ data class ContactUsResponse(
         val phone: List<String>
     ): Parcelable
 
-    class Exception(
-    )
+    class Exception
 }

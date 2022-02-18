@@ -17,10 +17,6 @@ import kotlinx.coroutines.launch
 
 class AboutFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -64,7 +60,7 @@ class AboutFragment : Fragment() {
                         progressBarDialog?.dismiss()
                         var aboutdata = call.data.about
                         var dataLoad = "<html><body style = 'padding: 0.5em; font-family: nunito'>" + aboutdata + "</body></html>"
-                        dataLoad?.let {
+                        dataLoad.let {
                             webAbout.loadData(it, "text/html", "utf-8")
                         }
                     }

@@ -72,10 +72,10 @@ lateinit var mContext: Activity
         }
 
         // Check if message contains a notification payload.
-        if (remoteMessage.getNotification() != null) {
+        if (remoteMessage.notification != null) {
 //            sendNotification(remoteMessage.getNotification().getBody());
 
-            sendNotification(remoteMessage.getNotification()!!.getBody()!!);
+            sendNotification(remoteMessage.notification!!.body!!)
             // Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
     }
@@ -113,10 +113,10 @@ lateinit var mContext: Activity
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent)
-        val largeIcon = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher)
+        val largeIcon = BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher)
         if (Build.VERSION.SDK_INT >= 23) {
 //            notificationBuilder.setSmallIcon(R.drawable.notifyicons);
-            notificationBuilder.color = getResources().getColor(R.color.colorAccent)
+            notificationBuilder.color = resources.getColor(R.color.colorAccent)
             //    notificationBuilder.setSmallIcon(R.drawable.not_large);
             notificationBuilder.setLargeIcon(largeIcon)
         } else {
@@ -137,7 +137,7 @@ lateinit var mContext: Activity
             mChannel.setShowBadge(true)
             mChannel.canShowBadge()
             mChannel.enableLights(true)
-            mChannel.lightColor = getResources().getColor(R.color.colorPrimaryDark)
+            mChannel.lightColor = resources.getColor(R.color.colorPrimaryDark)
             mChannel.enableVibration(true)
             mChannel.vibrationPattern = longArrayOf(100, 200, 300, 400, 500)
             assert(notificationManager != null)

@@ -1,10 +1,12 @@
 package com.edc.ae.activity
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
+import com.edc.ae.BaseActivities.HomeBaseUserActivity
 import com.edc.ae.R
 import kotlinx.android.synthetic.main.activity_enroll.*
 
@@ -38,6 +40,15 @@ class EnrollActivity : AppCompatActivity() {
                 constraintStudentNo.visibility = View.GONE
                 currentTab = 1
             }
+        }
+        textRegister.setOnClickListener {
+            val intent: Intent = Intent(context, PaymentActivity::class.java)
+            startActivity(intent)
+//            overridePendingTransition(0, 0)
+        }
+        backBtn.setOnClickListener {
+            val intent = Intent(context, HomeBaseUserActivity::class.java)
+            startActivity(intent)
         }
     }
 }

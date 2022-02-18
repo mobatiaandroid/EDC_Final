@@ -22,23 +22,12 @@ class ContactBottomSheet : BottomSheetDialogFragment() {
     lateinit var mapGoogle: GoogleMap
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
         return inflater.inflate(R.layout.fragment_contact_bottom_sheet, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -64,10 +53,10 @@ class ContactBottomSheet : BottomSheetDialogFragment() {
             val zoomLevel = 15f
             map.addMarker(MarkerOptions().position(location))
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(location, zoomLevel))
-            map.animateCamera(CameraUpdateFactory.zoomTo(zoomLevel));
-            map.uiSettings.isZoomControlsEnabled = true;
-            map.uiSettings.isScrollGesturesEnabled = true;
-            map.uiSettings.isZoomGesturesEnabled = true;
+            map.animateCamera(CameraUpdateFactory.zoomTo(zoomLevel))
+            map.uiSettings.isZoomControlsEnabled = true
+            map.uiSettings.isScrollGesturesEnabled = true
+            map.uiSettings.isZoomGesturesEnabled = true
         }
 
 

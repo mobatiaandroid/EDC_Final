@@ -22,6 +22,5 @@ data class RegisterResponseModel(
         )
     }
 
-    class Exception(
-    )
+    class Exception
 }

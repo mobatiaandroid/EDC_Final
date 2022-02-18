@@ -22,10 +22,6 @@ import kotlinx.coroutines.launch
 
 class NotificationFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     val notifyArray = arrayListOf<NotificationResponse.NotifiData>()
 
     override fun onCreateView(
@@ -58,8 +54,8 @@ class NotificationFragment : Fragment() {
             override fun onItemClicked(position: Int, view: View) {
 
                 val intent = Intent(activity, NotificationDetailActivity::class.java)
-                intent.putExtra("description", notifyArray.get(position).message);
-                intent.putExtra("title", notifyArray.get(position).title);
+                intent.putExtra("description", notifyArray.get(position).message)
+                intent.putExtra("title", notifyArray.get(position).title)
                 startActivity(intent)
             }
 

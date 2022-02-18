@@ -30,7 +30,7 @@ internal class CustomTextViewBlack : AppCompatTextView {
     private fun setFont() {
         val font =
             Typeface.createFromAsset(context.assets, "font/Nunito-Regular.ttf")
-        setTypeface(font, Typeface.NORMAL);
+        setTypeface(font, Typeface.NORMAL)
         setTextColor(ContextCompat.getColor(context, R.color.black))
     }
 }

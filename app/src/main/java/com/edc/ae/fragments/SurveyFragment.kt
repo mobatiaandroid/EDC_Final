@@ -27,9 +27,6 @@ class SurveyFragment : Fragment() {
     lateinit var surveyListRecycler: RecyclerView
     lateinit var mContext: Context
     lateinit var dataArrayList : ArrayList<SurveyDataModel>
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,9 +62,9 @@ class SurveyFragment : Fragment() {
             override fun onItemClicked(position: Int, view: View) {
 
                 val intent = Intent(mContext, SurveyDetailActivity::class.java)
-                intent.putExtra("mylist", dataArrayList.get(position).questions);
-                intent.putExtra("survey_name", dataArrayList.get(position).title);
-                intent.putExtra("survey_id", dataArrayList.get(position).id.toString());
+                intent.putExtra("mylist", dataArrayList.get(position).questions)
+                intent.putExtra("survey_name", dataArrayList.get(position).title)
+                intent.putExtra("survey_id", dataArrayList.get(position).id.toString())
                 startActivity(intent)
             }
 
@@ -88,7 +85,7 @@ class SurveyFragment : Fragment() {
                 when(call.status){
                     200,201 -> {
                         dataArrayList= ArrayList()
-                        dataArrayList.addAll(call.data!!)
+                        dataArrayList.addAll(call.data)
                         var surveyAdapter= SurveyListAdapter(dataArrayList,mContext)
                         surveyListRecycler.adapter=surveyAdapter
                     }

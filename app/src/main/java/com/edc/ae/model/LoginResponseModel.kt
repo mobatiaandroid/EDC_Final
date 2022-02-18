@@ -21,6 +21,5 @@ data class LoginResponseModel(
         )
     }
 
-    class Exception(
-    )
+    class Exception
 }

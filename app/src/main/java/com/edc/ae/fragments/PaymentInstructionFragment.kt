@@ -60,9 +60,9 @@ class PaymentInstructionFragment : Fragment() {
                         instruction=call.data.paymentinstruction
 
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                            instructionTxt.setText(Html.fromHtml(instruction, Html.FROM_HTML_MODE_COMPACT));
+                            instructionTxt.text = Html.fromHtml(instruction, Html.FROM_HTML_MODE_COMPACT)
                         } else {
-                            instructionTxt.setText(Html.fromHtml(instruction));
+                            instructionTxt.text = Html.fromHtml(instruction)
                         }
 
 

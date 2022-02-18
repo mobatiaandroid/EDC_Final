@@ -118,12 +118,12 @@ class SurveyDetailActivity : AppCompatActivity() {
         var quest=questionsArrayList.size.toString()
         textView8.text="Questions "+count+" / "+quest
         progressBar.setProgress(currentQuestionCount,true)
-        questionTxt.setText(questionsArrayList.get(currentQuestionCount-1).question)
+        questionTxt.text = questionsArrayList.get(currentQuestionCount-1).question
         surveyAnswerRecycler.addOnItemClickListener(object : OnItemClickListener {
             override fun onItemClicked(position: Int, view: View) {
 
                 var found:Boolean=false
-                var pos:Int=-1;
+                var pos:Int=-1
                 for (i in 0..questionsArrayList.get(currentQuestionCount-1).options.size-1)
                 {
                     if(questionsArrayList.get(currentQuestionCount-1).options.get(i).select==1)
@@ -293,7 +293,7 @@ class SurveyDetailActivity : AppCompatActivity() {
                 var quest=questionsArrayList.size.toString()
                 textView8.text="Questions "+count+" / "+quest
                 progressBar.setProgress(currentQuestionCount,true)
-                questionTxt.setText(questionsArrayList.get(currentQuestionCount-1).question)
+                questionTxt.text = questionsArrayList.get(currentQuestionCount-1).question
                 if (questionsArrayList.get(currentQuestionCount-1).answer_type==1)
                 {
                     val layoutManager = LinearLayoutManager(mContext,LinearLayoutManager.VERTICAL,false)
@@ -382,7 +382,7 @@ class SurveyDetailActivity : AppCompatActivity() {
                 var quest=questionsArrayList.size.toString()
                 textView8.text="Questions "+count+" / "+quest
                 progressBar.setProgress(currentQuestionCount,true)
-                questionTxt.setText(questionsArrayList.get(currentQuestionCount-1).question)
+                questionTxt.text = questionsArrayList.get(currentQuestionCount-1).question
                 if (questionsArrayList.get(currentQuestionCount-1).answer_type==1)
                 {
                     val layoutManager = LinearLayoutManager(mContext,LinearLayoutManager.VERTICAL,false)

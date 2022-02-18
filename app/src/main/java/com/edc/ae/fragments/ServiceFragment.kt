@@ -90,7 +90,7 @@ class ServiceFragment : Fragment() {
                     200 -> {
                         progressBarDialog?.dismiss()
 
-                        servicesArray.addAll(call.data!!)
+                        servicesArray.addAll(call.data)
                         contactRec.adapter?.notifyDataSetChanged()
                     }
                 }

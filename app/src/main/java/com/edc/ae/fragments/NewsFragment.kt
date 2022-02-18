@@ -66,7 +66,7 @@ class NewsFragment : Fragment() {
                     200 -> {
                         progressBarDialog?.dismiss()
 
-                        newsArray.addAll(call.data!!)
+                        newsArray.addAll(call.data)
                         newsRec.adapter?.notifyDataSetChanged()
                     }
                 }

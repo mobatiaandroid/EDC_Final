@@ -108,7 +108,7 @@ class UserHomeFragment : Fragment() {
         var androidId = Settings.Secure.getString(
             requireContext().contentResolver,
             Settings.Secure.ANDROID_ID
-        );
+        )
         var deviceToken = PreferenceManager.getFCMToken(context as Activity)
 
         Log.e("gotData",androidId+deviceToken)

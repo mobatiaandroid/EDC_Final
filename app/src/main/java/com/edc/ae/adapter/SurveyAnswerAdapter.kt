@@ -53,7 +53,7 @@ class SurveyAnswerAdapter (private var surveyArrayList: ArrayList<OptionsModel>,
             holder.smileyConstraint.visibility=View.GONE
             holder.starConstraint.visibility=View.GONE
             holder.numberConstraint.visibility=View.GONE
-            holder.surveyNameTxt.setText(surveyArrayList.get(position).label)
+            holder.surveyNameTxt.text = surveyArrayList.get(position).label
         }
         else if (answerType==2)
         {
@@ -61,7 +61,7 @@ class SurveyAnswerAdapter (private var surveyArrayList: ArrayList<OptionsModel>,
             holder.starConstraint.visibility=View.GONE
             holder.numberConstraint.visibility=View.GONE
             holder.smileyConstraint.visibility=View.VISIBLE
-            holder.smileyTxt.setText(surveyArrayList.get(position).label)
+            holder.smileyTxt.text = surveyArrayList.get(position).label
 
             if (surveyArrayList.get(position).select==1)
             {
@@ -122,7 +122,7 @@ class SurveyAnswerAdapter (private var surveyArrayList: ArrayList<OptionsModel>,
             {
                 holder.starImg.setImageResource(R.drawable.star)
             }
-            holder.starTxt.setText(surveyArrayList.get(position).label)
+            holder.starTxt.text = surveyArrayList.get(position).label
         }
         else if (answerType==4)
         {
@@ -130,7 +130,7 @@ class SurveyAnswerAdapter (private var surveyArrayList: ArrayList<OptionsModel>,
             holder.smileyConstraint.visibility=View.GONE
             holder.numberConstraint.visibility=View.VISIBLE
             holder.starConstraint.visibility=View.GONE
-            holder.numberTxt.setText(surveyArrayList.get(position).label)
+            holder.numberTxt.text = surveyArrayList.get(position).label
             if (surveyArrayList.get(position).select==1)
             {
                 holder.imageView18.setBackgroundResource(R.drawable.curved_rectangle_orange_survey)

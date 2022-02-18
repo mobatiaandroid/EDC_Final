@@ -12,6 +12,5 @@ class PaymentInstructionResponseModel (
         val paymentinstruction: String
     )
 
-    class Exception(
-    )
+    class Exception
 }

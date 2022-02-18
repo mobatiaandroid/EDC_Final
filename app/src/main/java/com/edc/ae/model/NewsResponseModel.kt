@@ -14,6 +14,5 @@ data class NewsResponseModel(
         val title: String
     )
 
-    class Exception(
-    )
+    class Exception
 }

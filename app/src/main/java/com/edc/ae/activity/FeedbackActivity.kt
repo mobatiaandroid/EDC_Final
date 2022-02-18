@@ -28,7 +28,7 @@ class FeedbackActivity : AppCompatActivity() {
         submitBtn.isEnabled = false
         submitBtn.isClickable = false
         submitBtn.alpha=0.5f
-        submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
+        submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
         editSubject.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
@@ -42,18 +42,18 @@ class FeedbackActivity : AppCompatActivity() {
                         submitBtn.isEnabled = true
                         submitBtn.isClickable = true
                         submitBtn.alpha=1.0f
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
                     } else {
                         submitBtn.isEnabled = false
                         submitBtn.isClickable = false
                         submitBtn.alpha=0.5f
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
                     }
                 } else {
                     submitBtn.isEnabled = false
                     submitBtn.isClickable = false
                     submitBtn.alpha=0.5f
-                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
+                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
                 }
             }
 
@@ -74,18 +74,18 @@ class FeedbackActivity : AppCompatActivity() {
                         submitBtn.isEnabled = true
                         submitBtn.isClickable = true
                         submitBtn.alpha=1.0f
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
                     } else {
                         submitBtn.isEnabled = false
                         submitBtn.isClickable = false
                         submitBtn.alpha=0.5f
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
                     }
                 } else {
                     submitBtn.isEnabled = false
                     submitBtn.isClickable = false
                     submitBtn.alpha=0.5f
-                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
+                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
                 }
             }
 

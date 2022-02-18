@@ -622,6 +622,7 @@
             app:layout_constraintGuide_percent="0.95" />
 
         <TextView
+            android:id="@+id/textRegister"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_margin="4dp"

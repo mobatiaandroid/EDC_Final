@@ -45,7 +45,7 @@ class NewsDetailActivity : AppCompatActivity() {
             .with(context)
             .load(imageURL)
             .centerCrop()
-            .into(imageView);
+            .into(imageView)
         backButton.setOnClickListener { finish() }
 //        shareButton.setOnClickListener {
 //            val intent = Intent(Intent.ACTION_SEND)

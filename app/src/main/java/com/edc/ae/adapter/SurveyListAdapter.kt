@@ -24,7 +24,7 @@ class SurveyListAdapter (private var surveyArrayList: ArrayList<SurveyDataModel>
     }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val list = surveyArrayList[position]
-        holder.surveyNameTxt.setText(surveyArrayList.get(position).title)
+        holder.surveyNameTxt.text = surveyArrayList.get(position).title
 
     }
     override fun getItemCount(): Int {

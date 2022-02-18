@@ -66,7 +66,7 @@ class SplashActivity : AppCompatActivity() {
         backgroundExecutor.schedule({
 
 
-            if (this?.let { PreferenceManager.getLoginStatus(it) } == "no") {
+            if (this.let { PreferenceManager.getLoginStatus(it) } == "no") {
                 val intent: Intent = Intent(this, HomeBaseGuestActivity::class.java)
                 startActivity(intent)
                 overridePendingTransition(0, 0)

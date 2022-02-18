@@ -243,9 +243,9 @@ class SignupActivity : AppCompatActivity() {
             try {
 
                 val paramObject = JsonObject().apply {
-                    addProperty("fullname", editname.text.toString());
-                    addProperty("email", editEmail.text.toString());
-                    addProperty("password", editPassword.text.toString());
+                    addProperty("fullname", editname.text.toString())
+                    addProperty("email", editEmail.text.toString())
+                    addProperty("password", editPassword.text.toString())
                     addProperty("c_password", editConfirmPassword.text.toString())
                 }
                 //  paramObject.put("email", edtEmail.text.toString())
@@ -283,7 +283,7 @@ class SignupActivity : AppCompatActivity() {
             }
 
             catch (httpException: HttpException) {
-                progressBarDialog?.dismiss()
+                progressBarDialog.dismiss()
 
                 val responseErrorBody = httpException.response()!!.errorBody()
                 val response = responseErrorBody!!.string()

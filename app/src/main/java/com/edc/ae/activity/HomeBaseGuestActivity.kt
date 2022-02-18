@@ -20,7 +20,7 @@ class HomeBaseGuestActivity : AppCompatActivity() {
 
     lateinit var context: Context
     private lateinit var drawerLayout: DrawerLayout
-    public var navControl: NavController? = null
+    var navControl: NavController? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

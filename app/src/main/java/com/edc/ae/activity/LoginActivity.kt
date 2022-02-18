@@ -11,12 +11,10 @@ import android.util.DisplayMetrics
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import com.edc.ae.BaseActivities.HomeBaseUserActivity
 import com.edc.ae.R
@@ -24,6 +22,7 @@ import com.edc.ae.api.RetrofitClient
 import com.edc.ae.util.CommonMethods
 import com.edc.ae.util.PreferenceManager
 import com.edc.ae.util.ProgressBarDialog
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_signup.*
@@ -42,6 +41,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var emailTxt: EditText
     lateinit var submitBtn: Button
     lateinit var createAccount: TextView
+    lateinit var forgotPassword: TextView
     lateinit var logo: ImageView
     lateinit var constraintMain: ConstraintLayout
     lateinit var constraintEmail: ConstraintLayout
@@ -69,6 +69,7 @@ class LoginActivity : AppCompatActivity() {
         constraintMain = findViewById(R.id.clMain)
         constraintEmail = findViewById(R.id.clEmail)
         constraintPassword = findViewById(R.id.clPasword)
+        forgotPassword = findViewById(R.id.txtForgotPassword)
 
 //        carImg = findViewById(R.id.carImg)
     //    txtEmailHint = findViewById(R.id.emailHintTxt)
@@ -106,7 +107,7 @@ class LoginActivity : AppCompatActivity() {
         windowManager.defaultDisplay.getMetrics(metrics)
         val calculatedWidth = metrics.widthPixels
 
-        submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
+        submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
 
         submitBtn.alpha = 0.5f
         submitBtn.isEnabled = false
@@ -136,13 +137,13 @@ class LoginActivity : AppCompatActivity() {
                         submitBtn.isEnabled = true
                         submitBtn.isClickable = true
                         submitBtn.alpha=1.0f
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
 
                     } else {
                         submitBtn.isEnabled = false
                         submitBtn.isClickable = false
                         submitBtn.alpha=0.5f
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
 
 
                     }
@@ -150,7 +151,7 @@ class LoginActivity : AppCompatActivity() {
                     submitBtn.isEnabled = false
                     submitBtn.isClickable = false
                     submitBtn.alpha=0.5f
-                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
+                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
                 }
             }
 
@@ -176,20 +177,20 @@ class LoginActivity : AppCompatActivity() {
                         submitBtn.isEnabled = true
                         submitBtn.isClickable = true
                         submitBtn.alpha=1.0f
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
 
                     } else {
                         submitBtn.isEnabled = false
                         submitBtn.isClickable = false
                         submitBtn.alpha=0.5f
-                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
+                        submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
 
                     }
                 } else {
                     submitBtn.isEnabled = false
                     submitBtn.isClickable = false
                     submitBtn.alpha=0.5f
-                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle);
+                    submitBtn.setBackgroundResource(R.drawable.curved_rectangle)
                 }
             }
 
@@ -222,6 +223,56 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
             overridePendingTransition(0, 0)
         })
+        forgotPassword.setOnClickListener {
+            val dialog = BottomSheetDialog(this)
+            val view = layoutInflater.inflate(R.layout.bottom_sheet_forgot_password, null)
+            val buttonSubmit = view.findViewById<Button>(R.id.buttonSubmit)
+            val editEmail = view.findViewById<EditText>(R.id.editEmail)
+            buttonSubmit.alpha = 0.5f
+            buttonSubmit.isEnabled = false
+            buttonSubmit.isClickable = false
+            editEmail.addTextChangedListener(object : TextWatcher{
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    if (s!!.isNotEmpty()){
+                        buttonSubmit.alpha = 1.0f
+                        buttonSubmit.isEnabled = true
+                        buttonSubmit.isClickable = true
+                    }else{
+                        buttonSubmit.alpha = 0.5f
+                        buttonSubmit.isEnabled = false
+                        buttonSubmit.isClickable = false
+                    }
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+                }
+
+            })
+            buttonSubmit.setOnClickListener {
+                if (editEmail.text?.trim()?.length!! > 0){
+                    val emailPattern = CommonMethods.isEmailValid(editEmail.text.toString())
+                    if (!emailPattern) {
+                        Toast.makeText(this, "Enter a Valid Email", Toast.LENGTH_SHORT).show()
+                    } else{
+                        Toast.makeText(this, "A mail was sent to your email ID", Toast.LENGTH_SHORT).show()
+                        dialog.dismiss()
+                    }
+                } else{
+                    Toast.makeText(this, "Cannot be left empty", Toast.LENGTH_SHORT).show()
+                }
+            }
+            dialog.setCancelable(true)
+            dialog.setContentView(view)
+            dialog.show()
+        }
         submitBtn.setOnClickListener(View.OnClickListener {
 
             if (edtEmail.text.toString().trim().equals("")) {
@@ -268,14 +319,14 @@ class LoginActivity : AppCompatActivity() {
 
     private fun callAPI() {
         var progressBarDialog: ProgressBarDialog? = null
-        progressBarDialog = this?.let { ProgressBarDialog(it) }
-        progressBarDialog?.show()
+        progressBarDialog = this.let { ProgressBarDialog(it) }
+        progressBarDialog.show()
 
         lifecycleScope.launch {
             try {
 
                 val paramObject = JsonObject().apply {
-                    addProperty("email", edtEmail.text.toString());
+                    addProperty("email", edtEmail.text.toString())
                     addProperty("password",edtPassword.text.toString()) }
               //  paramObject.put("email", edtEmail.text.toString())
             //    paramObject.put("password", edtPassword.text.toString())
@@ -283,7 +334,7 @@ class LoginActivity : AppCompatActivity() {
 
                 when (call.status) {
                     200 -> {
-                        progressBarDialog?.dismiss()
+                        progressBarDialog.dismiss()
                         PreferenceManager.saveLoginStatusFlag(this@LoginActivity, "yes")
 
                         var access_token = call.data.credentials.access_token
@@ -304,7 +355,7 @@ class LoginActivity : AppCompatActivity() {
                 }
 
             } catch (httpException: HttpException) {
-                progressBarDialog?.dismiss()
+                progressBarDialog.dismiss()
 
                 val responseErrorBody = httpException.response()!!.errorBody()
                 val response = responseErrorBody!!.string()
