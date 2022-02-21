@@ -18,9 +18,11 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".activity.PaymentActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".activity.EnrollActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".activity.WebViewActivity"

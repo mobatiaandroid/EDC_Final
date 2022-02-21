@@ -30,6 +30,11 @@ class CourseAdapter(context: Context, orderList: ArrayList<Courses>, slNo: Strin
         Log.e("Desc", holder.vcFeeDesc.text as String)
         holder.vcFeeDesc.text = list[position].vcFeeDesc
         holder.decAmount.text = list[position].decAmount.toFloat().toString()
+//        if (position % 2 == 0){
+//            holder.itemView.setBackgroundResource(android.R.color.holo_orange_light)
+//        }else{
+//            holder.itemView.setBackgroundResource(android.R.color.holo_blue_dark)
+//        }
     }
 
     override fun getItemCount(): Int {
