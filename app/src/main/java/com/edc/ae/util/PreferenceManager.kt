@@ -145,4 +145,28 @@ object PreferenceManager {
         editor.putString("fcm_token", text)
         editor.commit()
     }
+
+
+    fun getEnrollStatus(context: Activity): String? {
+        val settings: SharedPreferences
+        val text: String?
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        text = settings.getString("enroll_status", "")
+        return text
+    }
+
+    fun setEnrollStatus(context: Context, text: String) {
+        val settings: SharedPreferences
+        val editor: SharedPreferences.Editor
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        editor = settings.edit()
+        editor.putString("enroll_status", text)
+        editor.commit()
+    }
 }
