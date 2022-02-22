@@ -10,7 +10,6 @@ import android.view.animation.AnimationUtils
 import android.view.animation.TranslateAnimation
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.edc.ae.BaseActivities.HomeBaseUserActivity
 import com.edc.ae.R
 import com.edc.ae.util.PreferenceManager
 import com.google.android.gms.tasks.OnCompleteListener
@@ -37,7 +36,7 @@ class SplashActivity : AppCompatActivity() {
 
             val token = task.result
             PreferenceManager.setFCMToken(context as SplashActivity, token)
-            Log.e("Token",token.toString())
+//            Log.e("Token",token.toString())
         })
 
         val metrics = DisplayMetrics()

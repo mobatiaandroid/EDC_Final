@@ -14,9 +14,7 @@ import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
-import com.edc.ae.BaseActivities.HomeBaseUserActivity
 import com.edc.ae.R
 import com.edc.ae.api.RetrofitClient
 import com.edc.ae.util.CommonMethods
@@ -25,8 +23,6 @@ import com.edc.ae.util.ProgressBarDialog
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_signup.*
-import kotlinx.android.synthetic.main.fragment_contact.*
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 import retrofit2.HttpException

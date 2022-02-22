@@ -1,4 +1,4 @@
-package com.edc.ae.BaseActivities
+package com.edc.ae.activity
 
 import android.os.Bundle
 import android.view.Gravity

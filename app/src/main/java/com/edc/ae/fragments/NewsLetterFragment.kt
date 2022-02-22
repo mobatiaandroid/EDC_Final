@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.edc.ae.BaseActivities.HomeBaseUserActivity
+import com.edc.ae.activity.HomeBaseUserActivity
 import com.edc.ae.R
 import com.edc.ae.activity.HomeBaseGuestActivity
 import com.edc.ae.util.PreferenceManager

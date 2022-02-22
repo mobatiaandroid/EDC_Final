@@ -110,5 +110,11 @@ interface RetrofitClient {
         @Body json: JsonObject
     ): DevRegResponseModel
 
+    @GET("srs/get-enroll-details")
+    suspend fun getEnrollDetailsResponse(): EnrollDetailsModel
+
+    @POST("auth/refresh/token")
+    suspend fun getRefreshToken(@Body json:JsonObject): RefreshTokenModel
+
 
 }

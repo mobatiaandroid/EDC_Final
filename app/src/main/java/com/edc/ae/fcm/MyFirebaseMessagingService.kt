@@ -13,7 +13,7 @@ import android.media.RingtoneManager
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import com.edc.ae.BaseActivities.HomeBaseUserActivity
+import com.edc.ae.activity.HomeBaseUserActivity
 import com.edc.ae.R
 import com.edc.ae.activity.HomeBaseGuestActivity
 import com.edc.ae.util.PreferenceManager

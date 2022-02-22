@@ -40,7 +40,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/EDCThemeFULL" />
         <activity
-            android:name=".BaseActivities.HomeBaseUserActivity"
+            android:name=".activity.HomeBaseUserActivity"
             android:label="@string/title_activity_home_"
             android:screenOrientation="portrait"
             android:theme="@style/EDCThemeFULL" />

@@ -1,7 +1,9 @@
 package com.edc.ae.util
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
@@ -13,9 +15,27 @@ import android.view.Window
 import android.widget.TextView
 
 import com.edc.ae.R
+import com.edc.ae.activity.HomeBaseUserActivity
+import com.edc.ae.api.RetrofitClient
+import com.google.gson.JsonObject
+import kotlinx.android.synthetic.main.activity_login.*
 
 class CommonMethods {
     companion object{
+        suspend fun callTokenRefreshAPI(context: Activity){
+            val paramObject = JsonObject().apply {
+                addProperty("refresh_token", PreferenceManager.getRefreshToken(context)) }
+            val call = RetrofitClient.get.getRefreshToken(paramObject)
+
+            when (call.status) {
+                200 -> {
+                    var access_token = call.data.credentials.access_token
+                    var refresh_token = call.data.credentials.refresh_token
+                    PreferenceManager.saveAccessToken(context , access_token)
+                    PreferenceManager.saveRefreshToken(context, refresh_token)
+                }
+            }
+        }
         fun isEmailValid(email: String): Boolean {
             return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
         }

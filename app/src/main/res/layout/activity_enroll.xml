@@ -171,15 +171,16 @@
 
                 <ImageView
                     android:id="@+id/arrowStudentNo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_marginEnd="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/right_arrow" />
+                    app:srcCompat="@drawable/valid_check" />
 
                 <EditText
+                    android:id="@+id/editStudentNo"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_margin="8dp"
@@ -203,13 +204,13 @@
 
                 <ImageView
                     android:id="@+id/arrowTrafficNo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_marginEnd="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/right_arrow" />
+                    app:srcCompat="@drawable/valid_check" />
 
                 <com.edc.ae.util.CustomTextViewBoldGrey
                     android:id="@+id/textTrafficNoTitle"
@@ -218,14 +219,16 @@
                     android:layout_margin="8dp"
                     android:text="TRAFFIC NO"
                     android:textSize="11sp"
+                    android:visibility="visible"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:visibility="visible" />
 
                 <EditText
+                    android:id="@+id/editTrafficNo"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_margin="8dp"
-
                     android:background="@null"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/arrowTrafficNo"
@@ -245,13 +248,13 @@
 
                 <ImageView
                     android:id="@+id/arrowTryFileNo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_marginEnd="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/right_arrow" />
+                    app:srcCompat="@drawable/valid_check" />
 
                 <com.edc.ae.util.CustomTextViewBoldGrey
                     android:id="@+id/textTryFileNoTitle"
@@ -264,6 +267,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
+                    android:id="@+id/editTryFileNo"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_margin="8dp"
@@ -290,6 +294,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
+                    android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -306,6 +311,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/textNameEnglish"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_margin="8dp"
@@ -348,6 +354,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/textNameArabic"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_margin="8dp"
@@ -372,6 +379,7 @@
                     android:id="@+id/arrowEmiratesID"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:visibility="invisible"
                     android:layout_marginEnd="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -389,6 +397,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/textEmiratesID"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_margin="8dp"
@@ -431,6 +440,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/textBranch"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_margin="8dp"
@@ -473,6 +483,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/textTrainingLanguage"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_margin="8dp"
@@ -516,6 +527,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/textNationality"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_margin="8dp"
@@ -558,6 +570,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/textMotherTongue"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_margin="8dp"
@@ -602,6 +615,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/textEducation"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_margin="8dp"
@@ -631,7 +645,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/right_arrow" />
+                    app:srcCompat="@drawable/right_arrow"
+                    android:rotation="90.0"/>
 
                 <com.edc.ae.util.CustomTextViewBoldGrey
                     android:id="@+id/textDOBTitle"
@@ -644,6 +659,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/textDOB"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_margin="8dp"
@@ -686,6 +702,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/textGender"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_margin="8dp"
@@ -727,7 +744,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <EditText
+                    android:id="@+id/editMobileNo"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_margin="8dp"
@@ -763,7 +781,7 @@
             app:layout_constraintGuide_percent="0.95" />
 
         <TextView
-            android:id="@+id/textRegister"
+            android:id="@+id/textRegisterButton"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_margin="4dp"
