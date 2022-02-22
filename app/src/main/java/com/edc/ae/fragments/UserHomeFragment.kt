@@ -248,15 +248,16 @@ class UserHomeFragment : Fragment() {
             BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE -> setErrorNotice("Biometric features are currently unavailable.")
             BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> setErrorNotice("You have not registered any biometric credentials")
             BiometricManager.BIOMETRIC_SUCCESS -> {
+
             }
         }
     }
 
     private fun buildBiometricPrompt(): BiometricPrompt.PromptInfo {
         return BiometricPrompt.PromptInfo.Builder()
-            .setTitle("Verify your identity")
+            .setTitle("Unlock EDC App")
             .setDescription("Confirm your identity so that we can verify it's you")
-            .setNegativeButtonText("Cancel")
+            //.setNegativeButtonText("Cancel")
             .setConfirmationRequired(false) //Allows user to authenticate without performing an action, such as pressing a button, after their biometric credential is accepted.
             .build()
     }
@@ -276,6 +277,8 @@ class UserHomeFragment : Fragment() {
 
             if (errorCode != AuthenticationError.AUTHENTICATION_DIALOG_DISMISSED.errorCode && errorCode != AuthenticationError.CANCELLED.errorCode) {
                 setErrorNotice(errString.toString())
+            } else if (errorCode == 10) {
+                activity?.finish()
             }
         }
     }
