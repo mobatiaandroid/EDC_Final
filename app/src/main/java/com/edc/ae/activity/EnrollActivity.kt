@@ -210,7 +210,10 @@ class EnrollActivity : AppCompatActivity() {
         var progressBarDialog: ProgressBarDialog? = null
         progressBarDialog = ProgressBarDialog(context)
         progressBarDialog.show()
-        AppController.educationLevelList
+        AppController.educationLevelList.clear()
+        AppController.nationalityList.clear()
+        AppController.trainingLanguageList.clear()
+        AppController.motherTongueList.clear()
         lifecycleScope.launch {
             try {
                 val call = RetrofitClient.get.getEnrollDetailsResponse()
@@ -219,6 +222,12 @@ class EnrollActivity : AppCompatActivity() {
                     200 -> {
                         progressBarDialog.dismiss()
                         Log.e("Enroll Response",call.data.educationLevel[1].toString())
+                        AppController.educationLevelList.addAll(call.data.educationLevel)
+                        AppController.motherTongueList.addAll(call.data.motherTongue)
+                        AppController.trainingLanguageList.addAll(call.data.trainingLanguage)
+                        AppController.nationalityList.addAll(call.data.nationality)
+                        Log.e("Education Levels", AppController.educationLevelList.toString())
+
                     }
                 }
 

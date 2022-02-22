@@ -6,10 +6,10 @@ import com.edc.ae.model.EnrollDetailsModel
 class AppController: Application() {
     companion object{
         var instance: AppController? = null
-        var educationLevelList: List<EnrollDetailsModel.Data.EducationLevel> = ArrayList()
-        var nationalityList: List<EnrollDetailsModel.Data.Nationality> = ArrayList()
-        var motherTongue: List<EnrollDetailsModel.Data.MotherTongue> = ArrayList()
-        var trainingLanguageList: List<EnrollDetailsModel.Data.TrainingLanguage> = ArrayList()
+        var educationLevelList: ArrayList<EnrollDetailsModel.Data.EducationLevel> = ArrayList()
+        var nationalityList: ArrayList<EnrollDetailsModel.Data.Nationality> = ArrayList()
+        var motherTongueList: ArrayList<EnrollDetailsModel.Data.MotherTongue> = ArrayList()
+        var trainingLanguageList: ArrayList<EnrollDetailsModel.Data.TrainingLanguage> = ArrayList()
         fun applicationContext() : AppController {
             return instance as AppController
         }
