@@ -12,10 +12,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="edc_orange">#F37021</color>
     <color name="edc_red">#fb5c5c</color>
-    <color name="grey">#ACA9A9</color>
+    <color name="grey">#ABABAB</color>
     <color name="edc_green">#24966E</color>
     <color name="edc_header_green">#24966E</color>
-    <color name="dark_grey">#A9A9A9</color>
+    <color name="dark_grey">#ABABAB</color>
     <color name="dark_grey_text">#808080</color>
 
     <color name="edc_header">#F37021</color>

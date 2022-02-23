@@ -39,6 +39,7 @@ class UserHomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         mContext = requireContext()
+        PreferenceManager.setEnrollStatus(mContext,"no")
         setupBiometricAuthentication()
         checkBiometricFeatureState()
 

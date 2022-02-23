@@ -254,7 +254,7 @@
                 android:id="@+id/paymentInstructionBtn"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:gravity="center|start">
 
                 <ImageView

@@ -253,7 +253,7 @@ class SignupActivity : AppCompatActivity() {
                 val call = RetrofitClient.get.userRegister(paramObject)
                 Log.e("WORKS","ENTERS")
                 Log.e("response",call.status.toString())
-
+                Log.e("Check","000")
                 when (call.status) {
                     200 -> {
                         progressBarDialog.dismiss()

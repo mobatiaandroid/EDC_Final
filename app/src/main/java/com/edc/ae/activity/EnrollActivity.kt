@@ -39,7 +39,7 @@ class EnrollActivity : AppCompatActivity() {
     private fun initialiseUI() {
         showFieldsPartial()
         textRegisterButton.text = getString(R.string.submit)
-        
+
         constraintExistingStudent.setOnClickListener {
             if (currentTab != CurrentTab.EXISTING){
                 clearAllFields()
@@ -52,7 +52,7 @@ class EnrollActivity : AppCompatActivity() {
                 constraintStudentNo.visibility = View.VISIBLE
                 currentTab = CurrentTab.EXISTING
                 if (buttonMode == ButtonMode.REGISTER){
-                   changeButtonMode()
+                    changeButtonMode()
                 }
             }
         }
