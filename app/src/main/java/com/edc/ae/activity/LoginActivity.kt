@@ -238,9 +238,21 @@ class LoginActivity : AppCompatActivity() {
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     if (s!!.isNotEmpty()){
-                        buttonSubmit.alpha = 1.0f
-                        buttonSubmit.isEnabled = true
-                        buttonSubmit.isClickable = true
+                        val emailPattern =
+                            CommonMethods.isEmailValid(s.toString().trim())
+                        if(emailPattern)
+                        {
+                            buttonSubmit.alpha = 1.0f
+                            buttonSubmit.isEnabled = true
+                            buttonSubmit.isClickable = true
+                        }
+                        else
+                        {
+                            buttonSubmit.alpha = 0.5f
+                            buttonSubmit.isEnabled = false
+                            buttonSubmit.isClickable = false
+                        }
+
                     }else{
                         buttonSubmit.alpha = 0.5f
                         buttonSubmit.isEnabled = false
