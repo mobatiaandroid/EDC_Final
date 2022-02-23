@@ -312,7 +312,24 @@
                     android:text="@string/about" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/settingsBtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center|start">
 
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/about_new" />
+
+                <com.edc.ae.util.CustomTextViewBlack
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/settings" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </com.google.android.material.navigation.NavigationView>

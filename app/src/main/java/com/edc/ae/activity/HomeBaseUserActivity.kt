@@ -70,6 +70,12 @@ class HomeBaseUserActivity : AppCompatActivity() {
 
             navControl?.navigate(R.id.complaintFragment)
         }
+
+        settingsBtn.setOnClickListener { _ ->
+            if (drawerLayout.isOpen) drawerLayout.close()
+
+            navControl?.navigate(R.id.settingsFragment)
+        }
 //        contactBtn.setOnClickListener { _ ->
 //            if (drawerLayout.isOpen) drawerLayout.close()
 //

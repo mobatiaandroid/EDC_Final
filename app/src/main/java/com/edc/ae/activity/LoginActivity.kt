@@ -265,7 +265,8 @@ class LoginActivity : AppCompatActivity() {
 
             })
             buttonSubmit.setOnClickListener {
-                if (editEmail.text?.trim()?.length!! > 0){
+                if (editEmail.text?.trim()?.length!! > 0)
+                {
                     val emailPattern = CommonMethods.isEmailValid(editEmail.text.toString())
                     if (!emailPattern) {
                         Toast.makeText(this, "Enter a Valid Email", Toast.LENGTH_SHORT).show()
