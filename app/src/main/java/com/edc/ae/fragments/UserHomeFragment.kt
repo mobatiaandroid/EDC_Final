@@ -258,7 +258,7 @@ class UserHomeFragment : Fragment() {
         return BiometricPrompt.PromptInfo.Builder()
             .setTitle("Unlock EDC App")
             .setDescription("Confirm your identity so that we can verify it's you")
-            //.setNegativeButtonText("Cancel")
+            .setNegativeButtonText("Cancel")
             .setConfirmationRequired(false) //Allows user to authenticate without performing an action, such as pressing a button, after their biometric credential is accepted.
             .build()
     }

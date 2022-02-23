@@ -116,5 +116,8 @@ interface RetrofitClient {
     @POST("auth/refresh/token")
     suspend fun getRefreshToken(@Body json:JsonObject): RefreshTokenModel
 
+//    @POST("srs/validate-student")
+//    suspend fun getValidationResult(): ValidationResultModel
+
 
 }

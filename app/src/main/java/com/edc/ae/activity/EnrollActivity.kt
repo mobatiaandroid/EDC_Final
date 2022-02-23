@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import com.edc.ae.R
 import com.edc.ae.api.RetrofitClient
 import com.edc.ae.util.AppController
+import com.edc.ae.util.PreferenceManager
 import com.edc.ae.util.ProgressBarDialog
 import kotlinx.android.synthetic.main.activity_enroll.*
 import kotlinx.coroutines.launch
@@ -39,12 +40,15 @@ class EnrollActivity : AppCompatActivity() {
     private fun initialiseUI() {
         showFieldsPartial()
         textRegisterButton.text = getString(R.string.submit)
-
         constraintExistingStudent.setOnClickListener {
             if (currentTab != CurrentTab.EXISTING){
                 clearAllFields()
                 showFieldsPartial()
-                if (editStudentNo.hasFocus() || editTrafficNo.hasFocus() || editTryFileNo.hasFocus() || editMobileNo.hasFocus()) currentFocus!!.clearFocus()
+                if (editStudentNo.hasFocus()
+                    || editTrafficNo.hasFocus()
+                    || editTryFileNo.hasFocus()
+                    || editMobileNo.hasFocus())
+                        currentFocus!!.clearFocus()
                 constraintExistingStudent.setBackgroundResource(R.drawable.curved_rectangle)
                 constraintNewStudent.setBackgroundResource(0)
                 textNew.setTextColor(ContextCompat.getColor(context, R.color.black))
@@ -52,7 +56,7 @@ class EnrollActivity : AppCompatActivity() {
                 constraintStudentNo.visibility = View.VISIBLE
                 currentTab = CurrentTab.EXISTING
                 if (buttonMode == ButtonMode.REGISTER){
-                    changeButtonMode()
+                    changeRegisterToSubmit()
                 }
             }
         }
@@ -68,86 +72,136 @@ class EnrollActivity : AppCompatActivity() {
                 constraintStudentNo.visibility = View.GONE
                 currentTab = CurrentTab.NEW
                 if (buttonMode == ButtonMode.REGISTER){
-                    changeButtonMode()
+                    changeRegisterToSubmit()
                 }
             }
         }
         textRegisterButton.setOnClickListener {
-            //set button mode to submit on validation success
             if (buttonMode == ButtonMode.SUBMIT){
                 if (currentTab == CurrentTab.NEW) {
-                    if (editTrafficNo.text.trim().isNotEmpty() && editTryFileNo.text.isNotEmpty()) {
-                        changeButtonMode()
-                        // call validation api
-                        // on success show all fields and valid check
-//                        arrowStudentNo.visibility = View.VISIBLE
-                        arrowTryFileNo.visibility = View.VISIBLE
-                        arrowTrafficNo.visibility = View.VISIBLE
-                        showFieldsAll()
-                        callEnrollAPI()
-
+                    if (editTrafficNo.text.isEmpty()) {
+                        Log.e("trafficno",editTrafficNo.text.toString())
+                        Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
+                    } else if(editTryFileNo.text.isEmpty()) {
+                        Log.e("tryfile",editTryFileNo.text.toString())
+                        Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
                     } else {
-                        // field empty show error
+                        callValidateAPI()
+                    }
+                } else if (currentTab == CurrentTab.EXISTING) {
+                    if (editTrafficNo.text.isEmpty()) {
+                        Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
+                    } else if(editTryFileNo.text.isEmpty()) {
+                        Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
+                    } else if(editStudentNo.text.isEmpty()) {
+                        Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
+                    } else {
+                        callValidateAPI()
                     }
                 } else {
-                    //current tab existing student
-                    if (editTrafficNo.text.trim().isNotEmpty() && editTryFileNo.text.isNotEmpty() && editStudentNo.text.isNotEmpty()
-                    ) {
-                        changeButtonMode()
-                        // call validation api
-                        // on success show all fields and valid check
-                        arrowStudentNo.visibility = View.VISIBLE
-                        arrowTryFileNo.visibility = View.VISIBLE
-                        arrowTrafficNo.visibility = View.VISIBLE
-                        showFieldsAll()
-                        callEnrollAPI()
 
-                    } else {
-                        // field empty show error
-                    }
+                }
+            } else if(buttonMode == ButtonMode.REGISTER) {
+                if (currentTab == CurrentTab.NEW) {
+                    //call register api
+                } else if (currentTab == CurrentTab.EXISTING) {
+                    //call register api
+                } else {
+
                 }
             } else {
-                val intent: Intent = Intent(context, PaymentActivity::class.java)
-                startActivity(intent)
-            }
-
-
-//            overridePendingTransition(0, 0)
-        }
-//        Toast.makeText(this, buttonMode.toString(), Toast.LENGTH_SHORT).show()
-        editTrafficNo.doOnTextChanged { text, start, before, count ->
-            if (buttonMode == ButtonMode.REGISTER) {
-                arrowTrafficNo.setImageResource(R.drawable.invalid_close)
-                arrowStudentNo.setImageResource(R.drawable.invalid_close)
-                arrowTryFileNo.setImageResource(R.drawable.invalid_close)
-
-                changeButtonMode()
-            }
-        }
-        editStudentNo.doOnTextChanged { text, start, before, count ->
-            if (buttonMode == ButtonMode.REGISTER) {
-                arrowTrafficNo.setImageResource(R.drawable.invalid_close)
-                arrowStudentNo.setImageResource(R.drawable.invalid_close)
-                arrowTryFileNo.setImageResource(R.drawable.invalid_close)
-                changeButtonMode()
 
             }
         }
-        editTryFileNo.doOnTextChanged { text, start, before, count ->
-            if (buttonMode == ButtonMode.REGISTER) {
-                arrowTrafficNo.setImageResource(R.drawable.invalid_close)
-                arrowStudentNo.setImageResource(R.drawable.invalid_close)
-                arrowTryFileNo.setImageResource(R.drawable.invalid_close)
-                changeButtonMode()
-            }
-        }
+//        textRegisterButton.setOnClickListener {
+//            //set button mode to submit on validation success
+//            if (buttonMode == ButtonMode.SUBMIT){
+//                if (currentTab == CurrentTab.NEW) {
+//                    if (editTrafficNo.text.trim().isNotEmpty() && editTryFileNo.text.isNotEmpty()) {
+//                        changeButtonMode()
+//                        // call validation api
+//                        // on success show all fields and valid check
+////                        arrowStudentNo.visibility = View.VISIBLE
+//                        arrowTryFileNo.visibility = View.VISIBLE
+//                        arrowTrafficNo.visibility = View.VISIBLE
+//                        showFieldsAll()
+//                        callEnrollAPI()
+//
+//                    } else {
+//                        // field empty show error
+//                    }
+//                } else {
+//                    //current tab existing student
+//                    if (editTrafficNo.text.trim().isNotEmpty() && editTryFileNo.text.isNotEmpty() && editStudentNo.text.isNotEmpty()
+//                    ) {
+//                        changeButtonMode()
+//                        // call validation api
+//                        // on success show all fields and valid check
+//                        arrowStudentNo.visibility = View.VISIBLE
+//                        arrowTryFileNo.visibility = View.VISIBLE
+//                        arrowTrafficNo.visibility = View.VISIBLE
+//                        showFieldsAll()
+//                        callEnrollAPI()
+//
+//                    } else {
+//                        // field empty show error
+//                    }
+//                }
+//            } else {
+//                val intent: Intent = Intent(context, PaymentActivity::class.java)
+//                startActivity(intent)
+//            }
+//
+//
+////            overridePendingTransition(0, 0)
+//        }
+////        Toast.makeText(this, buttonMode.toString(), Toast.LENGTH_SHORT).show()
+//        editTrafficNo.doOnTextChanged { text, start, before, count ->
+//            if (buttonMode == ButtonMode.REGISTER) {
+//                arrowTrafficNo.setImageResource(R.drawable.invalid_close)
+//                arrowStudentNo.setImageResource(R.drawable.invalid_close)
+//                arrowTryFileNo.setImageResource(R.drawable.invalid_close)
+//
+//                changeButtonMode()
+//            }
+//        }
+//        editStudentNo.doOnTextChanged { text, start, before, count ->
+//            if (buttonMode == ButtonMode.REGISTER) {
+//                arrowTrafficNo.setImageResource(R.drawable.invalid_close)
+//                arrowStudentNo.setImageResource(R.drawable.invalid_close)
+//                arrowTryFileNo.setImageResource(R.drawable.invalid_close)
+//                changeButtonMode()
+//
+//            }
+//        }
+//        editTryFileNo.doOnTextChanged { text, start, before, count ->
+//            if (buttonMode == ButtonMode.REGISTER) {
+//                arrowTrafficNo.setImageResource(R.drawable.invalid_close)
+//                arrowStudentNo.setImageResource(R.drawable.invalid_close)
+//                arrowTryFileNo.setImageResource(R.drawable.invalid_close)
+//                changeButtonMode()
+//            }
+//        }
+//
+//
+//        backBtn.setOnClickListener {
+//            val intent = Intent(context, HomeBaseUserActivity::class.java)
+//            startActivity(intent)
+//        }
 
+    }
 
-        backBtn.setOnClickListener {
-            val intent = Intent(context, HomeBaseUserActivity::class.java)
-            startActivity(intent)
-        }
+    private fun callValidateAPI() {
+//        var progressBarDialog: ProgressBarDialog? = null
+//        progressBarDialog = ProgressBarDialog(context)
+//        progressBarDialog.show()
+//        PreferenceManager.setTrafficNo(this,editTrafficNo.text.toString())
+//        PreferenceManager.setTryFileNo(this,editTryFileNo.text.toString())
+//        PreferenceManager.setStudentNo(this,editStudentNo.text.toString())
+        //api call
+        //validation success
 
+        //validation failure
     }
 
     private fun showFieldsAll() {
@@ -170,8 +224,10 @@ class EnrollActivity : AppCompatActivity() {
 //        if (buttonMode == ButtonMode.SUBMIT) changeButtonMode()
 //        else changeButtonMode()
         //Tab change
-        if (currentTab == CurrentTab.NEW) constraintStudentNo.visibility = View.GONE
-        else constraintStudentNo.visibility = View.VISIBLE
+        if (currentTab == CurrentTab.NEW)
+            constraintStudentNo.visibility = View.GONE
+        else
+            constraintStudentNo.visibility = View.VISIBLE
         //valid check
         arrowStudentNo.visibility = View.GONE
         arrowTryFileNo.visibility = View.GONE
@@ -226,6 +282,10 @@ class EnrollActivity : AppCompatActivity() {
                         AppController.motherTongueList.addAll(call.data.motherTongue)
                         AppController.trainingLanguageList.addAll(call.data.trainingLanguage)
                         AppController.nationalityList.addAll(call.data.nationality)
+//                        for ( each in AppController.nationalityList){
+//                            if (each.id == 3) textNationality.text = each.name
+//                        }
+
                         Log.e("Education Levels", AppController.educationLevelList.toString())
 
                     }
@@ -236,16 +296,13 @@ class EnrollActivity : AppCompatActivity() {
             }
         }
     }
-    private fun changeButtonMode() {
 
-
-        if (buttonMode == ButtonMode.SUBMIT){
-            buttonMode = ButtonMode.REGISTER
-            textRegisterButton.text = getString(R.string.register)
-        } else {
-            buttonMode = ButtonMode.SUBMIT
-            textRegisterButton.text = getString(R.string.submit)
-        }
-        Toast.makeText(this, buttonMode.toString(), Toast.LENGTH_SHORT).show()
+    private fun changeSubmitToRegister(){
+        buttonMode = ButtonMode.REGISTER
+        textRegisterButton.text = getString(R.string.register)
+    }
+    private fun changeRegisterToSubmit(){
+        buttonMode = ButtonMode.SUBMIT
+        textRegisterButton.text = getString(R.string.submit)
     }
 }

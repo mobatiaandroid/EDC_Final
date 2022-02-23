@@ -169,4 +169,70 @@ object PreferenceManager {
         editor.putString("enroll_status", text)
         editor.commit()
     }
+    fun getStudentNo(context: Activity): String? {
+        val settings: SharedPreferences
+        val text: String?
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        text = settings.getString("student_no", "")
+        return text
+    }
+
+    fun setStudentNo(context: Context, text: String) {
+        val settings: SharedPreferences
+        val editor: SharedPreferences.Editor
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        editor = settings.edit()
+        editor.putString("student_no", text)
+        editor.commit()
+    }
+    fun getTrafficNo(context: Activity): String? {
+        val settings: SharedPreferences
+        val text: String?
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        text = settings.getString("traffic_no", "")
+        return text
+    }
+
+    fun setTrafficNo(context: Context, text: String) {
+        val settings: SharedPreferences
+        val editor: SharedPreferences.Editor
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        editor = settings.edit()
+        editor.putString("traffic_no", text)
+        editor.commit()
+    }
+    fun getTryFileNo(context: Activity): String? {
+        val settings: SharedPreferences
+        val text: String?
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        text = settings.getString("try_file_no", "")
+        return text
+    }
+
+    fun setTryFileNo(context: Context, text: String) {
+        val settings: SharedPreferences
+        val editor: SharedPreferences.Editor
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        editor = settings.edit()
+        editor.putString("try_file_no", text)
+        editor.commit()
+    }
 }
