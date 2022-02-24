@@ -30,6 +30,12 @@
     <string name="news">News</string>
     <string name="logout">LOGOUT</string>
     <string name="login">Sign in</string>
+   <!--STUDENT PROFILE-->
+    <string name="traffic_number">Traffic No</string>
+    <string name="tryfile_number">Try File No</string>
+    <string name="branch_number">Branch No</string>
+    <string name="branch_name">Branch Name</string>
+    <string name="email_student">Email ID</string>
 
     <string name="home">Home</string>
     <!-- TODO: Remove or change this placeholder text -->

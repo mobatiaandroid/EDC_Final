@@ -58,6 +58,7 @@ class SettingsFragment : Fragment() {
         mContext = requireContext()
         settingsArrayList= ArrayList()
         settingsArrayList.add("Change App Settings")
+        settingsArrayList.add("Student Profile")
         settingsArrayList.add("Notification")
         settingsArrayList.add("Change Password")
         initUI()
@@ -91,7 +92,11 @@ class SettingsFragment : Fragment() {
                     intent.data = uri
                     mContext.startActivity(intent)
                 }
-                else if (position==2)
+                if (position==1)
+                {
+
+                }
+                else if (position==3)
                 {
 
                     val dialog = BottomSheetDialog(mContext)
