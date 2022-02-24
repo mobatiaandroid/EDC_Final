@@ -25,7 +25,7 @@ class CommonMethods {
         suspend fun callTokenRefreshAPI(context: Activity){
             val paramObject = JsonObject().apply {
                 addProperty("refresh_token", PreferenceManager.getRefreshToken(context)) }
-            val call = RetrofitClient.get.getRefreshToken(paramObject)
+            val call = RetrofitClient.get.getRefreshToken("Bearer " + PreferenceManager.getAccessToken(context), paramObject)
 
             when (call.status) {
                 200 -> {

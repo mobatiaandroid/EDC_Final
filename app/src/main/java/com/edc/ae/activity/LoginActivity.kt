@@ -8,6 +8,7 @@ import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -307,7 +308,8 @@ class LoginActivity : AppCompatActivity() {
                     } else {
 
                         if (CommonMethods.isInternetAvailable(context)) {
-
+                            PreferenceManager.setEmail(context, edtEmail.text!!.trim().toString())
+                            PreferenceManager.setPassword(context, edtPassword.text!!.trim().toString())
                             callAPI()
                             //   callLoginApi(emailTxt.text.toString(), passwordTxt.text.toString())
                         } else {
@@ -328,7 +330,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun callAPI() {
         var progressBarDialog: ProgressBarDialog? = null
-        progressBarDialog = this.let { ProgressBarDialog(it) }
+        progressBarDialog = ProgressBarDialog(this)
         progressBarDialog.show()
 
         lifecycleScope.launch {
@@ -340,7 +342,7 @@ class LoginActivity : AppCompatActivity() {
               //  paramObject.put("email", edtEmail.text.toString())
             //    paramObject.put("password", edtPassword.text.toString())
                 val call = RetrofitClient.get.userLogin(paramObject)
-
+                Log.e("Respo",call.toString())
                 when (call.status) {
                     200 -> {
                         progressBarDialog.dismiss()
@@ -354,6 +356,7 @@ class LoginActivity : AppCompatActivity() {
                         PreferenceManager.saveRefreshToken(this@LoginActivity, refresh_token)
                         PreferenceManager.saveUserName(this@LoginActivity, user)
                         PreferenceManager.saveStudentID(this@LoginActivity, student_id)
+                        PreferenceManager.setStudentStatus(this@LoginActivity, call.data.student_status.toString())
                         val intent: Intent = Intent(this@LoginActivity, HomeBaseUserActivity::class.java)
                         startActivity(intent)
 

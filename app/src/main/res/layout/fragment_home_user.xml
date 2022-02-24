@@ -291,6 +291,45 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView17" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintPayment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        android:layout_margin="3dp"
+        android:background="@drawable/rounded_rect_home"
+        app:layout_constraintBottom_toTopOf="@+id/guideMenuBottom"
+        app:layout_constraintEnd_toStartOf="@+id/guideRight1"
+        app:layout_constraintStart_toStartOf="@+id/guideLeft1"
+        app:layout_constraintTop_toTopOf="@+id/guideMenuTop">
+
+        <ImageView
+            android:id="@+id/imageVieworng1"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@drawable/rounded_rect_orange_home"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView171"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/payment_new"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.edc.ae.util.CustomTextViewBlack
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/payment"
+            app:layout_constraintBottom_toTopOf="@+id/imageVieworng1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView171" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintFeedback"

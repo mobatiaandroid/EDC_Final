@@ -29,13 +29,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:textSize="24dp"
-            android:text="edit_title"
+            android:text="Edit Fields"
             app:layout_constraintStart_toStartOf="@+id/guideline12"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.dev.edc.manager.CustomTextViewGrey
             android:id="@+id/editMessage"
             android:layout_width="0dp"
+            android:visibility="gone"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="edit_message"
@@ -60,13 +61,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="text_edit_title"
+                android:text="Traffic No"
                 android:textSize="11sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editText1"
+                android:id="@+id/trafficNo"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_margin="8dp"
@@ -94,13 +95,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="text_edit_title"
+                android:text="Try File No"
                 android:textSize="11sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/tryFileNo"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_margin="8dp"
@@ -116,6 +117,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:visibility="gone"
             android:background="@drawable/roundedbg"
             app:layout_constraintEnd_toStartOf="@+id/guideline13"
             app:layout_constraintStart_toStartOf="@+id/guideline12"
