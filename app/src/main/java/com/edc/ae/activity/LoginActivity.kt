@@ -271,8 +271,8 @@ class LoginActivity : AppCompatActivity() {
                     if (!emailPattern) {
                         Toast.makeText(this, "Enter a Valid Email", Toast.LENGTH_SHORT).show()
                     } else{
-                        Toast.makeText(this, "A mail was sent to your email ID", Toast.LENGTH_SHORT).show()
-                        dialog.dismiss()
+                        callForgetPasswordApi(editEmail.text.toString().trim(),dialog)
+
                     }
                 } else{
                     Toast.makeText(this, "Cannot be left empty", Toast.LENGTH_SHORT).show()
@@ -387,5 +387,49 @@ class LoginActivity : AppCompatActivity() {
         val intent: Intent = Intent(this, HomeBaseGuestActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+
+
+    private fun callForgetPasswordApi(email:String,dialog: BottomSheetDialog) {
+        var progressBarDialog: ProgressBarDialog? = null
+        progressBarDialog = this.let { ProgressBarDialog(it) }
+        progressBarDialog.show()
+
+        lifecycleScope.launch {
+            try {
+
+                val paramObject = JsonObject().apply {
+                    addProperty("email", email)
+                }
+                //  paramObject.put("email", edtEmail.text.toString())
+                //    paramObject.put("password", edtPassword.text.toString())
+                val call = RetrofitClient.get.forgotPassword(paramObject)
+
+                when (call.status) {
+                    200 -> {
+                        progressBarDialog.dismiss()
+                        Toast.makeText(context, "A mail was sent to your email ID", Toast.LENGTH_SHORT).show()
+                        dialog.dismiss()
+
+                    }
+                }
+
+            } catch (httpException: HttpException) {
+                progressBarDialog.dismiss()
+
+                val responseErrorBody = httpException.response()!!.errorBody()
+                val response = responseErrorBody!!.string()
+                val obj = JSONObject(response)
+                var status_code=obj.getString("status")
+                var message = obj.getString("message")
+                CommonMethods.showLoginErrorPopUp(
+                    context,
+                    "Alert",
+                    message
+                )
+
+            }
+        }
     }
 }

@@ -61,9 +61,26 @@ interface RetrofitClient {
     //@FormUrlEncoded
     @POST("auth/login")
     suspend fun userLogin(@Body json:JsonObject): LoginResponseModel
-   //@FormUrlEncoded
+
+
+
+
+    //@FormUrlEncoded
+    @POST("auth/forgot-password")
+    suspend fun forgotPassword(@Body json:JsonObject): ForgetPasswordResponseModel
+
+
+    @Headers("Content-Type: application/json;charset=UTF-8")
     @POST("srs/auth/change-passowrd")
-    suspend fun changePassword(@Body json:JsonObject): ChangePasswordResponseModel
+    suspend fun changePassword(
+        @Header("Authorization") authHeader: String?,
+        @Body json: JsonObject
+    ): ChangePasswordResponseModel
+
+
+//   //@FormUrlEncoded
+//    @POST("srs/auth/change-passowrd")
+//    suspend fun changePassword(@Body json:JsonObject): ChangePasswordResponseModel
 
     @POST("auth/register")
     suspend fun userRegister(@Body json:JsonObject): RegisterResponseModel

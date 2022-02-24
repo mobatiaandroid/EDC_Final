@@ -35,6 +35,7 @@ import android.text.method.PasswordTransformationMethod
 import com.edc.ae.util.*
 import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.dialog_alert.*
 import org.json.JSONObject
 import retrofit2.HttpException
 
@@ -277,7 +278,7 @@ class SettingsFragment : Fragment() {
                     addProperty("confirm_password",confirmPassword) }
                 //  paramObject.put("email", edtEmail.text.toString())
                 //    paramObject.put("password", edtPassword.text.toString())
-                val call = RetrofitClient.get.changePassword(paramObject)
+                val call = RetrofitClient.get.changePassword("Bearer "+ PreferenceManager.getAccessToken(mContext as Activity),paramObject)
 
                 when (call.status) {
                     200 -> {
