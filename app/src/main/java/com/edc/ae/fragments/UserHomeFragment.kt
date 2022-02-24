@@ -22,10 +22,15 @@ import com.edc.ae.api.RetrofitClient
 import com.edc.ae.model.DevRegResponseModel
 import com.edc.ae.model.SocialmediaModel
 import com.edc.ae.util.AuthenticationError
+import com.edc.ae.util.CommonMethods
 import com.edc.ae.util.PreferenceManager
+import com.edc.ae.util.ProgressBarDialog
 import com.google.gson.JsonObject
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.fragment_home_user.*
 import kotlinx.coroutines.launch
+import org.json.JSONObject
+import retrofit2.HttpException
 import java.util.*
 
 class UserHomeFragment : Fragment() {
@@ -58,13 +63,28 @@ class UserHomeFragment : Fragment() {
             }
 
         }
+//        if (activity?. let { PreferenceManager.getStudentStatus(it) } == "2") {
+//            constraintEnroll.visibility = View.VISIBLE
+//
+//        } else if(activity?. let { PreferenceManager.getStudentStatus(it) } == "3") {
+//            constraintNewsLetter.visibility = View.GONE
+//            constraintPayment.visibility = View.VISIBLE
+//            constraintEnroll.visibility = View.GONE
+//        } else if(activity?. let { PreferenceManager.getStudentStatus(it) } == "4") {
+//            constraintNewsLetter.visibility = View.VISIBLE
+//            constraintPayment.visibility = View.GONE
+//            constraintEnroll.visibility = View.GONE
+//        } else {
+//            constraintEnroll.visibility = View.GONE
+//
+//        }
 
-        if (activity?.let { PreferenceManager.getEnrollStatus(it) } == "no") {
-            constraintEnroll.visibility = View.VISIBLE
-        } else {
-            constraintEnroll.visibility = View.GONE
-
-        }
+//        if (activity?.let { PreferenceManager.getEnrollStatus(it) } == "no") {
+//            constraintEnroll.visibility = View.VISIBLE
+//        } else {
+//            constraintEnroll.visibility = View.GONE
+//
+//        }
         navBtn.setOnClickListener { _ ->
             if (activity?.let { PreferenceManager.getLoginStatus(it) } == "no") {
                 (activity as HomeBaseGuestActivity).openNav()
@@ -75,6 +95,7 @@ class UserHomeFragment : Fragment() {
             }
         }
         callDeviceRegistrationAPI()
+//        callAPI()// to check status
 
         callHomeAPI()
         constraintNewsLetter.setOnClickListener {
@@ -92,6 +113,9 @@ class UserHomeFragment : Fragment() {
         constraintContact.setOnClickListener {
             findNavController().navigate(R.id.contactFragment)
 
+        }
+        constraintPayment.setOnClickListener {
+            findNavController().navigate(R.id.paymentFragment)
         }
         constraintFeedback.setOnClickListener {
             val intent: Intent = Intent(activity, FeedbackActivity::class.java)
@@ -125,6 +149,41 @@ class UserHomeFragment : Fragment() {
             activity?.overridePendingTransition(0, 0)
         }
     }
+
+//    private fun callAPI() {
+//
+//        lifecycleScope.launch {
+//            try {
+//
+//                val paramObject = JsonObject().apply {
+//                    addProperty("email", PreferenceManager.getEmail(context as Activity).toString())
+//                    addProperty("password",PreferenceManager.getEmail(context as Activity).toString()) }
+//                //  paramObject.put("email", edtEmail.text.toString())
+//                //    paramObject.put("password", edtPassword.text.toString())
+//                val call = RetrofitClient.get.userLogin(paramObject)
+//
+//                when (call.status) {
+//                    200 -> {
+//                        PreferenceManager.setStudentStatus(context as Activity, call.data.student_status.toString())
+//                    }
+//                }
+//
+//            } catch (httpException: HttpException) {
+//
+//                val responseErrorBody = httpException.response()!!.errorBody()
+//                val response = responseErrorBody!!.string()
+//                val obj = JSONObject(response)
+//                var status_code=obj.getString("status")
+//                var message = obj.getString("message")
+//                CommonMethods.showLoginErrorPopUp(
+//                    context as Activity,
+//                    "Alert",
+//                    message
+//                )
+//
+//            }
+//        }
+//    }
 
     private fun callDeviceRegistrationAPI() {
         var devRegResponse: DevRegResponseModel

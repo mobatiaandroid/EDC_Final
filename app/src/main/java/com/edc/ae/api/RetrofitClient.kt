@@ -141,11 +141,25 @@ interface RetrofitClient {
     @GET("srs/get-enroll-details")
     suspend fun getEnrollDetailsResponse(): EnrollDetailsModel
 
+    @Headers("Content-Type: application/json;charset=UTF-8")
     @POST("auth/refresh/token")
-    suspend fun getRefreshToken(@Body json:JsonObject): RefreshTokenModel
+    suspend fun getRefreshToken(
+        @Header("Authorization") authHeader: String?,
+        @Body json:JsonObject): RefreshTokenModel
 
-//    @POST("srs/validate-student")
-//    suspend fun getValidationResult(): ValidationResultModel
+    @Headers("Content-Type: application/json;charset=UTF-8")
+    @POST("srs/validate-student")
+    suspend fun getValidationResult(
+        @Header("Authorization") authHeader: String?,
+        @Body json: JsonObject
+    ): ValidationResultModel
+
+//    @Headers("Content-Type: application/json;charset=UTF-8")
+//    @POST("srs/auth/register")
+//    suspend fun getRegisterResult(
+//        @Header("Authorization") authHeader: String?,
+//        @Body json: JsonObject
+//    ): RegisterResultModel
 
 //    @POST("srs/payment/initiate")
 //    suspend fun  initiatePayment(@Body json:JsonObject): PaymentInitiateModel

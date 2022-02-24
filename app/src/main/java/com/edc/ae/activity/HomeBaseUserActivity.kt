@@ -1,12 +1,15 @@
 package com.edc.ae.activity
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.Gravity
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.edc.ae.R
+import com.edc.ae.util.PreferenceManager
 import kotlinx.android.synthetic.main.activity_user_base.*
 import kotlinx.android.synthetic.main.activity_user_base.aboutBtn
 import kotlinx.android.synthetic.main.activity_user_base.contactBtn
@@ -18,12 +21,24 @@ import kotlinx.android.synthetic.main.activity_user_base.servicesBtn
 
 class HomeBaseUserActivity : AppCompatActivity() {
 
+    lateinit var context: Activity
     private lateinit var drawerLayout: DrawerLayout
     private var navControl: NavController? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_base)
+        context = this
+//        if (PreferenceManager.getStudentStatus(context) == "2") {
+//            paymentBtn.visibility = View.GONE
+//            paymentInstructionBtn.visibility = View.GONE
+//        } else if(PreferenceManager.getStudentStatus(context) == "3") {
+//            paymentBtn.visibility = View.VISIBLE
+//            paymentInstructionBtn.visibility = View.VISIBLE
+//        } else if(PreferenceManager.getStudentStatus(context) == "4") {
+//            paymentBtn.visibility = View.GONE
+//            paymentInstructionBtn.visibility = View.GONE
+//        }
         servicesBtn.setOnClickListener { _ ->
             if (drawerLayout.isOpen) drawerLayout.close()
 

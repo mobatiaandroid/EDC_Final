@@ -235,4 +235,158 @@ object PreferenceManager {
         editor.putString("try_file_no", text)
         editor.commit()
     }
+    fun getTrainingLanguage(context: Activity): String? {
+        val settings: SharedPreferences
+        val text: String?
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        text = settings.getString("training_language", "")
+        return text
+    }
+
+    fun setTrainingLanguage(context: Context, text: String) {
+        val settings: SharedPreferences
+        val editor: SharedPreferences.Editor
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        editor = settings.edit()
+        editor.putString("training_language", text)
+        editor.commit()
+    }
+    fun getMotherTongue(context: Activity): String? {
+        val settings: SharedPreferences
+        val text: String?
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        text = settings.getString("mother_tongue", "")
+        return text
+    }
+
+    fun setMotherTongue(context: Context, text: Int) {
+        val settings: SharedPreferences
+        val editor: SharedPreferences.Editor
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        editor = settings.edit()
+        editor.putString("mother_tongue", text.toString())
+        editor.commit()
+    }
+    fun getNationality(context: Activity): String? {
+        val settings: SharedPreferences
+        val text: String?
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        text = settings.getString("nationality", "")
+        return text
+    }
+
+    fun setNationality(context: Context, text: Int) {
+        val settings: SharedPreferences
+        val editor: SharedPreferences.Editor
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        editor = settings.edit()
+        editor.putString("nationality", text.toString())
+        editor.commit()
+    }
+    fun getEducation(context: Activity): String? {
+        val settings: SharedPreferences
+        val text: String?
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        text = settings.getString("education_level", "")
+        return text
+    }
+
+    fun setEducation(context: Context, text: Int) {
+        val settings: SharedPreferences
+        val editor: SharedPreferences.Editor
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        editor = settings.edit()
+        editor.putString("education_level", text.toString())
+        editor.commit()
+    }
+    fun getEmail(context: Activity): String? {
+        val settings: SharedPreferences
+        val text: String?
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        text = settings.getString("email", "")
+        return text
+    }
+
+    fun setEmail(context: Context, text: String) {
+        val settings: SharedPreferences
+        val editor: SharedPreferences.Editor
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        editor = settings.edit()
+        editor.putString("email", text.toString())
+        editor.commit()
+    }
+    fun getPassword(context: Activity): String? {
+        val settings: SharedPreferences
+        val text: String?
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        text = settings.getString("password", "")
+        return text
+    }
+
+    fun setPassword(context: Context, text: String) {
+        val settings: SharedPreferences
+        val editor: SharedPreferences.Editor
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        editor = settings.edit()
+        editor.putString("password", text.toString())
+        editor.commit()
+    }
+    fun getStudentStatus(context: Activity): String? {
+        val settings: SharedPreferences
+        val text: String?
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        text = settings.getString("status", "")
+        return text
+    }
+
+    fun setStudentStatus(context: Context, text: String) {
+        val settings: SharedPreferences
+        val editor: SharedPreferences.Editor
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        editor = settings.edit()
+        editor.putString("status", text.toString())
+        editor.commit()
+    }
 }
