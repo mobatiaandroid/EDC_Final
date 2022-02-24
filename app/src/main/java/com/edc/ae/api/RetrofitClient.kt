@@ -122,5 +122,10 @@ interface RetrofitClient {
 //    @POST("srs/validate-student")
 //    suspend fun getValidationResult(): ValidationResultModel
 
+//    @POST("srs/payment/initiate")
+//    suspend fun  initiatePayment(@Body json:JsonObject): PaymentInitiateModel
+
+
+
 
 }

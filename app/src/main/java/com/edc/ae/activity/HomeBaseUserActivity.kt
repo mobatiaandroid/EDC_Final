@@ -76,6 +76,12 @@ class HomeBaseUserActivity : AppCompatActivity() {
 
             navControl?.navigate(R.id.settingsFragment)
         }
+        paymentBtn.setOnClickListener { _ ->
+            if (drawerLayout.isOpen) drawerLayout.close()
+
+            navControl?.navigate(R.id.paymentFragment)
+        }
+
 //        contactBtn.setOnClickListener { _ ->
 //            if (drawerLayout.isOpen) drawerLayout.close()
 //
