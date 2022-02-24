@@ -53,6 +53,7 @@ class StudentProfileActivity : AppCompatActivity() {
         setContentView(R.layout.activity_student_profile)
         mContext = this
         initUI()
+
         callStudentProfileApi()
 
     }
@@ -194,6 +195,11 @@ class StudentProfileActivity : AppCompatActivity() {
                 val obj = JSONObject(response)
                 var status_code=obj.getString("status")
                 var message = obj.getString("message")
+                if(status_code.equals("401"))
+                {
+                    CommonMethods.callTokenRefreshAPI(this@StudentProfileActivity)
+                    callStudentProfileApi()
+                }
                 CommonMethods.showLoginErrorPopUp(
                     mContext,
                     "Alert",

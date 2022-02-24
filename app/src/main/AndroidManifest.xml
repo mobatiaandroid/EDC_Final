@@ -74,6 +74,10 @@
             android:exported="true"
             android:theme="@style/EDCThemeFULL" />
         <activity
+            android:name=".activity.StudentProfileActivity"
+            android:exported="true"
+            android:theme="@style/EDCThemeFULL" />
+        <activity
             android:name=".activity.SurveyDetailActivity"
             android:label="@string/title_activity_home_"
             android:screenOrientation="portrait"

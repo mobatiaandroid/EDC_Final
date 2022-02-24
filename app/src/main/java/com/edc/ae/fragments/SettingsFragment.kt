@@ -32,6 +32,7 @@ import com.mobatia.edcsurvey.survey.model.SurveyDataModel
 import kotlinx.android.synthetic.main.fragment_survey.*
 import kotlinx.coroutines.launch
 import android.text.method.PasswordTransformationMethod
+import com.edc.ae.activity.StudentProfileActivity
 import com.edc.ae.util.*
 import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_login.*
@@ -94,7 +95,8 @@ class SettingsFragment : Fragment() {
                 }
                 if (position==1)
                 {
-
+                    val intent = Intent(mContext, StudentProfileActivity::class.java)
+                    startActivity(intent)
                 }
                 else if (position==3)
                 {
