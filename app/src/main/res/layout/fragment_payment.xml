@@ -287,6 +287,7 @@
                     app:layout_constraintTop_toBottomOf="@id/recycler" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/paymentButton"
                     android:layout_width="0dp"
                     android:layout_height="64dp"
                     android:layout_marginTop="16dp"

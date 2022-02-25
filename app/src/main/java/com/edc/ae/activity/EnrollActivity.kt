@@ -158,6 +158,8 @@ class EnrollActivity : AppCompatActivity() {
 //                        textEducation.text = call.data.educationLevel.toString()
                         textDOB.text = call.data.birthDate.toString()
                         textGender.text = call.data.gender.toString()
+                        arrowTryFileNo.setImageResource(R.drawable.valid_check)
+                        arrowTrafficNo.setImageResource(R.drawable.valid_check)
                         arrowTryFileNo.visibility = View.VISIBLE
                         arrowTrafficNo.visibility = View.VISIBLE
                         editTrafficNo.isFocusable = false
@@ -167,7 +169,8 @@ class EnrollActivity : AppCompatActivity() {
                         //set values to Preference
                         textRegisterButton.setOnClickListener {
                             if (editMobileNo.text.isEmpty()  || editMobileNo.length() != 10) {
-                                callRegisterAPI()
+                                Toast.makeText(context, "Please provide a valid Mobile number", Toast.LENGTH_SHORT).show()
+
                             } else if(textNameEnglish.text == "" ||
                                 textNameArabic.text == "" ||
                             textEmiratesID.text.isEmpty() ||
@@ -189,6 +192,11 @@ class EnrollActivity : AppCompatActivity() {
                         editStudentNo.setOnClickListener { showEditBottomSheet() }
 
 
+                    }
+                    400 -> {
+                        arrowTrafficNo.setImageResource(R.drawable.invalid_close)
+                        arrowTryFileNo.setImageResource(R.drawable.invalid_close)
+                        Toast.makeText(context, "Validation Error", Toast.LENGTH_SHORT).show()
                     }
 
                 }

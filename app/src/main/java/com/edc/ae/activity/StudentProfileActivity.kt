@@ -180,6 +180,11 @@ class StudentProfileActivity : AppCompatActivity() {
 
 
                     }
+                    401 -> {
+                        progressBarDialog.dismiss()
+                        CommonMethods.callTokenRefreshAPI(this@StudentProfileActivity)
+                        callStudentProfileApi()
+                    }
                     else -> {
 
                     }

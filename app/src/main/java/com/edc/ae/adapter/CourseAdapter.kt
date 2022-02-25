@@ -1,5 +1,6 @@
 package com.edc.ae.adapter
 
+import android.app.Activity
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.edc.ae.R
 import com.edc.ae.model.Courses
 
-class CourseAdapter(context: Context, orderList: ArrayList<Courses>, slNo: String): RecyclerView.Adapter<CourseAdapter.MyViewHolder>() {
+class CourseAdapter(context: Activity, orderList: ArrayList<Courses>, slNo: String): RecyclerView.Adapter<CourseAdapter.MyViewHolder>() {
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val no = itemView.findViewById<View>(R.id.no) as TextView
         val vcFeeDesc = itemView.findViewById<View>(R.id.name) as TextView
