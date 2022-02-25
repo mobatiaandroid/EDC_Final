@@ -1,6 +1,8 @@
 package com.edc.ae.activity
 
 import android.app.Activity
+import android.app.DatePickerDialog
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -20,11 +22,26 @@ import kotlinx.android.synthetic.main.activity_enroll.*
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 import retrofit2.HttpException
+import java.util.*
+import kotlin.collections.ArrayList
 
 class EnrollActivity : AppCompatActivity() {
     lateinit var context: Activity
     private var currentTab = CurrentTab.NEW
     private var buttonMode = ButtonMode.SUBMIT
+    var nameEnglish: String? = ""
+    var nameArabic: String? = ""
+    var emiratesID: String? = ""
+    var branch: String? = ""
+    var trainingLanguage: String? = ""
+    var nationality: String? = ""
+    var dob: String? = ""
+    var gender: String? = ""
+    var mobileNo: String? = ""
+    var registrationType: String? = ""
+    var motherTongue: String? = ""
+    var educationLevel: String? = ""
+    var cal = Calendar.getInstance()
 
     enum class CurrentTab {
         NEW, EXISTING
@@ -46,6 +63,7 @@ class EnrollActivity : AppCompatActivity() {
         textRegisterButton.text = getString(R.string.submit)
         constraintExistingStudent.setOnClickListener {
             if (currentTab != CurrentTab.EXISTING){
+                registrationType = "2"
                 clearAllFields()
                 showFieldsPartial()
                 if (editStudentNo.hasFocus()
@@ -66,6 +84,7 @@ class EnrollActivity : AppCompatActivity() {
         }
         constraintNewStudent.setOnClickListener {
             if (currentTab != CurrentTab.NEW){
+                registrationType = "1"
                 clearAllFields()
                 showFieldsPartial()
                 if (editStudentNo.hasFocus() || editTrafficNo.hasFocus() || editTryFileNo.hasFocus() || editMobileNo.hasFocus()) currentFocus!!.clearFocus()
@@ -83,6 +102,7 @@ class EnrollActivity : AppCompatActivity() {
         textRegisterButton.setOnClickListener {
             if (buttonMode == ButtonMode.SUBMIT){
                 if (currentTab == CurrentTab.NEW) {
+
                     if (editTrafficNo.text.isEmpty()) {
                         Log.e("trafficno",editTrafficNo.text.toString())
                         Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
@@ -105,16 +125,8 @@ class EnrollActivity : AppCompatActivity() {
                 } else {
 
                 }
-            } else if(buttonMode == ButtonMode.REGISTER) {
-                if (currentTab == CurrentTab.NEW) {
-                    //call register api
-                } else if (currentTab == CurrentTab.EXISTING) {
-                    //call register api
-                } else {
-
-                }
             } else {
-
+                // aaaa ???
             }
         }
 
@@ -146,18 +158,31 @@ class EnrollActivity : AppCompatActivity() {
                         showFieldsAll()
                         editTryFileNo.setText(PreferenceManager.getTryFileNo(context))
                         editTrafficNo.setText(PreferenceManager.getTrafficNo(context))
+                        nameEnglish = call.data.fullName
+                        nameArabic = call.data.fullNameArabic
+                        emiratesID = call.data.emiratesID
+                        branch = call.data.branch.toString()
+                        nationality = call.data.nationality
+                        trainingLanguage = call.data.trainingLanguage.toString()
+                        dob = call.data.birthDate.toString()
+                        gender = call.data.gender.toString()
+                        mobileNo = call.data.mobileNo.toString()
+                        motherTongue = call.data.motherTongue.toString()
+                        educationLevel = call.data.educationLevel.toString()
 
-                        textNameEnglish.text = call.data.fullName
-                        textNameArabic.text = call.data.fullNameArabic
+//                        textNameEnglish.text = nameEnglish
+//                        textNameArabic.text = nameArabic
+                        textNameArabic.setText(nameEnglish)
+                        textNameEnglish.setText(nameArabic)
 //                        textEmiratesID.text = call.data.emiratesID
-                        textEmiratesID.setText(call.data.emiratesID)
-                        textBranch.text = call.data.branchName
+                        textEmiratesID.setText(emiratesID)
+                        textBranch.text = branch
 //                        textTrainingLanguage.text = call.data.trainingLanguage.toString()
-                        textNationality.text = call.data.nationality
+                        textNationality.text = nationality
 //                        textMotherTongue.text = call.data.motherTongue.toString()
 //                        textEducation.text = call.data.educationLevel.toString()
-                        textDOB.text = call.data.birthDate.toString()
-                        textGender.text = call.data.gender.toString()
+                        textDOB.text = dob
+                        textGender.text = gender
                         arrowTryFileNo.setImageResource(R.drawable.valid_check)
                         arrowTrafficNo.setImageResource(R.drawable.valid_check)
                         arrowTryFileNo.visibility = View.VISIBLE
@@ -171,8 +196,8 @@ class EnrollActivity : AppCompatActivity() {
                             if (editMobileNo.text.isEmpty()  || editMobileNo.length() != 10) {
                                 Toast.makeText(context, "Please provide a valid Mobile number", Toast.LENGTH_SHORT).show()
 
-                            } else if(textNameEnglish.text == "" ||
-                                textNameArabic.text == "" ||
+                            } else if(textNameEnglish.text.equals("") ||
+                                textNameArabic.text.equals("") ||
                             textEmiratesID.text.isEmpty() ||
                             textTrainingLanguage.text == "" ||
                             textNationality.text == "" ||
@@ -190,10 +215,12 @@ class EnrollActivity : AppCompatActivity() {
                         editTryFileNo.setOnClickListener { showEditBottomSheet() }
                         editTrafficNo.setOnClickListener { showEditBottomSheet() }
                         editStudentNo.setOnClickListener { showEditBottomSheet() }
+                        textDOB.setOnClickListener { showDatePicker() }
 
 
                     }
                     400 -> {
+                        // dont know error case
                         arrowTrafficNo.setImageResource(R.drawable.invalid_close)
                         arrowTryFileNo.setImageResource(R.drawable.invalid_close)
                         Toast.makeText(context, "Validation Error", Toast.LENGTH_SHORT).show()
@@ -224,63 +251,83 @@ class EnrollActivity : AppCompatActivity() {
 
     }
 
+    private fun showDatePicker() {
+        val dateSetListener =
+            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                cal.set(Calendar.YEAR, year)
+                cal.set(Calendar.MONTH, monthOfYear)
+                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                val myFormat = "MM/dd/yyyy" // mention the format you need
+                val sdf = SimpleDateFormat(myFormat, Locale.US)
+                textDOB!!.text = sdf.format(cal.getTime())
+            }
+        constraintDOB!!.setOnClickListener {
+            DatePickerDialog(
+                this,
+                dateSetListener,
+                // set DatePickerDialog to point to today's date when it loads up
+                cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH)
+            ).show()
+        }
+    }
+
     private fun callRegisterAPI() {
         var progressBarDialog: ProgressBarDialog? = null
         progressBarDialog = ProgressBarDialog(context)
         progressBarDialog.show()
 
         val paramObject = JsonObject().apply {
-//            addProperty("try_file_number", PreferenceManager.getTryFileNo(context))
-//            addProperty("traffic_number", PreferenceManager.getTrafficNo(context))
-            //  paramObject.put("email", edtEmail.text.toString())
-            //    paramObject.put("password", edtPassword.text.toString())
-//            addProperty("tra")
-//            "traffic_number": "12345678",
-//            "try_file_number": "12345678",
-//            "name_english": "Test",
-//            "name_arabic": "ادريان توليدو كورتيز",
-//            "emirates_id": "784198074147913",
-//            "branch": "1",
-//            "training_language": "EN",
-//            "nationality": "66",
-//            "mother_tongue": "12",
-//            "education_level": "4",
-//            "date_of_birth": "2016-02-22",
-//            "gender": "M",
-//            "mobile_number": "8157864536",
-//            "registration_type": "1"
+            addProperty("try_file_number", PreferenceManager.getTryFileNo(context))
+            addProperty("traffic_number", PreferenceManager.getTrafficNo(context))
+            addProperty("name_english", nameEnglish)
+            addProperty("name_arabic", nameArabic)
+            addProperty("emirates_id", emiratesID)
+            addProperty("branch","1")
+            addProperty("training_language", trainingLanguage)
+            addProperty("nationality", nationality)
+            addProperty("mother_tongue", motherTongue)
+            addProperty("education_level", educationLevel)
+            addProperty("date_of_birth", "dob")
+            addProperty("gender", "Male")
+            addProperty("mobile_number", mobileNo)
+            addProperty("registration_type",registrationType)
+
         }
-//        lifecycleScope.launch {
-//            try {
-//
-//                val call = RetrofitClient.get.getRegisterResult(
-//                    "Bearer " + PreferenceManager.getAccessToken(context), paramObject
-//                )
-//                Log.e("Response",call.toString())
+        lifecycleScope.launch {
+            try {
+
+                val call = RetrofitClient.get.getRegisterResult(
+                    "Bearer " + PreferenceManager.getAccessToken(context), paramObject
+                )
+                Log.e("Response",call.toString())
 //                when (call.status) {
 //                    200 -> {
 //                        progressBarDialog.dismiss()
-//
+//                          //do things
+//                          //set status to 3
+//                          //go to home
 //
 //                    }
-//
+//                    // handle error cases
 //                }
-//            }catch (httpException: HttpException) {
-//                progressBarDialog.dismiss()
-//
-//                val responseErrorBody = httpException.response()!!.errorBody()
-//                val response = responseErrorBody!!.string()
-//                val obj = JSONObject(response)
-//                var status_code=obj.getString("status")
-//                var message = obj.getString("message")
-//                CommonMethods.showLoginErrorPopUp(
-//                    context,
-//                    "Alert",
-//                    message
-//                )
-//
-//            }
-//        }
+            }catch (httpException: HttpException) {
+                progressBarDialog.dismiss()
+
+                val responseErrorBody = httpException.response()!!.errorBody()
+                val response = responseErrorBody!!.string()
+                val obj = JSONObject(response)
+                var status_code=obj.getString("status")
+                var message = obj.getString("message")
+                CommonMethods.showLoginErrorPopUp(
+                    context,
+                    "Alert",
+                    message
+                )
+
+            }
+        }
     }
 
     private fun showEditBottomSheet() {
@@ -297,6 +344,8 @@ class EnrollActivity : AppCompatActivity() {
             } else {
                 PreferenceManager.setTrafficNo(this,trafficNo.text.trim().toString())
                 PreferenceManager.setTryFileNo(this,tryFileNo.text.trim().toString())
+                editTrafficNo.text = trafficNo.text
+                editTryFileNo.text = tryFileNo.text
                 callValidateAPI()
                 dialog.dismiss()
             }
@@ -475,8 +524,8 @@ class EnrollActivity : AppCompatActivity() {
         PreferenceManager.setTryFileNo(context,"")
         PreferenceManager.setTrafficNo(context,"")
         PreferenceManager.setStudentNo(context,"")
-        textNameEnglish.text = ""
-        textNameArabic.text = ""
+        textNameEnglish.setText("")
+        textNameArabic.setText("")
         textEmiratesID.text.clear()
         textTrainingLanguage.text = ""
         textNationality.text = ""

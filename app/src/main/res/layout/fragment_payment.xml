@@ -161,7 +161,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        android:text="Select Branch"
+                        android:text="Abu Dhabi"
                         android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/arrowBranchSelect"
@@ -201,6 +201,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <com.edc.ae.util.CustomTextViewBoldBlack
+                        android:id="@+id/selectedCourse"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"

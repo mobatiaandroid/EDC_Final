@@ -316,7 +316,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <EditText
                     android:id="@+id/textNameEnglish"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
@@ -359,7 +359,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <EditText
                     android:id="@+id/textNameArabic"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
