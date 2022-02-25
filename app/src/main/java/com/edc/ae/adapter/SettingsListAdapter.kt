@@ -7,6 +7,7 @@ import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Switch
 import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -19,6 +20,7 @@ class SettingsListAdapter (private var surveyArrayList: ArrayList<String>, priva
     RecyclerView.Adapter<SettingsListAdapter.MyViewHolder>() {
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var surveyNameTxt: TextView = view.findViewById(R.id.notifyTitle)
+        var switchBtn: Switch = view.findViewById(R.id.switchBtn)
         var clickConstraint: ConstraintLayout = view.findViewById(R.id.clickConstraint)
     }
     @NonNull
@@ -30,6 +32,15 @@ class SettingsListAdapter (private var surveyArrayList: ArrayList<String>, priva
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val list = surveyArrayList[position]
         holder.surveyNameTxt.text = surveyArrayList.get(position).toString()
+        if(position==2)
+        {
+            holder.switchBtn.visibility=View.VISIBLE
+        }
+        else{
+            holder.switchBtn.visibility=View.GONE
+        }
+
+
 //        holder.clickConstraint.setOnClickListener(View.OnClickListener {
 //
 //            if (position==0)
