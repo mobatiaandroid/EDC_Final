@@ -193,24 +193,25 @@ class EnrollActivity : AppCompatActivity() {
                         changeSubmitToRegister()
                         //set values to Preference
                         textRegisterButton.setOnClickListener {
-                            if (editMobileNo.text.isEmpty()  || editMobileNo.length() != 10) {
-                                Toast.makeText(context, "Please provide a valid Mobile number", Toast.LENGTH_SHORT).show()
-
-                            } else if(textNameEnglish.text.equals("") ||
-                                textNameArabic.text.equals("") ||
-                            textEmiratesID.text.isEmpty() ||
-                            textTrainingLanguage.text == "" ||
-                            textNationality.text == "" ||
-                            textMotherTongue.text == "" ||
-                            textEducation.text == "" ||
-                            textDOB.text == "" ||
-                            textGender.text == ""){
-                                Toast.makeText(context, "Fields Cannot be left empty", Toast.LENGTH_SHORT).show()
-                            } else if(textEmiratesID.length() == 15){
-                                Toast.makeText(context, "Emirates ID must be 15 characters", Toast.LENGTH_SHORT).show()
-                            }else {
-//                                callRegisterAPI()
-                            }
+                            callRegisterAPI()
+//                            if (editMobileNo.text.isEmpty()  || editMobileNo.length() != 10) {
+//                                Toast.makeText(context, "Please provide a valid Mobile number", Toast.LENGTH_SHORT).show()
+//
+//                            } else if(textNameEnglish.text.equals("") ||
+//                                textNameArabic.text.equals("") ||
+//                            textEmiratesID.text.isEmpty() ||
+//                            textTrainingLanguage.text == "" ||
+//                            textNationality.text == "" ||
+//                            textMotherTongue.text == "" ||
+//                            textEducation.text == "" ||
+//                            textDOB.text == "" ||
+//                            textGender.text == ""){
+//                                Toast.makeText(context, "Fields Cannot be left empty", Toast.LENGTH_SHORT).show()
+//                            } else if(textEmiratesID.length() == 15){
+//                                Toast.makeText(context, "Emirates ID must be 15 characters", Toast.LENGTH_SHORT).show()
+//                            }else {
+////                                callRegisterAPI()
+//                            }
                         }
                         editTryFileNo.setOnClickListener { showEditBottomSheet() }
                         editTrafficNo.setOnClickListener { showEditBottomSheet() }
@@ -278,28 +279,65 @@ class EnrollActivity : AppCompatActivity() {
         progressBarDialog = ProgressBarDialog(context)
         progressBarDialog.show()
 
+//        val paramObject = JsonObject().apply {
+//            addProperty("try_file_number", PreferenceManager.getTryFileNo(context))
+//            addProperty("traffic_number", PreferenceManager.getTrafficNo(context))
+//            addProperty("name_english", nameEnglish)
+//            addProperty("name_arabic", nameArabic)
+//            addProperty("emirates_id", emiratesID)
+//            addProperty("branch","1")
+//            addProperty("training_language", trainingLanguage)
+//            addProperty("nationality", nationality)
+//            addProperty("mother_tongue", motherTongue)
+//            addProperty("education_level", educationLevel)
+//            addProperty("date_of_birth", "dob")
+//            addProperty("gender", "Male")
+//            addProperty("mobile_number", mobileNo)
+//            addProperty("registration_type",registrationType)
+//
+//        }
         val paramObject = JsonObject().apply {
-            addProperty("try_file_number", PreferenceManager.getTryFileNo(context))
-            addProperty("traffic_number", PreferenceManager.getTrafficNo(context))
-            addProperty("name_english", nameEnglish)
-            addProperty("name_arabic", nameArabic)
-            addProperty("emirates_id", emiratesID)
+            addProperty("try_file_number", "12345678")
+            addProperty("traffic_number", "12345678")
+            addProperty("name_english", "nameEnglish")
+            addProperty("name_arabic", "nameArabic")
+            addProperty("emirates_id", "emiratesID")
             addProperty("branch","1")
-            addProperty("training_language", trainingLanguage)
-            addProperty("nationality", nationality)
-            addProperty("mother_tongue", motherTongue)
-            addProperty("education_level", educationLevel)
+            addProperty("training_language", "trainingLanguage")
+            addProperty("nationality", "nationality")
+            addProperty("mother_tongue", "motherTongue")
+            addProperty("education_level", "educationLevel")
             addProperty("date_of_birth", "dob")
             addProperty("gender", "Male")
-            addProperty("mobile_number", mobileNo)
-            addProperty("registration_type",registrationType)
+            addProperty("mobile_number", "mobileNo")
+            addProperty("registration_type","registrationType")
+            addProperty("student_no","12345678")
 
         }
+        val string = "{\n" +
+                "  \"traffic_number\": \"12345678\",\n" +
+                "  \"try_file_number\": \"12345678\",\n" +
+                "  \"StudentNo\":\"12345678\",\n" +
+                "  \"name_english\": \"Test\",\n" +
+                "  \"name_arabic\": \"ادريان توليدو كورتيز\",\n" +
+                "  \"emirates_id\": \"784198074147913\",\n" +
+                "  \"branch\": \"1\",\n" +
+                "  \"training_language\": \"EN\",\n" +
+                "  \"nationality\": \"66\",\n" +
+                "  \"mother_tongue\": \"12\",\n" +
+                "  \"education_level\": \"4\",\n" +
+                "  \"date_of_birth\": \"2016-02-22\",\n" +
+                "  \"gender\": \"M\",\n" +
+                "  \"mobile_number\": \"8157864536\",\n" +
+                "  \"registration_type\": \"1\"\n" +
+                "}"
+
+        var obj = JSONObject(string)
         lifecycleScope.launch {
             try {
 
                 val call = RetrofitClient.get.getRegisterResult(
-                    "Bearer " + PreferenceManager.getAccessToken(context), paramObject
+                    "Bearer " + PreferenceManager.getAccessToken(context), obj
                 )
                 Log.e("Response",call.toString())
 //                when (call.status) {

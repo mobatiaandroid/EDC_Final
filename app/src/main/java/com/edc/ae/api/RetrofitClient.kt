@@ -7,6 +7,7 @@ import com.mobatia.edcsurvey.survey.model.SurveyResponseModel
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
+import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -176,7 +177,7 @@ interface RetrofitClient {
     @POST("srs/auth/register")
     suspend fun getRegisterResult(
         @Header("Authorization") authHeader: String?,
-        @Body json: JsonObject
+        @Body json: JSONObject
     ): Response<Any>
 
 //    @POST("srs/payment/initiate")
