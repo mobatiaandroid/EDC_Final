@@ -110,6 +110,17 @@ class StudentProfileActivity : AppCompatActivity() {
                         branchName=call.data.userDetails.branchName
                         studentBranchNameValueTxt.setText(branchName)
                         gender=call.data.userDetails.gender
+                        if(gender.equals("M"))
+                        {
+                            genderImg.setImageResource(R.drawable.male)
+                        }
+                        else if (gender.equals("F"))
+                        {
+                            genderImg.setImageResource(R.drawable.female)
+                        }
+                        else{
+                            genderImg.setImageResource(R.drawable.male)
+                        }
 
 
                     }
