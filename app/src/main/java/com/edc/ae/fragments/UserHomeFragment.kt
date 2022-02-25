@@ -315,8 +315,23 @@ class UserHomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if (activity?.let { PreferenceManager.getEnrollStatus(it) } == "no") {
+//        if (activity?.let { PreferenceManager.getEnrollStatus(it) } == "no") {
+//            constraintEnroll.visibility = View.VISIBLE
+//        } else {
+//            constraintEnroll.visibility = View.GONE
+//
+//        }
+        if (activity?. let { PreferenceManager.getStudentStatus(it) } == "2") {
             constraintEnroll.visibility = View.VISIBLE
+
+        } else if(activity?. let { PreferenceManager.getStudentStatus(it) } == "3") {
+            constraintNewsLetter.visibility = View.GONE
+            constraintPayment.visibility = View.VISIBLE
+            constraintEnroll.visibility = View.GONE
+        } else if(activity?. let { PreferenceManager.getStudentStatus(it) } == "4") {
+            constraintNewsLetter.visibility = View.VISIBLE
+            constraintPayment.visibility = View.GONE
+            constraintEnroll.visibility = View.GONE
         } else {
             constraintEnroll.visibility = View.GONE
 

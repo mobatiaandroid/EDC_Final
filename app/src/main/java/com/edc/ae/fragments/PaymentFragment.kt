@@ -1,6 +1,7 @@
 package com.edc.ae.fragments
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.edc.ae.activity.HomeBaseUserActivity
 import com.edc.ae.R
 import com.edc.ae.activity.HomeBaseGuestActivity
+import com.edc.ae.activity.NotificationDetailActivity
 import com.edc.ae.adapter.CostAdapter
 import com.edc.ae.adapter.CourseAdapter
 import com.edc.ae.adapter.SelectorListAdapter
@@ -64,20 +66,60 @@ class PaymentFragment : Fragment() , CallbackPaymentInterface {
         super.onViewCreated(view, savedInstanceState)
         selectCourse = view.findViewById(R.id.constraintCourseSelect)
         table = view.findViewById(R.id.table)
-        payButton = view.findViewById(R.id.paymentButton)
+//        payButton = view.findViewById(R.id.paymentButton)
         textTotal = view.findViewById(R.id.textTotal)
         textPrice = view.findViewById(R.id.totalPrice)
         textPrice2 = view.findViewById(R.id.totalPrice2)
-        if (AppController.costList.isEmpty()) {
-            table.visibility = View.GONE
-            payButton.visibility = View.GONE
-            textTotal.visibility = View.GONE
-            textPrice2.visibility = View.GONE
-            textPrice.visibility = View.GONE
-        }
+//        if (AppController.costList.isEmpty()) {
+//            table.visibility = View.GONE
+//            payButton.visibility = View.GONE
+//            textTotal.visibility = View.GONE
+//            textPrice2.visibility = View.GONE
+//            textPrice.visibility = View.GONE
+//        }
 
         selectCourse.setOnClickListener {
             showCourseSelectSheet()
+
+        }
+        val profileId = "89872"
+        val serverKey = "SMJN26ZRWB-JDBRTBJZBG-J9TGTNL99W"
+        val clientKey = "CKKMQ7-G9266D-2R7269-669P72"
+        val locale = PaymentSdkLanguageCode.EN
+        val screenTitle = "EDC Course Payment"
+        val cartId = "123456"
+        val cartDesc = "cart description"
+        val currency = "AED"
+        val amount = 871.5
+
+        val tokeniseType = PaymentSdkTokenise.NONE
+        val transType = PaymentSdkTransactionType.SALE;
+        val tokenFormat =  PaymentSdkTokenFormat.Hex32Format()
+        val billingData = PaymentSdkBillingDetails(
+            "City",
+            "AE",
+            "email1@domain.com",
+            "",
+            "", "AbhuDhabi",
+            "Abu Dhabi", "" // set values from preference
+        )
+        val configData = PaymentSdkConfigBuilder(profileId, serverKey, clientKey, amount ?: 0.0, currency)
+            .setCartDescription(cartDesc)
+            .setLanguageCode(locale)
+            .setBillingData(billingData)
+            .setMerchantCountryCode("AE") // ISO alpha 2
+//            .setShippingData(shippingData)
+            .setCartId(cartId)
+            .setTransactionType(transType)
+            .showBillingInfo(true)
+            .showShippingInfo(false)
+            .forceShippingInfo(false)
+            .setScreenTitle(screenTitle)
+            .build()
+        paymentButton.setOnClickListener {
+//            PaymentSdkActivity.startCardPayment(requireActivity(), configData, callback = requireActivity())
+            Toast.makeText(context, "Pressed", Toast.LENGTH_SHORT).show()
+            PaymentSdkActivity.startCardPayment(context as Activity,configData, callback = this)
         }
         navBtn.setOnClickListener { _ ->
             if (activity?.let { PreferenceManager.getLoginStatus(it) } == "no") {
@@ -115,7 +157,7 @@ class PaymentFragment : Fragment() , CallbackPaymentInterface {
         title.text = "Select Course"
         var selectorList :ArrayList<String> =  ArrayList()
         for (each in AppController.courseList) {
-            selectorList.add(each.value)
+            selectorList.add(each.text)
         }
 //        for (each in AppController.educationLevelList) {
 //            selectorList.add(each.name)
@@ -127,11 +169,13 @@ class PaymentFragment : Fragment() , CallbackPaymentInterface {
             override fun onItemClicked(position: Int, view: View) {
                 //call cost API
                 selectedCourse.text = selectorList[position]
-                valueSelectCourse = selectorList[position]
+                valueSelectCourse = AppController.courseList[position].value
                 callCourseCostAPI()
+
             dialog.dismiss()
             }
         })
+
         dialog.setCancelable(true)
         dialog.setContentView(view)
         dialog.show()
@@ -139,6 +183,7 @@ class PaymentFragment : Fragment() , CallbackPaymentInterface {
 
     private fun callCourseCostAPI() {
         AppController.costList.clear()
+        var total = 0.0
         var progressBarDialog: ProgressBarDialog? = null
         progressBarDialog = activity?.let { ProgressBarDialog(it) }
         progressBarDialog?.show()
@@ -156,6 +201,12 @@ class PaymentFragment : Fragment() , CallbackPaymentInterface {
                         if (AppController.costList.isNotEmpty()) {
                             recycler.adapter = CostAdapter(context as Activity)
                             recycler.layoutManager = LinearLayoutManager(context)
+
+                            for (each in AppController.costList) {
+                                total += each.elementCost.toFloat()
+                            }
+                            textPrice.text = total.toString()
+                            textPrice2.text = total.toString()
                         } else {
                             Toast.makeText(context, "Selected Course Unavailable", Toast.LENGTH_SHORT).show()
                         }
@@ -191,65 +242,30 @@ class PaymentFragment : Fragment() , CallbackPaymentInterface {
 //        recycler.adapter = CostAdapter(context as Activity)
 //        recycler.layoutManager = LinearLayoutManager(context)
 
-        if (AppController.costList.isNotEmpty()) {
-            table.visibility = View.VISIBLE
-            payButton.visibility = View.VISIBLE
-            textTotal.visibility = View.VISIBLE
-            textPrice2.visibility = View.VISIBLE
-            textPrice.visibility = View.VISIBLE
+//        if (AppController.costList.isNotEmpty()) {
+//            table.visibility = View.VISIBLE
+//            payButton.visibility = View.VISIBLE
+//            textTotal.visibility = View.VISIBLE
+//            textPrice2.visibility = View.VISIBLE
+//            textPrice.visibility = View.VISIBLE
             recycler.adapter = CostAdapter(context as Activity)
             recycler.layoutManager = LinearLayoutManager(context)
-
+            Log.e("cost",AppController.costList.toString())
             for (each in AppController.costList) {
                 cost += each.elementCost.toDouble()
             }
             textPrice.text = cost.toString()
             textPrice2.text = cost.toString()
-            val profileId = "89872"
-            val serverKey = "SMJN26ZRWB-JDBRTBJZBG-J9TGTNL99W"
-            val clientKey = "CKKMQ7-G9266D-2R7269-669P72"
-            val locale = PaymentSdkLanguageCode.EN
-            val screenTitle = "EDC Course Payment"
-            val cartId = "123456"
-            val cartDesc = "cart description"
-            val currency = "AED"
-            val amount = cost.toDouble()
 
-            val tokeniseType = PaymentSdkTokenise.NONE
-            val transType = PaymentSdkTransactionType.SALE;
-            val tokenFormat =  PaymentSdkTokenFormat.Hex32Format()
-            val billingData = PaymentSdkBillingDetails(
-                "City",
-                "AE",
-                "email1@domain.com",
-                "",
-                "", "AbhuDhabi",
-                "Abu Dhabi", "" // set values from preference
-            )
-            val configData = PaymentSdkConfigBuilder(profileId, serverKey, clientKey, amount ?: 0.0, currency)
-                .setCartDescription(cartDesc)
-                .setLanguageCode(locale)
-                .setBillingData(billingData)
-                .setMerchantCountryCode("AE") // ISO alpha 2
-//            .setShippingData(shippingData)
-                .setCartId(cartId)
-                .setTransactionType(transType)
-                .showBillingInfo(true)
-                .showShippingInfo(false)
-                .forceShippingInfo(false)
-                .setScreenTitle(screenTitle)
-                .build()
-            paymentButton.setOnClickListener {
-//            PaymentSdkActivity.startCardPayment(requireActivity(), configData, callback = requireActivity())
-                PaymentSdkActivity.startCardPayment(context as Activity,configData, callback = this)
-            }
-            table.visibility = View.VISIBLE
-            payButton.visibility = View.VISIBLE
-            textTotal.visibility = View.VISIBLE
-            textPrice2.visibility = View.VISIBLE
-            textPrice.visibility = View.VISIBLE
 
-        }
+//            table.visibility = View.VISIBLE
+//            payButton.visibility = View.VISIBLE
+//            textTotal.visibility = View.VISIBLE
+//            textPrice2.visibility = View.VISIBLE
+//            textPrice.visibility = View.VISIBLE
+
+//        }
+
 
 
     }
@@ -291,6 +307,8 @@ class PaymentFragment : Fragment() , CallbackPaymentInterface {
     override fun onPaymentFinish(paymentSdkTransactionDetails: PaymentSdkTransactionDetails) {
         Toast.makeText(context, "Payment Success", Toast.LENGTH_SHORT).show()
         Log.e("Detail", paymentSdkTransactionDetails.toString())
+        val intent = Intent(activity, HomeBaseUserActivity::class.java)
+        startActivity(intent)
         //send result to sachu
     }
 }

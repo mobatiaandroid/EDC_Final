@@ -177,8 +177,8 @@ interface RetrofitClient {
     @POST("srs/auth/register")
     suspend fun getRegisterResult(
         @Header("Authorization") authHeader: String?,
-        @Body json: JSONObject
-    ): Response<Any>
+        @Body json: JsonObject
+    ): RegisterResponseModel
 
 //    @POST("srs/payment/initiate")
 //    suspend fun  initiatePayment(@Body json:JsonObject): PaymentInitiateModel

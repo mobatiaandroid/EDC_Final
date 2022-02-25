@@ -2,6 +2,7 @@ package com.edc.ae.activity
 
 import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -29,16 +30,17 @@ class HomeBaseUserActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_base)
         context = this
-//        if (PreferenceManager.getStudentStatus(context) == "2") {
-//            paymentBtn.visibility = View.GONE
-//            paymentInstructionBtn.visibility = View.GONE
-//        } else if(PreferenceManager.getStudentStatus(context) == "3") {
-//            paymentBtn.visibility = View.VISIBLE
-//            paymentInstructionBtn.visibility = View.VISIBLE
-//        } else if(PreferenceManager.getStudentStatus(context) == "4") {
-//            paymentBtn.visibility = View.GONE
-//            paymentInstructionBtn.visibility = View.GONE
-//        }
+        Log.e("status",PreferenceManager.getStudentStatus(context).toString())
+        if (PreferenceManager.getStudentStatus(context) == "2") {
+            paymentBtn.visibility = View.GONE
+            paymentInstructionBtn.visibility = View.GONE
+        } else if(PreferenceManager.getStudentStatus(context) == "3") {
+            paymentBtn.visibility = View.VISIBLE
+            paymentInstructionBtn.visibility = View.VISIBLE
+        } else if(PreferenceManager.getStudentStatus(context) == "4") {
+            paymentBtn.visibility = View.GONE
+            paymentInstructionBtn.visibility = View.GONE
+        }
         servicesBtn.setOnClickListener { _ ->
             if (drawerLayout.isOpen) drawerLayout.close()
 

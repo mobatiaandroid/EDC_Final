@@ -2,6 +2,7 @@ package com.edc.ae.activity
 
 import android.app.Activity
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.util.Log
@@ -299,57 +300,79 @@ class EnrollActivity : AppCompatActivity() {
         val paramObject = JsonObject().apply {
             addProperty("try_file_number", "12345678")
             addProperty("traffic_number", "12345678")
-            addProperty("name_english", "nameEnglish")
-            addProperty("name_arabic", "nameArabic")
-            addProperty("emirates_id", "emiratesID")
+            addProperty("name_english", "Sanju")
+            addProperty("name_arabic", "ادريان توليدو كورتيز")
+            addProperty("emirates_id", "123456789012345")
             addProperty("branch","1")
-            addProperty("training_language", "trainingLanguage")
-            addProperty("nationality", "nationality")
-            addProperty("mother_tongue", "motherTongue")
-            addProperty("education_level", "educationLevel")
-            addProperty("date_of_birth", "dob")
-            addProperty("gender", "Male")
-            addProperty("mobile_number", "mobileNo")
-            addProperty("registration_type","registrationType")
+            addProperty("training_language", "EN")
+            addProperty("nationality", "66")
+            addProperty("mother_tongue", "12")
+            addProperty("education_level", "4")
+            addProperty("date_of_birth", "2016-02-22")
+            addProperty("gender", "M")
+            addProperty("mobile_number", "8157864536")
+            addProperty("registration_type","1")
             addProperty("student_no","12345678")
 
         }
-        val string = "{\n" +
-                "  \"traffic_number\": \"12345678\",\n" +
-                "  \"try_file_number\": \"12345678\",\n" +
-                "  \"StudentNo\":\"12345678\",\n" +
-                "  \"name_english\": \"Test\",\n" +
-                "  \"name_arabic\": \"ادريان توليدو كورتيز\",\n" +
-                "  \"emirates_id\": \"784198074147913\",\n" +
-                "  \"branch\": \"1\",\n" +
-                "  \"training_language\": \"EN\",\n" +
-                "  \"nationality\": \"66\",\n" +
-                "  \"mother_tongue\": \"12\",\n" +
-                "  \"education_level\": \"4\",\n" +
-                "  \"date_of_birth\": \"2016-02-22\",\n" +
-                "  \"gender\": \"M\",\n" +
-                "  \"mobile_number\": \"8157864536\",\n" +
-                "  \"registration_type\": \"1\"\n" +
-                "}"
-
-        var obj = JSONObject(string)
+//        val string = "{\n" +
+//                "  \"traffic_number\": \"12345678\",\n" +
+//                "  \"try_file_number\": \"12345678\",\n" +
+//                "  \"StudentNo\":\"12345678\",\n" +
+//                "  \"name_english\": \"Test\",\n" +
+//                "  \"name_arabic\": \"ادريان توليدو كورتيز\",\n" +
+//                "  \"emirates_id\": \"784198074147913\",\n" +
+//                "  \"branch\": \"1\",\n" +
+//                "  \"training_language\": \"EN\",\n" +
+//                "  \"nationality\": \"66\",\n" +
+//                "  \"mother_tongue\": \"12\",\n" +
+//                "  \"education_level\": \"4\",\n" +
+//                "  \"date_of_birth\": \"2016-02-22\",\n" +
+//                "  \"gender\": \"M\",\n" +
+//                "  \"mobile_number\": \"8157864536\",\n" +
+//                "  \"registration_type\": \"1\"\n" +
+//                "}"
+//
+//        var obj = JSONObject(string)
+        Log.e("value", paramObject.toString())
         lifecycleScope.launch {
             try {
 
                 val call = RetrofitClient.get.getRegisterResult(
-                    "Bearer " + PreferenceManager.getAccessToken(context), obj
+                    "Bearer " + PreferenceManager.getAccessToken(context), paramObject
                 )
                 Log.e("Response",call.toString())
-//                when (call.status) {
-//                    200 -> {
-//                        progressBarDialog.dismiss()
-//                          //do things
-//                          //set status to 3
-//                          //go to home
-//
-//                    }
-//                    // handle error cases
-//                }
+
+                when (call.status) {
+                    200 -> {
+                        progressBarDialog.dismiss()
+                        PreferenceManager.setStudentStatus(context,"3")
+                        val intent: Intent = Intent(this@EnrollActivity, HomeBaseUserActivity::class.java)
+                        startActivity(intent)
+
+                    }
+                    400->
+                    {
+                        progressBarDialog.dismiss()
+                        if (call.validation.equals("")){
+                            CommonMethods.showLoginErrorPopUp(
+                                context,
+                                "Alert",
+                                call.message
+                            )
+                        } else {
+                            CommonMethods.showLoginErrorPopUp(
+                                context,
+                                "Alert",
+                                call.validation
+                            )
+                        }
+
+
+
+                    }
+                    // handle error cases
+                }
             }catch (httpException: HttpException) {
                 progressBarDialog.dismiss()
 
