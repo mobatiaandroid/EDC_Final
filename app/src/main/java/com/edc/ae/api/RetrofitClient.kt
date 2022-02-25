@@ -5,7 +5,9 @@ import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
 import com.mobatia.edcsurvey.survey.model.SurveyResponseModel
 import okhttp3.OkHttpClient
+import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
@@ -157,17 +159,30 @@ interface RetrofitClient {
         @Body json: JsonObject
     ): ValidationResultModel
 
-//    @Headers("Content-Type: application/json;charset=UTF-8")
-//    @POST("srs/auth/register")
-//    suspend fun getRegisterResult(
-//        @Header("Authorization") authHeader: String?,
-//        @Body json: JsonObject
-//    ): RegisterResultModel
+    @Headers("Content-Type: application/json;charset=UTF-8")
+    @GET("srs/get-course-details")
+    suspend fun getCourseDetails(
+        @Header("Authorization") authHeader: String?,
+    ): CourseDetailsModel
+
+    @Headers("Content-Type: application/json;charset=UTF-8")
+    @POST("srs/get-course-details-cost")
+    suspend fun getCourseCost(
+        @Header("Authorization") authHeader: String?,
+        @Body json: JsonObject
+    ): CourseCostModel
+
+    @Headers("Content-Type: application/json;charset=UTF-8")
+    @POST("srs/auth/register")
+    suspend fun getRegisterResult(
+        @Header("Authorization") authHeader: String?,
+        @Body json: JsonObject
+    ): Response<Any>
 
 //    @POST("srs/payment/initiate")
 //    suspend fun  initiatePayment(@Body json:JsonObject): PaymentInitiateModel
 
-
+//payment success
 
 
 }
