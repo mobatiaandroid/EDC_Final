@@ -62,9 +62,6 @@ interface RetrofitClient {
     @POST("auth/login")
     suspend fun userLogin(@Body json:JsonObject): LoginResponseModel
 
-
-
-
     //@FormUrlEncoded
     @POST("auth/forgot-password")
     suspend fun forgotPassword(@Body json:JsonObject): ForgetPasswordResponseModel
@@ -121,6 +118,12 @@ interface RetrofitClient {
     suspend fun getStudentProfile(
         @Header("Authorization") authHeader: String?
     ): StudentResponseModel
+
+    @Headers("Content-Type: application/json;charset=UTF-8")
+    @GET("auth/logout")
+    suspend fun getLogout(
+        @Header("Authorization") authHeader: String?
+    ): ForgetPasswordResponseModel
 
 
 

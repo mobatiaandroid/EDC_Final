@@ -137,10 +137,8 @@ class UserHomeFragment : Fragment() {
         txtGreeting.text = getGreetingMessage()
         txtUser.text = activity?.let { PreferenceManager.getUserName(it) }
         constraintLogin.setOnClickListener {
-            activity?.let { it1 -> PreferenceManager.saveLoginStatusFlag(it1, "no") }
-            val intent = Intent(activity, HomeBaseGuestActivity::class.java)
-            startActivity(intent)
-            activity?.finish()
+            callLogoutApi()
+
 
         }
         constraintEnroll.setOnClickListener {
@@ -221,6 +219,34 @@ class UserHomeFragment : Fragment() {
             }
         }
     }
+
+    private fun callLogoutApi() {
+        var progressBarDialog: ProgressBarDialog? = null
+        progressBarDialog = ProgressBarDialog(context as Activity)
+        progressBarDialog.show()
+        lifecycleScope.launch {
+            try {
+                val call = RetrofitClient.get.getLogout(
+                    "Bearer " + PreferenceManager.getAccessToken(
+                        context as Activity))
+                Log.e("Response", call.toString())
+                when (call.status) {
+                    200 -> {
+                         progressBarDialog?.dismiss()
+                        activity?.let { it1 -> PreferenceManager.saveLoginStatusFlag(it1, "no") }
+                        val intent = Intent(activity, HomeBaseGuestActivity::class.java)
+                        startActivity(intent)
+                        activity?.finish()
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                progressBarDialog?.dismiss()
+
+            }
+        }
+    }
+
 
     fun getGreetingMessage(): String {
         val c = Calendar.getInstance()
