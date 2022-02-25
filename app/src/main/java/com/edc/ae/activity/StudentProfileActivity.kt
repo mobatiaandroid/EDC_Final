@@ -40,14 +40,15 @@ class StudentProfileActivity : AppCompatActivity() {
     lateinit var studentBranchNameValueTxt: TextView
     lateinit var studentEmailValueTxt: TextView
     lateinit var genderImg: ImageView
-    var studentName:String=""
-    var studentNumber:String=""
-    var trafficNumber:String=""
-    var tryfileNumber:String=""
-    var branchNumber:Int=-1
-    var branchName:String=""
-    var gender:String=""
-    var email:String=""
+    lateinit var backBtn: ImageView
+    var studentName:String?=""
+    var studentNumber:String?=""
+    var trafficNumber:String?=""
+    var tryfileNumber:String?=""
+    var branchNumber:Int?=-1
+    var branchName:String?=""
+    var gender:String?=""
+    var email:String?=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_student_profile)
@@ -69,9 +70,13 @@ class StudentProfileActivity : AppCompatActivity() {
         studentBranchNumberValueTxt=findViewById(R.id.studentBranchNumberValueTxt)
         studentBranchNameValueTxt=findViewById(R.id.studentBranchNameValueTxt)
         studentEmailValueTxt=findViewById(R.id.studentEmailValueTxt)
+        backBtn=findViewById(R.id.backBtn)
 
 
         title.text="Student Profile"
+        backBtn.setOnClickListener(View.OnClickListener {
+            finish()
+        })
     }
 
     private fun callStudentProfileApi() {
@@ -90,93 +95,21 @@ class StudentProfileActivity : AppCompatActivity() {
                 when(call.status){
                     200,201 -> {
                         progressBarDialog.dismiss()
-                        if (call.data.userDetails.applicantNameEn.equals("")|| call.data.userDetails.applicantNameEn==null || call.data.userDetails.applicantNameEn.equals("null"))
-                        {
-                            studentName=""
-                        }
-                        else
-                        {
-                            studentName=call.data.userDetails.applicantNameEn
-                            studentNameTxt.setText(studentName)
-                        }
-
-                        if (call.data.userDetails.studentNo.equals("")|| call.data.userDetails.studentNo==null || call.data.userDetails.studentNo.equals("null"))
-                        {
-                            studentNumber=""
-                        }
-                        else
-                        {
-                            studentNumber=call.data.userDetails.studentNo
-                            studentNumberTxt.setText(studentNumber)
-                        }
-
-                        if (call.data.userDetails.trafficNumber.equals("")|| call.data.userDetails.trafficNumber==null || call.data.userDetails.trafficNumber.equals("null"))
-                        {
-                            trafficNumber=""
-                        }
-                        else
-                        {
-                            trafficNumber=call.data.userDetails.trafficNumber
-                            studentTrafficNumberValueTxt.setText(trafficNumber)
-                        }
-
-                        if (call.data.userDetails.tryFileNumber.equals("")|| call.data.userDetails.tryFileNumber==null || call.data.userDetails.tryFileNumber.equals("null"))
-                        {
-                            tryfileNumber=""
-                        }
-                        else
-                        {
-                            tryfileNumber=call.data.userDetails.trafficNumber
-                            studentTryFileNumberValueTxt.setText(tryfileNumber)
-                        }
-
-                        if (call.data.userDetails.branch==-1|| call.data.userDetails.branch==null )
-                        {
-                            branchNumber=-1
-                        }
-                        else
-                        {
-                            branchNumber=call.data.userDetails.branch
-                            studentBranchNumberValueTxt.setText(branchNumber.toString())
-                        }
-
-                        if (call.data.userDetails.branchName.equals("")|| call.data.userDetails.branchName==null || call.data.userDetails.branchName.equals("null"))
-                        {
-                            branchName=""
-                        }
-                        else
-                        {
-                            branchName=call.data.userDetails.branchName
-                            studentBranchNameValueTxt.setText(branchName)
-                        }
-                        if (call.data.userDetails.email.equals("")|| call.data.userDetails.email==null || call.data.userDetails.email.equals("null"))
-                        {
-                            email=""
-                        }
-                        else
-                        {
-                            email=call.data.userDetails.email
-                            studentEmailValueTxt.setText(email)
-                        }
-                         if (call.data.userDetails.branchName.equals("")|| call.data.userDetails.branchName==null || call.data.userDetails.branchName.equals("null"))
-                        {
-                            gender=""
-                        }
-                        else
-                        {
-                            gender=call.data.userDetails.branchName
-                           if (gender.equals("M"))
-                           {
-
-                           }
-                            else
-                           {
-
-                           }
-                        }
-
-
-
+                        studentName=call.data.userDetails.applicantNameEn
+                        studentNameTxt.setText(studentName)
+                        studentNumber=call.data.userDetails.studentNo
+                        studentNumberTxt.setText(studentNumber)
+                        trafficNumber=call.data.userDetails.trafficNumber
+                        studentTrafficNumberValueTxt.setText(trafficNumber)
+                        tryfileNumber=call.data.userDetails.trafficNumber
+                        studentTryFileNumberValueTxt.setText(tryfileNumber)
+                        branchNumber=call.data.userDetails.branch
+                        studentBranchNumberValueTxt.setText(branchNumber.toString())
+                        email=call.data.userDetails.email
+                        studentEmailValueTxt.setText(email)
+                        branchName=call.data.userDetails.branchName
+                        studentBranchNameValueTxt.setText(branchName)
+                        gender=call.data.userDetails.gender
 
 
                     }

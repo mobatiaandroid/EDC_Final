@@ -49,7 +49,8 @@ class SettingsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View?
+    {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_settings, container, false)
     }
@@ -133,24 +134,24 @@ class SettingsFragment : Fragment() {
                         if (isNewPasswordHide)
                         {
                             isNewPasswordHide=false
-                            editOldPassword.setTransformationMethod(PasswordTransformationMethod())
+                            editNewPassword.setTransformationMethod(PasswordTransformationMethod())
 
                         }
                         else{
                             isNewPasswordHide=true
-                            editOldPassword.setTransformationMethod(HideReturnsTransformationMethod())
+                            editNewPassword.setTransformationMethod(HideReturnsTransformationMethod())
                         }
                     })
                     confirmPasswordHideShowImg.setOnClickListener(View.OnClickListener {
                         if (isConfirmPasswordHide)
                         {
                             isConfirmPasswordHide=false
-                            editOldPassword.setTransformationMethod(PasswordTransformationMethod())
+                            editConfirmPassword.setTransformationMethod(PasswordTransformationMethod())
 
                         }
                         else{
                             isConfirmPasswordHide=true
-                            editOldPassword.setTransformationMethod(HideReturnsTransformationMethod())
+                            editConfirmPassword.setTransformationMethod(HideReturnsTransformationMethod())
                         }
                     })
 
