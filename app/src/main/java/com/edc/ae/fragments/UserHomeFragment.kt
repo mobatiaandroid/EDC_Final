@@ -63,21 +63,21 @@ class UserHomeFragment : Fragment() {
             }
 
         }
-//        if (activity?. let { PreferenceManager.getStudentStatus(it) } == "2") {
-//            constraintEnroll.visibility = View.VISIBLE
-//
-//        } else if(activity?. let { PreferenceManager.getStudentStatus(it) } == "3") {
-//            constraintNewsLetter.visibility = View.GONE
-//            constraintPayment.visibility = View.VISIBLE
-//            constraintEnroll.visibility = View.GONE
-//        } else if(activity?. let { PreferenceManager.getStudentStatus(it) } == "4") {
-//            constraintNewsLetter.visibility = View.VISIBLE
-//            constraintPayment.visibility = View.GONE
-//            constraintEnroll.visibility = View.GONE
-//        } else {
-//            constraintEnroll.visibility = View.GONE
-//
-//        }
+        if (activity?. let { PreferenceManager.getStudentStatus(it) } == "2") {
+            constraintEnroll.visibility = View.VISIBLE
+
+        } else if(activity?. let { PreferenceManager.getStudentStatus(it) } == "3") {
+            constraintNewsLetter.visibility = View.GONE
+            constraintPayment.visibility = View.VISIBLE
+            constraintEnroll.visibility = View.GONE
+        } else if(activity?. let { PreferenceManager.getStudentStatus(it) } == "4") {
+            constraintNewsLetter.visibility = View.VISIBLE
+            constraintPayment.visibility = View.GONE
+            constraintEnroll.visibility = View.GONE
+        } else {
+            constraintEnroll.visibility = View.GONE
+
+        }
 
 //        if (activity?.let { PreferenceManager.getEnrollStatus(it) } == "no") {
 //            constraintEnroll.visibility = View.VISIBLE
@@ -95,7 +95,7 @@ class UserHomeFragment : Fragment() {
             }
         }
         callDeviceRegistrationAPI()
-//        callAPI()// to check status
+        callAPI()// to check status
 
         callHomeAPI()
         constraintNewsLetter.setOnClickListener {
@@ -148,40 +148,42 @@ class UserHomeFragment : Fragment() {
         }
     }
 
-//    private fun callAPI() {
-//
-//        lifecycleScope.launch {
-//            try {
-//
-//                val paramObject = JsonObject().apply {
-//                    addProperty("email", PreferenceManager.getEmail(context as Activity).toString())
-//                    addProperty("password",PreferenceManager.getEmail(context as Activity).toString()) }
-//                //  paramObject.put("email", edtEmail.text.toString())
-//                //    paramObject.put("password", edtPassword.text.toString())
-//                val call = RetrofitClient.get.userLogin(paramObject)
-//
-//                when (call.status) {
-//                    200 -> {
-//                        PreferenceManager.setStudentStatus(context as Activity, call.data.student_status.toString())
-//                    }
-//                }
-//
-//            } catch (httpException: HttpException) {
-//
-//                val responseErrorBody = httpException.response()!!.errorBody()
-//                val response = responseErrorBody!!.string()
-//                val obj = JSONObject(response)
-//                var status_code=obj.getString("status")
-//                var message = obj.getString("message")
-//                CommonMethods.showLoginErrorPopUp(
-//                    context as Activity,
-//                    "Alert",
-//                    message
-//                )
-//
-//            }
-//        }
-//    }
+    private fun callAPI() {
+
+        lifecycleScope.launch {
+            try {
+                Log.e("email",PreferenceManager.getEmail(context as Activity).toString())
+                Log.e("email",PreferenceManager.getPassword(context as Activity).toString())
+
+                val paramObject = JsonObject().apply {
+                    addProperty("email", PreferenceManager.getEmail(context as Activity).toString())
+                    addProperty("password",PreferenceManager.getPassword(context as Activity).toString()) }
+                //  paramObject.put("email", edtEmail.text.toString())
+                //    paramObject.put("password", edtPassword.text.toString())
+                val call = RetrofitClient.get.userLogin(paramObject)
+
+                when (call.status) {
+                    200 -> {
+                        PreferenceManager.setStudentStatus(context as Activity, call.data.student_status.toString())
+                    }
+                }
+
+            } catch (httpException: HttpException) {
+
+                val responseErrorBody = httpException.response()!!.errorBody()
+                val response = responseErrorBody!!.string()
+                val obj = JSONObject(response)
+                var status_code=obj.getString("status")
+                var message = obj.getString("message")
+                CommonMethods.showLoginErrorPopUp(
+                    context as Activity,
+                    "Alert",
+                    message
+                )
+
+            }
+        }
+    }
 
     private fun callDeviceRegistrationAPI() {
         var devRegResponse: DevRegResponseModel
