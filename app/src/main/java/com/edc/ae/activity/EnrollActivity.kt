@@ -83,6 +83,10 @@ class EnrollActivity : AppCompatActivity() {
                 }
             }
         }
+
+        backBtn.setOnClickListener({
+            finish()
+        })
         constraintNewStudent.setOnClickListener {
             if (currentTab != CurrentTab.NEW){
                 registrationType = "1"
