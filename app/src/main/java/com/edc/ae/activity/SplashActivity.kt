@@ -11,6 +11,7 @@ import android.view.animation.TranslateAnimation
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.edc.ae.R
+import com.edc.ae.util.MySingleton
 import com.edc.ae.util.PreferenceManager
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.FirebaseApp
@@ -29,6 +30,7 @@ class SplashActivity : AppCompatActivity() {
         logo = findViewById(R.id.imgLogo)
         car = findViewById(R.id.car)
         FirebaseApp.initializeApp(context)
+        MySingleton.isFingerprintAuthenticated=false
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
                 return@OnCompleteListener

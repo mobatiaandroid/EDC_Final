@@ -21,10 +21,7 @@ import com.edc.ae.activity.*
 import com.edc.ae.api.RetrofitClient
 import com.edc.ae.model.DevRegResponseModel
 import com.edc.ae.model.SocialmediaModel
-import com.edc.ae.util.AuthenticationError
-import com.edc.ae.util.CommonMethods
-import com.edc.ae.util.PreferenceManager
-import com.edc.ae.util.ProgressBarDialog
+import com.edc.ae.util.*
 import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.fragment_home_user.*
@@ -58,8 +55,11 @@ class UserHomeFragment : Fragment() {
             txtLogin.text = "LOGIN"
         } else {
             txtLogin.text = "LOGOUT"
-            if (isBiometricFeatureAvailable()) {
-                biometricPrompt.authenticate(buildBiometricPrompt())
+
+            if(!MySingleton.isFingerprintAuthenticated) {
+                if (isBiometricFeatureAvailable()) {
+                    biometricPrompt.authenticate(buildBiometricPrompt())
+                }
             }
 
         }
@@ -360,7 +360,7 @@ class UserHomeFragment : Fragment() {
         return BiometricPrompt.PromptInfo.Builder()
             .setTitle("Unlock EDC App")
             .setDescription("Confirm your identity so that we can verify it's you")
-//            .setNegativeButtonText("Cancel")
+           .setNegativeButtonText(" ")
             .setConfirmationRequired(false) //Allows user to authenticate without performing an action, such as pressing a button, after their biometric credential is accepted.
             .build()
     }
@@ -372,6 +372,9 @@ class UserHomeFragment : Fragment() {
     private val biometricCallback = object : BiometricPrompt.AuthenticationCallback() {
         override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
             super.onAuthenticationSucceeded(result)
+
+            MySingleton.isFingerprintAuthenticated=true
+
             // navigateTo<HomeActivity>()
         }
 
