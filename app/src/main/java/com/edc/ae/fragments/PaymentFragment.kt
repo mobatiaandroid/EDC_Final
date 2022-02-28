@@ -13,6 +13,7 @@ import android.widget.TableLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -110,12 +111,17 @@ class PaymentFragment : Fragment() , CallbackPaymentInterface {
             .setMerchantCountryCode("AE") // ISO alpha 2
 //            .setShippingData(shippingData)
             .setCartId(cartId)
+            .setMerchantIcon(resources.getDrawable(R.drawable.playstore_icon))
+
             .setTransactionType(transType)
             .showBillingInfo(true)
             .showShippingInfo(false)
             .forceShippingInfo(false)
             .setScreenTitle(screenTitle)
+//            .setMerchantIcon(resources.getDrawable(R.drawable.playstore_icon))
+
             .build()
+//        configData.setMerchantIcon(resources.getDrawable(R.drawable.playstore_icon))
         paymentButton.setOnClickListener {
 //            PaymentSdkActivity.startCardPayment(requireActivity(), configData, callback = requireActivity())
             Toast.makeText(context, "Pressed", Toast.LENGTH_SHORT).show()

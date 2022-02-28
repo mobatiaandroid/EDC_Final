@@ -116,11 +116,17 @@ interface RetrofitClient {
     ): SurveyResponseModel
 
 
+//    @Headers("Content-Type: application/json;charset=UTF-8")
+//    @GET("srs/get-student-profile")
+//    suspend fun getStudentProfile(
+//        @Header("Authorization") authHeader: String?
+//    ): StudentResponseModel
+
     @Headers("Content-Type: application/json;charset=UTF-8")
     @GET("srs/get-student-profile")
     suspend fun getStudentProfile(
         @Header("Authorization") authHeader: String?
-    ): StudentResponseModel
+    ): StudentProfileModelNew
 
     @Headers("Content-Type: application/json;charset=UTF-8")
     @GET("auth/logout")

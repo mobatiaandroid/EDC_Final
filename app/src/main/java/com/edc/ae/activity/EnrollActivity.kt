@@ -374,7 +374,7 @@ class EnrollActivity : AppCompatActivity() {
                     200 -> {
                         progressBarDialog.dismiss()
                         PreferenceManager.setStudentStatus(context,"3")
-                        val intent: Intent = Intent(this@EnrollActivity, HomeBaseUserActivity::class.java)
+                        val intent = Intent(this@EnrollActivity, HomeBaseUserActivity::class.java)
                         startActivity(intent)
 
                     }

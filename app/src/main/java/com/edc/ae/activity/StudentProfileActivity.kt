@@ -95,21 +95,29 @@ class StudentProfileActivity : AppCompatActivity() {
                 when(call.status){
                     200,201 -> {
                         progressBarDialog.dismiss()
-                        studentName=call.data.userDetails.applicantNameEn
+//                        studentName=call.data.userDetails.applicantNameEn
+                        studentName= call.data!!.fullName
                         studentNameTxt.setText(studentName)
-                        studentNumber=call.data.userDetails.studentNo
+//                        studentNumber=call.data.userDetails.studentNo
+                        studentNumber= call.data.studentNo.toString()
                         studentNumberTxt.setText(studentNumber)
-                        trafficNumber=call.data.userDetails.trafficNumber
+//                        trafficNumber=call.data.userDetails.trafficNumber
+                        trafficNumber=call.data.trafficNo
                         studentTrafficNumberValueTxt.setText(trafficNumber)
-                        tryfileNumber=call.data.userDetails.trafficNumber
+//                        tryfileNumber=call.data.userDetails.trafficNumber
+                        tryfileNumber=call.data.tryFileNo
                         studentTryFileNumberValueTxt.setText(tryfileNumber)
-                        branchNumber=call.data.userDetails.branch
+//                        branchNumber=call.data.userDetails.branch
+                        branchNumber=call.data.branch
                         studentBranchNumberValueTxt.setText(branchNumber.toString())
-                        email=call.data.userDetails.email
+//                        email=call.data.userDetails.email
+                        email=call.data.emailAddress
                         studentEmailValueTxt.setText(email)
-                        branchName=call.data.userDetails.branchName
+//                        branchName=call.data.userDetails.branchName
+                        branchName=call.data.branchName
                         studentBranchNameValueTxt.setText(branchName)
-                        gender=call.data.userDetails.gender
+//                        gender=call.data.userDetails.gender
+                        gender=call.data.gender
                         if(gender.equals("M"))
                         {
                             genderImg.setImageResource(R.drawable.male)

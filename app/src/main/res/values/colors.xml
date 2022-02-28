@@ -26,4 +26,19 @@
     <color name="tangelo_orange">#F37021</color>
     <color name="survey_selection">#FFAC7A</color>
 
+
+    <color name="payment_sdk_primary_color">#5C13DF</color>
+    <color name="payment_sdk_secondary_color">#F37021</color>
+    <color name="payment_sdk_primary_font_color">#111112</color>
+    <color name="payment_sdk_secondary_font_color">#F37021</color>
+    <color name="payment_sdk_separators_color">#FFC107</color>
+<!--    <color name="payment_sdk_stroke_color">#673AB7</color>-->
+    <color name="payment_sdk_button_text_color">#FFF</color>
+    <color name="payment_sdk_title_text_color">#F37021</color>
+    <color name="payment_sdk_button_background_color">#F37021</color>
+    <color name="payment_sdk_background_color">#F9FAFD</color>
+    <color name="payment_sdk_card_background_color">#F9FAFD</color>
+    <color name="payment_sdk_status_bar_color">#F37021</color>
+
 </resources>
+
