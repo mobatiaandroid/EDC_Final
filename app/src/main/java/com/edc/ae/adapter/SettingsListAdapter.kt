@@ -1,5 +1,6 @@
 package com.edc.ae.adapter
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.edc.ae.R
+import com.edc.ae.util.PreferenceManager
 import com.mobatia.edcsurvey.survey.model.SurveyDataModel
 
 class SettingsListAdapter (private var surveyArrayList: ArrayList<String>, private var mContext: Context) :
@@ -34,28 +36,20 @@ class SettingsListAdapter (private var surveyArrayList: ArrayList<String>, priva
         holder.surveyNameTxt.text = surveyArrayList.get(position).toString()
         if(position==2)
         {
-            holder.switchBtn.visibility=View.VISIBLE
+            if (PreferenceManager.getNotificationStatus(mContext as Activity).equals("1"))
+            {
+                holder.switchBtn.isChecked=true
+            }
+            else{
+                holder.switchBtn.isChecked=false
+            }
+
+               holder.switchBtn.visibility=View.VISIBLE
         }
         else{
             holder.switchBtn.visibility=View.GONE
         }
 
-
-//        holder.clickConstraint.setOnClickListener(View.OnClickListener {
-//
-//            if (position==0)
-//            {
-//                val intent = Intent()
-//                intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-//                val uri = Uri.fromParts("package", mContext.packageName, null)
-//                intent.data = uri
-//                mContext.startActivity(intent)
-//            }
-//            else if (position==2)
-//            {
-//
-//            }
-//        })
 
     }
     override fun getItemCount(): Int {

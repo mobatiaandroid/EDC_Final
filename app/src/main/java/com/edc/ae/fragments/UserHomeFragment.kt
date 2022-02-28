@@ -165,6 +165,7 @@ class UserHomeFragment : Fragment() {
                 when (call.status) {
                     200 -> {
                         PreferenceManager.setStudentStatus(context as Activity, call.data.student_status.toString())
+                        PreferenceManager.saveNotificationStatus(context as Activity, call.data.notification_status.toString())
                     }
                 }
 

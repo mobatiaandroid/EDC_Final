@@ -64,6 +64,7 @@ class SettingsFragment : Fragment() {
         settingsArrayList.add("Notification")
         settingsArrayList.add("Change Password")
         initUI()
+
         navBtn.setOnClickListener { _ ->
 
             if (activity?.let { PreferenceManager.getLoginStatus(it) } == "no") {
@@ -99,6 +100,19 @@ class SettingsFragment : Fragment() {
                     val intent = Intent(mContext, StudentProfileActivity::class.java)
                     startActivity(intent)
                 }
+                else if (position==2)
+                {
+                    if (PreferenceManager.getNotificationStatus(mContext as Activity).equals("1"))
+                    {
+                        PreferenceManager.saveNotificationStatus(mContext as Activity,"0")
+                    }
+                    else{
+                        PreferenceManager.saveNotificationStatus(mContext as Activity,"1")
+                    }
+
+                    callNotificationStatusUpdate()
+
+                }
                 else if (position==3)
                 {
 
@@ -125,8 +139,10 @@ class SettingsFragment : Fragment() {
 
                         }
                         else{
+
                             isOldPasswordHide=true
                             editOldPassword.setTransformationMethod(HideReturnsTransformationMethod())
+
                         }
                     })
 
@@ -312,5 +328,44 @@ class SettingsFragment : Fragment() {
             }
         }
     }
+
+
+    private fun callNotificationStatusUpdate() {
+        var progressBarDialog: ProgressBarDialog? = null
+        progressBarDialog = this.let { ProgressBarDialog(requireActivity()) }
+        progressBarDialog.show()
+
+        lifecycleScope.launch {
+            try {
+                CommonMethods.callTokenRefreshAPI(mContext as Activity)
+                val call = RetrofitClient.get.getNotificationStatus("Bearer "+ PreferenceManager.getAccessToken(mContext as Activity))
+
+                when (call.status) {
+                    200 -> {
+                        progressBarDialog.dismiss()
+                        var settingsAdapter= SettingsListAdapter(settingsArrayList,mContext)
+                        settingsRecycler.adapter=settingsAdapter
+
+                    }
+                }
+
+            } catch (httpException: HttpException) {
+                progressBarDialog.dismiss()
+
+                val responseErrorBody = httpException.response()!!.errorBody()
+                val response = responseErrorBody!!.string()
+                val obj = JSONObject(response)
+                var status_code=obj.getString("status")
+                var message = obj.getString("message")
+                CommonMethods.showLoginErrorPopUp(
+                    mContext,
+                    "Alert",
+                    message
+                )
+
+            }
+        }
+    }
+
 
 }

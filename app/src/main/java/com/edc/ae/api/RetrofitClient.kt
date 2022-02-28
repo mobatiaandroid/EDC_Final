@@ -134,7 +134,11 @@ interface RetrofitClient {
         @Header("Authorization") authHeader: String?
     ): ForgetPasswordResponseModel
 
-
+    @Headers("Content-Type: application/json;charset=UTF-8")
+    @GET("student/update-notification-status")
+    suspend fun getNotificationStatus(
+        @Header("Authorization") authHeader: String?
+    ): ForgetPasswordResponseModel
 
     @Headers("Content-Type: application/json;charset=UTF-8")
     @POST("survey/submit")

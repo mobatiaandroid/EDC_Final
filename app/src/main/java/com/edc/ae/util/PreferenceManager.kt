@@ -123,6 +123,29 @@ object PreferenceManager {
         editor.commit()
     }
 
+    fun getNotificationStatus(context: Activity): String? {
+        val settings: SharedPreferences
+        val text: String?
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        text = settings.getString("notification_status", "")
+        return text
+    }
+
+    fun saveNotificationStatus(context: Activity, text: String) {
+        val settings: SharedPreferences
+        val editor: SharedPreferences.Editor
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        editor = settings.edit()
+        editor.putString("notification_status", text)
+        editor.commit()
+    }
+
     fun getFCMToken(context: Activity): String? {
         val settings: SharedPreferences
         val text: String?

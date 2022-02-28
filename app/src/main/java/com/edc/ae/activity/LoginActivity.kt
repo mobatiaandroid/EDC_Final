@@ -352,10 +352,12 @@ class LoginActivity : AppCompatActivity() {
                         var refresh_token = call.data.credentials.refresh_token
                         var user = call.data.student_name
                         var student_id = call.data.student_id
+                        var notificationStatus = call.data.notification_status
                         PreferenceManager.saveAccessToken(this@LoginActivity, access_token)
                         PreferenceManager.saveRefreshToken(this@LoginActivity, refresh_token)
                         PreferenceManager.saveUserName(this@LoginActivity, user)
                         PreferenceManager.saveStudentID(this@LoginActivity, student_id)
+                        PreferenceManager.saveNotificationStatus(this@LoginActivity, notificationStatus.toString())
                         PreferenceManager.setStudentStatus(this@LoginActivity, call.data.student_status.toString())
                         val intent: Intent = Intent(this@LoginActivity, HomeBaseUserActivity::class.java)
                         startActivity(intent)
@@ -420,7 +422,6 @@ class LoginActivity : AppCompatActivity() {
 
             } catch (httpException: HttpException) {
                 progressBarDialog.dismiss()
-
                 val responseErrorBody = httpException.response()!!.errorBody()
                 val response = responseErrorBody!!.string()
                 val obj = JSONObject(response)

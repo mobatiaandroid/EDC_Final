@@ -11,7 +11,8 @@ data class LoginResponseModel(
         val credentials: Credentials,
         val student_id: String,
         val student_name: String,
-        val student_status: Int
+        val student_status: Int,
+        val notification_status: Int
     ) {
         data class Credentials(
             val access_token: String,
