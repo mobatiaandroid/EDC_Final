@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.edc.ae.R
 import com.edc.ae.adapter.SelectorListAdapter
 import com.edc.ae.api.RetrofitClient
+import com.edc.ae.model.EnrollDetailsModel
 import com.edc.ae.util.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.JsonObject
@@ -34,14 +35,14 @@ class EnrollActivity : AppCompatActivity() {
     var nameArabic: String? = ""
     var emiratesID: String? = ""
     var branch: String? = ""
-    var trainingLanguage: String? = ""
-    var nationality: String? = ""
+    var trainingLanguage: EnrollDetailsModel.Data.TrainingLanguage? = EnrollDetailsModel.Data.TrainingLanguage("","")
+    var nationality: EnrollDetailsModel.Data.Nationality? = EnrollDetailsModel.Data.Nationality(0,"")
     var dob: String? = ""
     var gender: String? = ""
     var mobileNo: String? = ""
     var registrationType: String? = ""
-    var motherTongue: String? = ""
-    var educationLevel: String? = ""
+    var motherTongue: EnrollDetailsModel.Data.MotherTongue? = EnrollDetailsModel.Data.MotherTongue(0,"")
+    var educationLevel: EnrollDetailsModel.Data.EducationLevel? = EnrollDetailsModel.Data.EducationLevel(0,"")
     var cal = Calendar.getInstance()
 
     enum class CurrentTab {
@@ -166,25 +167,47 @@ class EnrollActivity : AppCompatActivity() {
                         nameEnglish = call.data.fullName
                         nameArabic = call.data.fullNameArabic
                         emiratesID = call.data.emiratesID
-                        branch = call.data.branch.toString()
-                        nationality = call.data.nationality
-                        trainingLanguage = call.data.trainingLanguage.toString()
+                        branch = call.data.branchName.toString()
+
+                        for (each in AppController.nationalityList){
+                            if (each.id.equals(call.data.nationality)) {
+                                nationality = each
+                            }
+                        }
+                        for (each in AppController.educationLevelList){
+                            if (each.id.equals(call.data.educationLevel)) {
+                                educationLevel = each
+                            }
+                        }
+                        for (each in AppController.trainingLanguageList){
+                            if (each.languageCode.equals(call.data.educationLevel)) {
+                                trainingLanguage = each
+                            }
+                        }
+
                         dob = call.data.birthDate.toString()
                         gender = call.data.gender.toString()
                         mobileNo = call.data.mobileNo.toString()
-                        motherTongue = call.data.motherTongue.toString()
-                        educationLevel = call.data.educationLevel.toString()
+                        for (each in AppController.motherTongueList){
+                            if (each.id.equals(call.data.educationLevel)) {
+                                motherTongue = each
+                            }
+                        }
 
 //                        textNameEnglish.text = nameEnglish
 //                        textNameArabic.text = nameArabic
-                        textNameArabic.setText(nameEnglish)
-                        textNameEnglish.setText(nameArabic)
+                        textNameArabic.setText(nameArabic)
+                        textNameEnglish.setText(nameEnglish)
 //                        textEmiratesID.text = call.data.emiratesID
                         textEmiratesID.setText(emiratesID)
+                        editMobileNo.setText(call.data.mobileNo.toString())
                         textBranch.text = branch
 //                        textTrainingLanguage.text = call.data.trainingLanguage.toString()
-                        textNationality.text = nationality
-//                        textMotherTongue.text = call.data.motherTongue.toString()
+                        Log.e("nationality", nationality!!.name)
+                        textNationality.text = nationality!!.name
+                        textEducation.text = educationLevel!!.name
+                        textMotherTongue.text = motherTongue!!.name
+                        textTrainingLanguage.text = trainingLanguage!!.languageName
 //                        textEducation.text = call.data.educationLevel.toString()
                         textDOB.text = dob
                         textGender.text = gender
