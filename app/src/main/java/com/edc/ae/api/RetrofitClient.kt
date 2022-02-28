@@ -195,7 +195,13 @@ interface RetrofitClient {
     @POST("srs/payment/initiate")
     suspend fun  initiatePayment(
         @Header("Authorization") authHeader: String?,
-        @Body json:JsonObject): ResponseBody
+        @Body json:JsonObject): PaymentInitiateModelNew
+
+    @Headers("Content-Type: application/json;charset=UTF-8")
+    @POST("srs/payment/submit")
+    suspend fun  paymentSuccess(
+        @Header("Authorization") authHeader: String?,
+        @Body json:JsonObject): PaymentSuccessModel
 
 //payment success
 

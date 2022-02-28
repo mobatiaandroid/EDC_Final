@@ -2,9 +2,7 @@ package com.edc.ae.fragments
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.text.Html
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,21 +11,16 @@ import android.widget.TableLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.edc.ae.activity.HomeBaseUserActivity
 import com.edc.ae.R
 import com.edc.ae.activity.HomeBaseGuestActivity
-import com.edc.ae.activity.NotificationDetailActivity
+import com.edc.ae.activity.HomeBaseUserActivity
 import com.edc.ae.adapter.CostAdapter
-import com.edc.ae.adapter.CourseAdapter
 import com.edc.ae.adapter.SelectorListAdapter
 import com.edc.ae.api.RetrofitClient
-import com.edc.ae.model.CourseCostModel
-import com.edc.ae.model.Courses
 import com.edc.ae.util.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.JsonObject
@@ -35,17 +28,14 @@ import com.payment.paymentsdk.PaymentSdkActivity
 import com.payment.paymentsdk.PaymentSdkConfigBuilder
 import com.payment.paymentsdk.integrationmodels.*
 import com.payment.paymentsdk.sharedclasses.interfaces.CallbackPaymentInterface
-import kotlinx.android.synthetic.main.activity_enroll.*
-import kotlinx.android.synthetic.main.activity_payment.*
 import kotlinx.android.synthetic.main.activity_payment.recycler
 import kotlinx.android.synthetic.main.fragment_news_letter.navBtn
 import kotlinx.android.synthetic.main.fragment_payment.*
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 import retrofit2.HttpException
-import kotlin.math.roundToInt
 
-class PaymentFragment : Fragment() , CallbackPaymentInterface {
+class PaymentFragment : Fragment(), CallbackPaymentInterface {
 
 
     lateinit var selectCourse: ConstraintLayout
@@ -54,6 +44,18 @@ class PaymentFragment : Fragment() , CallbackPaymentInterface {
     lateinit var textTotal: TextView
     lateinit var textPrice: TextView
     lateinit var textPrice2: TextView
+    var orderID = 0
+    var amount = 871.50
+    var orderRef = ""
+    var orderID2 = ""
+//    "order_id", "533256")
+//    addProperty("fee_code", "ELVC")
+//    addProperty("cource_name", "test")
+//    addProperty("amount", "871.5")
+//    addProperty("device_type", "2")
+//    addProperty("device_name", "Android10")
+//    addProperty("app_version", "4.1")
+
     var temp = 0
     var valueSelectCourse = ""
     var cost = 0.0
@@ -99,7 +101,7 @@ class PaymentFragment : Fragment() , CallbackPaymentInterface {
 
         val tokeniseType = PaymentSdkTokenise.NONE
         val transType = PaymentSdkTransactionType.SALE;
-        val tokenFormat =  PaymentSdkTokenFormat.Hex32Format()
+        val tokenFormat = PaymentSdkTokenFormat.Hex32Format()
         val billingData = PaymentSdkBillingDetails(
             "City",
             "AE",
@@ -108,77 +110,91 @@ class PaymentFragment : Fragment() , CallbackPaymentInterface {
             "", "AbhuDhabi",
             "Abu Dhabi", "" // set values from preference
         )
-        val configData = PaymentSdkConfigBuilder(profileId, serverKey, clientKey, amount ?: 0.0, currency)
-            .setCartDescription(cartDesc)
-            .setLanguageCode(locale)
-            .setBillingData(billingData)
-            .setMerchantCountryCode("AE") // ISO alpha 2
+        val configData =
+            PaymentSdkConfigBuilder(profileId, serverKey, clientKey, amount ?: 0.0, currency)
+                .setCartDescription(cartDesc)
+                .setLanguageCode(locale)
+                .setBillingData(billingData)
+                .setMerchantCountryCode("AE") // ISO alpha 2
 //            .setShippingData(shippingData)
-            .setCartId(cartId)
-            .setMerchantIcon(resources.getDrawable(R.drawable.playstore_icon))
-            .setTransactionType(transType)
-            .showBillingInfo(true)
-            .showShippingInfo(false)
-            .forceShippingInfo(false)
-            .setScreenTitle(screenTitle)
+                .setCartId(cartId)
+                .setMerchantIcon(resources.getDrawable(R.drawable.playstore_icon))
+                .setTransactionType(transType)
+                .showBillingInfo(true)
+                .showShippingInfo(false)
+                .forceShippingInfo(false)
+                .setScreenTitle(screenTitle)
 //            .setMerchantIcon(resources.getDrawable(R.drawable.playstore_icon))
 
-            .build()
+                .build()
 
 //        configData.setMerchantIcon(resources.getDrawable(R.drawable.playstore_icon))
         paymentButton.setOnClickListener {
-            if (temp == 1){
+            if (temp == 1) {
                 var progressBarDialog: ProgressBarDialog? = null
                 progressBarDialog = activity?.let { ProgressBarDialog(it) }
                 progressBarDialog?.show()
                 val paramObject = JsonObject().apply {
-                    addProperty("order_id", "5656")
+                    addProperty("order_id", "146551")
                     addProperty("fee_code", "ELVC")
                     addProperty("cource_name", "test")
-                    addProperty("amount", "1")
+                    addProperty("amount", "871.5")
                     addProperty("device_type", "2")
                     addProperty("device_name", "Android10")
                     addProperty("app_version", "4.1")
                 }
                 progressBarDialog!!.hide()
-                PaymentSdkActivity.startCardPayment(context as Activity,configData, callback = this)
 
                 lifecycleScope.launch {
-//                    try {
-//                        val call = RetrofitClient.get.initiatePayment("Bearer " + PreferenceManager.getAccessToken(requireActivity()), paramObject)
-//
-//                        when (call.status) {
-//                            200 -> {
-//                                progressBarDialog?.dismiss()
-//                                PaymentSdkActivity.startCardPayment(context as Activity,configData, callback = this)
-//
-//                            }
-//                            401 -> {
-//                                progressBarDialog?.dismiss()
-////                                CommonMethods.callTokenRefreshAPI(requireActivity())
-////                                callCourseCostAPI()
-//                            }
-//                        }
-//
-//                    } catch (httpException: HttpException) {
-//                        progressBarDialog!!.dismiss()
-//                        val responseErrorBody = httpException.response()!!.errorBody()
-//                        val response = responseErrorBody!!.string()
-//                        val obj = JSONObject(response)
-//                        var status_code=obj.getString("status")
-//                        var message = obj.getString("message")
-//                        CommonMethods.showLoginErrorPopUp(
-//                            requireActivity(),
-//                            "Alert",
-//                            message
-//                        )
-//
-//                    }
+                    try {
+                        val call = RetrofitClient.get.initiatePayment(
+                            "Bearer " + PreferenceManager.getAccessToken(requireActivity()),
+                            paramObject
+                        )
+                        Log.e("Response", call.toString())
+
+                        when (call.status) {
+                            200 -> {
+                                progressBarDialog?.dismiss()
+                                Log.e("Response", call.toString())
+                                orderRef = call.data!!.order_reference.toString()
+                                PaymentSdkActivity.startCardPayment(
+                                    context as Activity,
+                                    configData,
+                                    callback = this@PaymentFragment
+                                )
+                                orderID2 = call.data.order_id.toString()
+
+                            }
+                            302 -> {
+                                CommonMethods.showLoginErrorPopUp(requireActivity(),"",call.message.toString())
+                            }
+                            401 -> {
+                                progressBarDialog?.dismiss()
+//                                CommonMethods.callTokenRefreshAPI(requireActivity())
+//                                callCourseCostAPI()
+                            }
+                        }
+
+                    } catch (httpException: HttpException) {
+                        progressBarDialog!!.dismiss()
+                        val responseErrorBody = httpException.response()!!.errorBody()
+                        val response = responseErrorBody!!.string()
+                        val obj = JSONObject(response)
+                        var status_code = obj.getString("status")
+                        var message = obj.getString("message")
+                        CommonMethods.showLoginErrorPopUp(
+                            requireActivity(),
+                            "Alert",
+                            message
+                        )
+
+                    }
                 }
 //                Toast.makeText(context, "Pressed", Toast.LENGTH_SHORT).show()
 
             } else {
-                CommonMethods.showLoginErrorPopUp(requireActivity(), "","Select at least 1 Course")
+                CommonMethods.showLoginErrorPopUp(requireActivity(), "", "Select at least 1 Course")
             }
 //            PaymentSdkActivity.startCardPayment(requireActivity(), configData, callback = requireActivity())
 
@@ -208,24 +224,23 @@ class PaymentFragment : Fragment() , CallbackPaymentInterface {
 //        recycler.layoutManager = LinearLayoutManager(context)
 
 
-
     }
 
     private fun showCourseSelectSheet() {
-        val dialog = BottomSheetDialog(requireActivity(),R.style.AppBottomSheetDialogTheme)
+        val dialog = BottomSheetDialog(requireActivity(), R.style.AppBottomSheetDialogTheme)
         val view = layoutInflater.inflate(R.layout.bottom_sheet_selct, null)
         val title = view.findViewById<TextView>(R.id.selectTitle)
         val recycler = view.findViewById<RecyclerView>(R.id.recycler)
         title.text = "Select Course"
-        var selectorList :ArrayList<String> =  ArrayList()
+        var selectorList: ArrayList<String> = ArrayList()
         for (each in AppController.courseList) {
             selectorList.add(each.text)
         }
 //        for (each in AppController.educationLevelList) {
 //            selectorList.add(each.name)
 //        }
-        var selectAdapter = SelectorListAdapter(selectorList,requireActivity())
-        recycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)
+        var selectAdapter = SelectorListAdapter(selectorList, requireActivity())
+        recycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recycler.adapter = selectAdapter
         recycler.addOnItemClickListener(object : OnItemClickListener {
             override fun onItemClicked(position: Int, view: View) {
@@ -234,7 +249,7 @@ class PaymentFragment : Fragment() , CallbackPaymentInterface {
                 valueSelectCourse = AppController.courseList[position].value
                 callCourseCostAPI()
 
-            dialog.dismiss()
+                dialog.dismiss()
             }
         })
 
@@ -254,26 +269,35 @@ class PaymentFragment : Fragment() , CallbackPaymentInterface {
         }
         lifecycleScope.launch {
             try {
-                val call = RetrofitClient.get.getCourseCost("Bearer " + PreferenceManager.getAccessToken(requireActivity()), paramObject)
+                val call = RetrofitClient.get.getCourseCost(
+                    "Bearer " + PreferenceManager.getAccessToken(requireActivity()), paramObject
+                )
 
                 when (call.status) {
                     200 -> {
                         progressBarDialog?.dismiss()
                         AppController.costList.addAll(call.data)
+
                         if (AppController.costList.isNotEmpty()) {
+                            orderID = AppController.costList[0].orderId
                             recycler.adapter = CostAdapter(context as Activity)
                             recycler.layoutManager = LinearLayoutManager(context)
 
                             for (each in AppController.costList) {
                                 total += each.elementCost.toFloat()
                             }
+
                             val roundoff = String.format("%.2f", total)
                             cost = total
                             textPrice.text = roundoff.toString()
                             textPrice2.text = roundoff.toString()
                             temp = 1
                         } else {
-                            Toast.makeText(context, "Selected Course Unavailable", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                context,
+                                "Selected Course Unavailable",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
 
                     }
@@ -289,7 +313,7 @@ class PaymentFragment : Fragment() , CallbackPaymentInterface {
                 val responseErrorBody = httpException.response()!!.errorBody()
                 val response = responseErrorBody!!.string()
                 val obj = JSONObject(response)
-                var status_code=obj.getString("status")
+                var status_code = obj.getString("status")
                 var message = obj.getString("message")
                 CommonMethods.showLoginErrorPopUp(
                     requireActivity(),
@@ -315,7 +339,7 @@ class PaymentFragment : Fragment() , CallbackPaymentInterface {
 //            textPrice.visibility = View.VISIBLE
             recycler.adapter = CostAdapter(context as Activity)
             recycler.layoutManager = LinearLayoutManager(context)
-            Log.e("cost",AppController.costList.toString())
+            Log.e("cost", AppController.costList.toString())
             for (each in AppController.costList) {
                 cost += each.elementCost.toDouble()
             }
@@ -332,7 +356,6 @@ class PaymentFragment : Fragment() , CallbackPaymentInterface {
         }
 
 
-
     }
 
     private fun callAPI() {
@@ -343,9 +366,11 @@ class PaymentFragment : Fragment() , CallbackPaymentInterface {
 
         lifecycleScope.launch {
             try {
-                val call = RetrofitClient.get.getCourseDetails("Bearer "+ PreferenceManager.getAccessToken(
-                    context as Activity
-                ))
+                val call = RetrofitClient.get.getCourseDetails(
+                    "Bearer " + PreferenceManager.getAccessToken(
+                        context as Activity
+                    )
+                )
 
                 when (call.status) {
                     200 -> {
@@ -372,9 +397,81 @@ class PaymentFragment : Fragment() , CallbackPaymentInterface {
     override fun onPaymentFinish(paymentSdkTransactionDetails: PaymentSdkTransactionDetails) {
         Toast.makeText(context, "Payment Success", Toast.LENGTH_SHORT).show()
         Log.e("Detail", paymentSdkTransactionDetails.toString())
-        val intent = Intent(activity, HomeBaseUserActivity::class.java)
-        startActivity(intent)
+        val paymentResponse = paymentSdkTransactionDetails.toString()
+        val status = paymentSdkTransactionDetails.paymentResult!!.responseStatus
+        val transactionRef = paymentSdkTransactionDetails.transactionReference
+        val transactionType = paymentSdkTransactionDetails.transactionType
+        val cartId = paymentSdkTransactionDetails.cartID
+        val cartAmount = paymentSdkTransactionDetails.cartAmount
+        val cartCurrency = paymentSdkTransactionDetails.cartCurrency
+        val isProcessed = paymentSdkTransactionDetails.isProcessed
+        val responseStatus = paymentSdkTransactionDetails.paymentResult!!.responseStatus
+        val isAuthorized = paymentSdkTransactionDetails.isAuthorized
+        val isPending = paymentSdkTransactionDetails.isPending
+        val isOnHold = paymentSdkTransactionDetails.isOnHold
+//        val paramObject = JsonObject().apply {
+////            addProperty("response_status",responseStatus)
+////            addProperty("transaction_ref", transactionRef)
+////            addProperty("transaction_type", transactionType)
+////            addProperty("cart_id", cartId)
+////            addProperty("cart_amount", cartAmount)
+////            addProperty("cart_currency", cartAmount)
+////            addProperty("cart_currency", cartCurrency)
+////            addProperty("is_processed", isProcessed)
+////            addProperty("is_authorized", isAuthorized)
+////            addProperty("is_pending",isPending)
+////            addProperty("is_on_hold",isOnHold)
+//            addProperty("payment_response",paymentResponse)
+//        }
+        val JSONSTRING = "{" + paymentResponse + " }"
+        val paramObject2 = JsonObject().apply {
+            addProperty("order_reference", orderRef)
+            addProperty("order_id", orderID2)
+            addProperty("status", status)
+            addProperty("merchant_order_reference", transactionRef)
+            addProperty("gateway_response", JSONSTRING)
+        }
+//        val paramObject2 = JsonObject().apply {
+//            addProperty("order_reference", "7459")
+//            addProperty("order_id", 146551)
+//            addProperty("status",status)
+//            addProperty("merchant_order_reference",transactionRef)
+//            addProperty("gateway_response", JSONSTRING)
+//        }
+        Log.e("Paymmenjtsiofhos", JSONSTRING)
+        var progressBarDialog: ProgressBarDialog? = null
+        progressBarDialog = activity?.let { ProgressBarDialog(it) }
+        progressBarDialog?.show()
 
-        //send result to sachu
+        lifecycleScope.launch {
+            try {
+                val call = RetrofitClient.get.paymentSuccess(
+                    "Bearer " + PreferenceManager.getAccessToken(
+                        context as Activity
+                    ), paramObject2
+                )
+
+                Log.e("Resp", call.toString())
+
+
+                when (call.status) {
+                    200 -> {
+                        progressBarDialog?.dismiss()
+                        val intent = Intent(activity, HomeBaseUserActivity::class.java)
+                        startActivity(intent)
+                    }
+
+                }
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
     }
+
+
+
+
+    //send result to sachu
+
 }
