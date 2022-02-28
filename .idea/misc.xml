@@ -79,7 +79,8 @@
         <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.1287037037037037" />
         <entry key="app/src/main/res/layout/fragment_survey.xml" value="0.1287037037037037" />
         <entry key="app/src/main/res/layout/item_contactus.xml" value="0.1287037037037037" />
-        <entry key="app/src/main/res/layout/item_courses.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/item_cost.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_courses.xml" value="0.37222222222222223" />
         <entry key="app/src/main/res/layout/item_news.xml" value="0.14166666666666666" />
         <entry key="app/src/main/res/layout/item_select.xml" value="0.10810810810810811" />
         <entry key="app/src/main/res/layout/item_services.xml" value="0.1287037037037037" />

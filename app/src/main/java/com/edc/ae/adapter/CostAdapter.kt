@@ -28,7 +28,8 @@ class CostAdapter(context: Context): RecyclerView.Adapter<CostAdapter.MyViewHold
         holder.no.text = (position+1).toString()
         Log.e("Desc", holder.vcFeeDesc.text as String)
         holder.vcFeeDesc.text = AppController.costList[position].elementDescription
-        holder.decAmount.text = AppController.costList[position].elementCost.toString()
+        val amount =  String.format("%.2f", AppController.costList[position].elementCost)
+        holder.decAmount.text = amount
     }
 
     override fun getItemCount(): Int {

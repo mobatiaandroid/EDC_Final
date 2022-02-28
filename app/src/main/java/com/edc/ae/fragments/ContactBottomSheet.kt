@@ -21,7 +21,7 @@ class ContactBottomSheet : BottomSheetDialogFragment() {
     var passedData: ContactUsResponse.ContactData? = null
     lateinit var mapGoogle: GoogleMap
 
-
+    override fun getTheme(): Int = R.style.AppBottomSheetDialogTheme
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -221,7 +221,7 @@ class LoginActivity : AppCompatActivity() {
             overridePendingTransition(0, 0)
         })
         forgotPassword.setOnClickListener {
-            val dialog = BottomSheetDialog(this)
+            val dialog = BottomSheetDialog(this,R.style.AppBottomSheetDialogTheme)
             val view = layoutInflater.inflate(R.layout.bottom_sheet_forgot_password, null)
             val buttonSubmit = view.findViewById<Button>(R.id.buttonSubmit)
             val editEmail = view.findViewById<EditText>(R.id.editEmail)

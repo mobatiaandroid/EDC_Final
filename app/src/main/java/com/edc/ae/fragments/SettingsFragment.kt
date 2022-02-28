@@ -116,7 +116,7 @@ class SettingsFragment : Fragment() {
                 else if (position==3)
                 {
 
-                    val dialog = BottomSheetDialog(mContext)
+                    val dialog = BottomSheetDialog(mContext,R.style.AppBottomSheetDialogTheme)
                     val view = layoutInflater.inflate(R.layout.bottom_sheet_change_password, null)
                     val buttonSubmit = view.findViewById<Button>(R.id.buttonSubmit)
                     val editOldPassword = view.findViewById<EditText>(R.id.editOldPassword)
