@@ -4,7 +4,6 @@ data class StudentProfileModelNew(
     val `data`: Data?,
     val exception: Exception?,
     val message: String?,
-    val srs_exception: List<Any?>?,
     val status: Int?,
     val success: Boolean?,
     val validation: String?
