@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.edc.ae.activity.HomeBaseUserActivity
 import com.edc.ae.R
 import com.edc.ae.activity.HomeBaseGuestActivity
@@ -23,6 +25,10 @@ import kotlinx.coroutines.launch
 class NotificationFragment : Fragment() {
 
     val notifyArray = arrayListOf<NotificationResponse.NotifiData>()
+    var startValue = 0
+    val limit = 10
+    var isLoading:Boolean=false
+    var stopLoading=false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +41,7 @@ class NotificationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getNotifications()
+        getNotifications(startValue,limit)
 
         recyclerView.adapter = NotificationAdapter(notifyArray)
 
@@ -49,7 +55,28 @@ class NotificationFragment : Fragment() {
 
             }
         }
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+            }
 
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                val linearLayoutManager =
+                    recyclerView.layoutManager as LinearLayoutManager?
+                if (!isLoading) {
+                    if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == notifyArray.size - 1) {
+                        //bottom of list!
+                        if (!stopLoading)
+                        {
+                            startValue=startValue+limit
+                            getNotifications(startValue,limit)
+                            isLoading = true
+                        }
+
+                    }
+                }
+            }
+        })
         recyclerView.addOnItemClickListener(object : OnItemClickListener {
             override fun onItemClicked(position: Int, view: View) {
 
@@ -64,11 +91,11 @@ class NotificationFragment : Fragment() {
 
     }
 
-    private fun getNotifications() {
+    private fun getNotifications(start: Int,limit: Int) {
         lifecycleScope.launch {
             try {
 
-                val call = RetrofitClient.get.getNotifications()
+                val call = RetrofitClient.get.getNotifications(start, limit)
 
                 when(call.status){
                     200,201 -> {

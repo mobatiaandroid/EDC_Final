@@ -53,7 +53,7 @@
                 app:srcCompat="@drawable/nav_icn" />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/contactRec"
+            android:id="@+id/serviceRecycler"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"

@@ -96,7 +96,6 @@ class UserHomeFragment : Fragment() {
         }
         callDeviceRegistrationAPI()
         callAPI()// to check status
-
         callHomeAPI()
         constraintNewsLetter.setOnClickListener {
             findNavController().navigate(R.id.newsLetterFragment)

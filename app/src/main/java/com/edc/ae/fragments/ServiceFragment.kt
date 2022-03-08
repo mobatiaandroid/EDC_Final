@@ -12,6 +12,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.edc.ae.activity.HomeBaseUserActivity
 import com.edc.ae.R
 import com.edc.ae.activity.HomeBaseGuestActivity
@@ -20,13 +22,15 @@ import com.edc.ae.api.RetrofitClient
 import com.edc.ae.model.ServiceResponseModel
 import com.edc.ae.util.PreferenceManager
 import com.edc.ae.util.ProgressBarDialog
-import kotlinx.android.synthetic.main.fragment_service.contactRec
-import kotlinx.android.synthetic.main.fragment_service.navBtn
+import kotlinx.android.synthetic.main.fragment_service.*
 import kotlinx.coroutines.launch
 
 class ServiceFragment : Fragment() {
     val servicesArray = arrayListOf<ServiceResponseModel.Data>()
-
+    var startValue = 0
+    val limit = 10
+    var isLoading:Boolean=false
+    var stopLoading=false
 
     private val requiredPermissionList = arrayOf(
         Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -65,8 +69,30 @@ class ServiceFragment : Fragment() {
 //
 //            //Intent intent=
 //        }
-        contactRec.adapter = ServicesAdapter(servicesArray, context as Activity)
-        callAPI()
+        serviceRecycler.adapter = ServicesAdapter(servicesArray, context as Activity)
+        serviceRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+            }
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                val linearLayoutManager =
+                    serviceRecycler.layoutManager as LinearLayoutManager?
+                if (!isLoading) {
+                    if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == servicesArray.size - 1) {
+                        //bottom of list!
+                        if (!stopLoading)
+                        {
+                            startValue=startValue+limit
+                            callAPI(startValue,limit)
+                            isLoading = true
+                        }
+
+                    }
+                }
+            }
+        })
+        callAPI(startValue, limit)
     }
 
     private fun launchPdf() {/*
@@ -77,21 +103,22 @@ class ServiceFragment : Fragment() {
             )
         )*/
     }
-    private fun callAPI() {
+    private fun callAPI(startValue: Int, limit: Int) {
         var progressBarDialog: ProgressBarDialog? = null
         progressBarDialog = activity?.let { ProgressBarDialog(it) }
         progressBarDialog?.show()
 
         lifecycleScope.launch {
             try {
-                val call = RetrofitClient.get.getServiceData()
+                val call = RetrofitClient.get.getServiceData(startValue, limit)
 
                 when (call.status) {
                     200 -> {
                         progressBarDialog?.dismiss()
 
                         servicesArray.addAll(call.data)
-                        contactRec.adapter?.notifyDataSetChanged()
+                        serviceRecycler.adapter?.notifyDataSetChanged()
+                        isLoading = false
                     }
                 }
 

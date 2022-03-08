@@ -47,18 +47,24 @@ interface RetrofitClient {
     suspend fun getHomeData(): HomeResponseModel
 
     @GET("guest/services")
-    suspend fun getServiceData(): ServiceResponseModel
+    suspend fun getServiceData(
+        @Query("start") start: Int ,
+        @Query("limit") limit: Int
+    ): ServiceResponseModel
 
     @GET("guest/payment-instructions")
     suspend fun getPaymentInstruction(): PaymentInstructionResponseModel
 
     @GET("guest/news")
-    suspend fun getNewsData(): NewsResponseModel
+    suspend fun getNewsData(
+        @Query("start") start: Int ,
+        @Query("limit") limit: Int
+    ): NewsResponseModel
 
     @GET("guest/notifications")
     suspend fun getNotifications(
-        @Query("start") start: Int = 0,
-        @Query("limit") limit: Int = 100
+        @Query("start") start: Int ,
+        @Query("limit") limit: Int
     ): NotificationResponse
 
     //@FormUrlEncoded
