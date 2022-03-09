@@ -7,7 +7,10 @@ import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
@@ -25,7 +28,6 @@ import kotlinx.coroutines.launch
 import org.json.JSONObject
 import retrofit2.HttpException
 import java.util.*
-import kotlin.collections.ArrayList
 
 class EnrollActivity : AppCompatActivity() {
     lateinit var context: Activity
@@ -40,7 +42,7 @@ class EnrollActivity : AppCompatActivity() {
     var dob: String? = ""
     var gender: String? = ""
     var mobileNo: String? = ""
-    var registrationType: String? = ""
+    var registrationType: String? = "1"
     var motherTongue: EnrollDetailsModel.Data.MotherTongue? = EnrollDetailsModel.Data.MotherTongue(0,"")
     var educationLevel: EnrollDetailsModel.Data.EducationLevel? = EnrollDetailsModel.Data.EducationLevel(0,"")
     var cal = Calendar.getInstance()
@@ -164,7 +166,7 @@ class EnrollActivity : AppCompatActivity() {
                         showFieldsAll()
                         editTryFileNo.setText(PreferenceManager.getTryFileNo(context))
                         editTrafficNo.setText(PreferenceManager.getTrafficNo(context))
-                        nameEnglish = call.data.fullName
+                        nameEnglish = call.data!!.fullName
                         nameArabic = call.data.fullNameArabic
                         emiratesID = call.data.emiratesID
                         branch = call.data.branchName.toString()
@@ -252,7 +254,7 @@ class EnrollActivity : AppCompatActivity() {
                         // dont know error case
                         arrowTrafficNo.setImageResource(R.drawable.invalid_close)
                         arrowTryFileNo.setImageResource(R.drawable.invalid_close)
-                        Toast.makeText(context, "Validation Error", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, call.validation, Toast.LENGTH_SHORT).show()
                     }
 
                 }
@@ -264,10 +266,11 @@ class EnrollActivity : AppCompatActivity() {
                 val obj = JSONObject(response)
                 var status_code=obj.getString("status")
                 var message = obj.getString("message")
+
                 CommonMethods.showLoginErrorPopUp(
                     context,
                     "Alert",
-                    message
+                    "brr"
                 )
 
             }
@@ -307,41 +310,45 @@ class EnrollActivity : AppCompatActivity() {
         progressBarDialog = ProgressBarDialog(context)
         progressBarDialog.show()
 
-//        val paramObject = JsonObject().apply {
-//            addProperty("try_file_number", PreferenceManager.getTryFileNo(context))
-//            addProperty("traffic_number", PreferenceManager.getTrafficNo(context))
-//            addProperty("name_english", nameEnglish)
-//            addProperty("name_arabic", nameArabic)
-//            addProperty("emirates_id", emiratesID)
-//            addProperty("branch","1")
-//            addProperty("training_language", trainingLanguage)
-//            addProperty("nationality", nationality)
-//            addProperty("mother_tongue", motherTongue)
-//            addProperty("education_level", educationLevel)
-//            addProperty("date_of_birth", "dob")
-//            addProperty("gender", "Male")
-//            addProperty("mobile_number", mobileNo)
-//            addProperty("registration_type",registrationType)
-//
-//        }
         val paramObject = JsonObject().apply {
-            addProperty("try_file_number", "12345678")
-            addProperty("traffic_number", "12345678")
-            addProperty("name_english", "Sanju")
-            addProperty("name_arabic", "ادريان توليدو كورتيز")
-            addProperty("emirates_id", "123456789012345")
+            addProperty("try_file_number", PreferenceManager.getTryFileNo(context))
+            addProperty("traffic_number", PreferenceManager.getTrafficNo(context))
+            addProperty("name_english", nameEnglish)
+            addProperty("name_arabic", nameArabic)
+            addProperty("emirates_id", emiratesID)
             addProperty("branch","1")
-            addProperty("training_language", "EN")
-            addProperty("nationality", "66")
-            addProperty("mother_tongue", "12")
-            addProperty("education_level", "4")
-            addProperty("date_of_birth", "2016-02-22")
-            addProperty("gender", "M")
-            addProperty("mobile_number", "8157864536")
-            addProperty("registration_type","1")
-            addProperty("student_no","12345678")
+            addProperty("training_language", trainingLanguage!!.languageCode)
+            addProperty("nationality", nationality!!.id.toString())
+            addProperty("mother_tongue", motherTongue!!.id.toString())
+            addProperty("education_level", educationLevel!!.id.toString())
+            addProperty("date_of_birth", dob)
+            addProperty("gender", gender)
+            addProperty("mobile_number", mobileNo)
+            addProperty("registration_type",registrationType)
+            addProperty("license_type_code", "1")
+            addProperty("education_type_code", "1")
+
+
 
         }
+//        val paramObject = JsonObject().apply {
+//            addProperty("try_file_number", "12345678")
+//            addProperty("traffic_number", "12345678")
+//            addProperty("name_english", "Sanju")
+//            addProperty("name_arabic", "ادريان توليدو كورتيز")
+//            addProperty("emirates_id", "123456789012345")
+//            addProperty("branch","1")
+//            addProperty("training_language", "EN")
+//            addProperty("nationality", "66")
+//            addProperty("mother_tongue", "12")
+//            addProperty("education_level", "4")
+//            addProperty("date_of_birth", "2016-02-22")
+//            addProperty("gender", "M")
+//            addProperty("mobile_number", "8157864536")
+//            addProperty("registration_type","1")
+//            addProperty("student_no","12345678")
+//
+//        }
 //        val string = "{\n" +
 //                "  \"traffic_number\": \"12345678\",\n" +
 //                "  \"try_file_number\": \"12345678\",\n" +
@@ -408,11 +415,25 @@ class EnrollActivity : AppCompatActivity() {
                 val obj = JSONObject(response)
                 var status_code=obj.getString("status")
                 var message = obj.getString("message")
-                CommonMethods.showLoginErrorPopUp(
-                    context,
-                    "Alert",
-                    message
-                )
+                var validation = obj.getString("validation")
+                if (validation.equals("")){
+                    CommonMethods.showLoginErrorPopUp(
+                        context,
+                        "Alert",
+                        message
+                    )
+                } else {
+                    CommonMethods.showLoginErrorPopUp(
+                        context,
+                        "Alert",
+                        validation
+                    )
+                }
+//                CommonMethods.showLoginErrorPopUp(
+//                    context,
+//                    "Alert",
+//                    message
+//                )
 
             }
         }
@@ -492,6 +513,7 @@ class EnrollActivity : AppCompatActivity() {
             override fun onItemClicked(position: Int, view: View) {
                 PreferenceManager.setEducation(context, AppController.educationLevelList[position].id)
                 textEducation.text = AppController.educationLevelList[position].name
+                educationLevel = AppController.educationLevelList[position]
                 dialog.dismiss()
             }
         })
@@ -518,6 +540,7 @@ class EnrollActivity : AppCompatActivity() {
             override fun onItemClicked(position: Int, view: View) {
                 PreferenceManager.setNationality(context, AppController.nationalityList[position].id)
                 textNationality.text = AppController.nationalityList[position].name
+                nationality = AppController.nationalityList[position]
                 dialog.dismiss()
             }
         })
@@ -543,6 +566,7 @@ class EnrollActivity : AppCompatActivity() {
             override fun onItemClicked(position: Int, view: View) {
                 PreferenceManager.setMotherTongue(context, AppController.motherTongueList[position].id)
                 textMotherTongue.text = AppController.motherTongueList[position].name
+                motherTongue = AppController.motherTongueList[position]
                 dialog.dismiss()
             }
         })
@@ -569,6 +593,7 @@ class EnrollActivity : AppCompatActivity() {
             override fun onItemClicked(position: Int, view: View) {
                 PreferenceManager.setTrainingLanguage(context, AppController.trainingLanguageList[position].languageCode)
                 textTrainingLanguage.text = AppController.trainingLanguageList[position].languageName
+                trainingLanguage = AppController.trainingLanguageList[position]
                 dialog.dismiss()
             }
         })
