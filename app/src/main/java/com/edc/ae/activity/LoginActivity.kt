@@ -342,18 +342,24 @@ class LoginActivity : AppCompatActivity() {
                             buttonSubmit.alpha = 1.0f
                             buttonSubmit.isEnabled = true
                             buttonSubmit.isClickable = true
+                            linearLayout.visibility=View.GONE
+                            resendOtpTxt.visibility=View.GONE
                         }
                         else
                         {
                             buttonSubmit.alpha = 0.5f
                             buttonSubmit.isEnabled = false
                             buttonSubmit.isClickable = false
+                            linearLayout.visibility=View.GONE
+                            resendOtpTxt.visibility=View.GONE
                         }
 
                     }else{
                         buttonSubmit.alpha = 0.5f
                         buttonSubmit.isEnabled = false
                         buttonSubmit.isClickable = false
+                        linearLayout.visibility=View.GONE
+                        resendOtpTxt.visibility=View.GONE
                     }
                 }
 
