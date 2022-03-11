@@ -361,64 +361,300 @@ class LoginActivity : AppCompatActivity() {
                 }
 
             })
-            buttonSubmit.setOnClickListener {
-                if (editEmailOtp.text?.trim()?.length!! > 0)
-                {
-                    val emailPattern = CommonMethods.isEmailValid(editEmailOtp.text.toString())
-                    if (!emailPattern) {
-                        Toast.makeText(this, "Enter a Valid Email", Toast.LENGTH_SHORT).show()
-                    } else{
 
-                        lifecycleScope.launch {
-                            try {
+            edt1.addTextChangedListener(object : TextWatcher{
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
 
-                                val paramObject = JsonObject().apply {
-                                    addProperty("email", editEmailOtp.text.toString().trim())
-                                }
-                                //  paramObject.put("email", edtEmail.text.toString())
-                                //    paramObject.put("password", edtPassword.text.toString())
-                                val call = RetrofitClient.get.generateOTP(paramObject)
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
-                                when (call.status) {
-                                    200 -> {
+                    if (edt1.text.trim().toString().equals("")|| edt2.text.trim().toString().equals("")|| edt3.text.trim().toString().equals("")|| edt4.text.trim().toString().equals("")|| edt5.text.trim().toString().equals("")|| edt6.text.trim().toString().equals(""))
+                    {
+                        buttonSubmit.alpha = 0.5f
+                        buttonSubmit.isEnabled = false
+                        buttonSubmit.isClickable = false
+                    }
+                    else
+                    {
 
-                                        Toast.makeText(context, "A mail was sent to your email ID", Toast.LENGTH_SHORT).show()
-                                        linearLayout.visibility=View.VISIBLE
-                                        resendOtpTxt.visibility=View.VISIBLE
-                                        buttonSubmit.setText("Verify")
-                                        buttonSubmit.alpha = 0.5f
-                                        buttonSubmit.isEnabled = false
-                                        buttonSubmit.isClickable = false
+                        buttonSubmit.alpha = 1.0f
+                        buttonSubmit.isEnabled = true
+                        buttonSubmit.isClickable = true
+                    }
 
-                                    }
-                                }
+                }
 
-                            } catch (httpException: HttpException) {
+                override fun afterTextChanged(s: Editable?) {
+                }
 
-                                val responseErrorBody = httpException.response()!!.errorBody()
-                                val response = responseErrorBody!!.string()
-                                val obj = JSONObject(response)
-                                var status_code=obj.getString("status")
-                                var message = obj.getString("message")
-                                linearLayout.visibility=View.GONE
-                                resendOtpTxt.visibility=View.GONE
-                                CommonMethods.showLoginErrorPopUp(
-                                    context,
-                                    "Alert",
-                                    message
-                                )
+            })
+            edt2.addTextChangedListener(object : TextWatcher{
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                    if (edt1.text.trim().toString().equals("")|| edt2.text.trim().toString().equals("")|| edt3.text.trim().toString().equals("")|| edt4.text.trim().toString().equals("")|| edt5.text.trim().toString().equals("")|| edt6.text.trim().toString().equals(""))
+                    {
+                        buttonSubmit.alpha = 0.5f
+                        buttonSubmit.isEnabled = false
+                        buttonSubmit.isClickable = false
+                    }
+                    else
+                    {
+
+                        buttonSubmit.alpha = 1.0f
+                        buttonSubmit.isEnabled = true
+                        buttonSubmit.isClickable = true
+                    }
+
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+                }
+
+            })
+            edt3.addTextChangedListener(object : TextWatcher{
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                    if (edt1.text.trim().toString().equals("")|| edt2.text.trim().toString().equals("")|| edt3.text.trim().toString().equals("")|| edt4.text.trim().toString().equals("")|| edt5.text.trim().toString().equals("")|| edt6.text.trim().toString().equals(""))
+                    {
+                        buttonSubmit.alpha = 0.5f
+                        buttonSubmit.isEnabled = false
+                        buttonSubmit.isClickable = false
+                    }
+                    else
+                    {
+
+                        buttonSubmit.alpha = 1.0f
+                        buttonSubmit.isEnabled = true
+                        buttonSubmit.isClickable = true
+                    }
+
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+                }
+
+            })
+            edt4.addTextChangedListener(object : TextWatcher{
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                    if (edt1.text.trim().toString().equals("")|| edt2.text.trim().toString().equals("")|| edt3.text.trim().toString().equals("")|| edt4.text.trim().toString().equals("")|| edt5.text.trim().toString().equals("")|| edt6.text.trim().toString().equals(""))
+                    {
+                        buttonSubmit.alpha = 0.5f
+                        buttonSubmit.isEnabled = false
+                        buttonSubmit.isClickable = false
+                    }
+                    else
+                    {
+
+                        buttonSubmit.alpha = 1.0f
+                        buttonSubmit.isEnabled = true
+                        buttonSubmit.isClickable = true
+                    }
+
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+                }
+
+            })
+            edt5.addTextChangedListener(object : TextWatcher{
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                    if (edt1.text.trim().toString().equals("")|| edt2.text.trim().toString().equals("")|| edt3.text.trim().toString().equals("")|| edt4.text.trim().toString().equals("")|| edt5.text.trim().toString().equals("")|| edt6.text.trim().toString().equals(""))
+                    {
+                        buttonSubmit.alpha = 0.5f
+                        buttonSubmit.isEnabled = false
+                        buttonSubmit.isClickable = false
+                    }
+                    else
+                    {
+
+                        buttonSubmit.alpha = 1.0f
+                        buttonSubmit.isEnabled = true
+                        buttonSubmit.isClickable = true
+                    }
+
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+                }
+
+            })
+            edt6.addTextChangedListener(object : TextWatcher{
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                    if (edt1.text.trim().toString().equals("")|| edt2.text.trim().toString().equals("")|| edt3.text.trim().toString().equals("")|| edt4.text.trim().toString().equals("")|| edt5.text.trim().toString().equals("")|| edt6.text.trim().toString().equals(""))
+                    {
+                        buttonSubmit.alpha = 0.5f
+                        buttonSubmit.isEnabled = false
+                        buttonSubmit.isClickable = false
+                    }
+                    else
+                    {
+
+                        buttonSubmit.alpha = 1.0f
+                        buttonSubmit.isEnabled = true
+                        buttonSubmit.isClickable = true
+                    }
+
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+                }
+
+            })
+
+            resendOtpTxt.setOnClickListener(View.OnClickListener {
+
+                lifecycleScope.launch {
+                    try {
+
+                        val paramObject = JsonObject().apply {
+                            addProperty("email", editEmailOtp.text.toString().trim())
+                        }
+                        //  paramObject.put("email", edtEmail.text.toString())
+                        //    paramObject.put("password", edtPassword.text.toString())
+                        val call = RetrofitClient.get.generateOTP(paramObject)
+
+                        when (call.status) {
+                            200 -> {
+
+                                Toast.makeText(context, "A mail was sent to your email ID", Toast.LENGTH_SHORT).show()
+                                linearLayout.visibility=View.VISIBLE
+                                resendOtpTxt.visibility=View.VISIBLE
+                                buttonSubmit.setText("Verify")
+                                buttonSubmit.alpha = 0.5f
+                                buttonSubmit.isEnabled = false
+                                buttonSubmit.isClickable = false
 
                             }
                         }
 
+                    } catch (httpException: HttpException) {
 
-
-
+                        val responseErrorBody = httpException.response()!!.errorBody()
+                        val response = responseErrorBody!!.string()
+                        val obj = JSONObject(response)
+                        var status_code=obj.getString("status")
+                        var message = obj.getString("message")
+                        linearLayout.visibility=View.GONE
+                        resendOtpTxt.visibility=View.GONE
+                        CommonMethods.showLoginErrorPopUp(
+                            context,
+                            "Alert",
+                            message
+                        )
 
                     }
-                } else{
-                    Toast.makeText(this, "Cannot be left empty", Toast.LENGTH_SHORT).show()
                 }
+
+
+            })
+            buttonSubmit.setOnClickListener {
+                if(buttonSubmit.text.equals("Verify"))
+                {
+                    if (CommonMethods.isInternetAvailable(context)) {
+                        var otptxt=edt1.text.trim().toString()+edt2.text.trim().toString()+edt3.text.trim().toString()+edt4.text.trim().toString()+edt5.text.trim().toString()+edt6.text.trim().toString()
+                        callAPIOtp(editEmailOtp.text!!.trim().toString(),otptxt,"2",dialog)
+                        //   callLoginApi(emailTxt.text.toString(), passwordTxt.text.toString())
+                    } else {
+                        CommonMethods.showLoginErrorPopUp(
+                            context,
+                            "Alert",
+                            "Network error occurred. Please check your internet connection and try again later."
+                        )
+                    }
+                }
+                else
+                {
+                    lifecycleScope.launch {
+                        try {
+
+                            val paramObject = JsonObject().apply {
+                                addProperty("email", editEmailOtp.text.toString().trim())
+                            }
+                            //  paramObject.put("email", edtEmail.text.toString())
+                            //    paramObject.put("password", edtPassword.text.toString())
+                            val call = RetrofitClient.get.generateOTP(paramObject)
+
+                            when (call.status) {
+                                200 -> {
+
+                                    Toast.makeText(context, "A mail was sent to your email ID", Toast.LENGTH_SHORT).show()
+                                    linearLayout.visibility=View.VISIBLE
+                                    resendOtpTxt.visibility=View.VISIBLE
+                                    buttonSubmit.setText("Verify")
+                                    buttonSubmit.alpha = 0.5f
+                                    buttonSubmit.isEnabled = false
+                                    buttonSubmit.isClickable = false
+
+                                }
+                            }
+
+                        } catch (httpException: HttpException) {
+
+                            val responseErrorBody = httpException.response()!!.errorBody()
+                            val response = responseErrorBody!!.string()
+                            val obj = JSONObject(response)
+                            var status_code=obj.getString("status")
+                            var message = obj.getString("message")
+                            linearLayout.visibility=View.GONE
+                            resendOtpTxt.visibility=View.GONE
+                            CommonMethods.showLoginErrorPopUp(
+                                context,
+                                "Alert",
+                                message
+                            )
+
+                        }
+                    }
+                }
+
             }
 
 
@@ -429,6 +665,8 @@ class LoginActivity : AppCompatActivity() {
             dialog.setContentView(view)
             dialog.show()
         }
+
+
 
 
 
@@ -459,7 +697,7 @@ class LoginActivity : AppCompatActivity() {
                         if (CommonMethods.isInternetAvailable(context)) {
                             PreferenceManager.setEmail(context, edtEmail.text!!.trim().toString())
                             PreferenceManager.setPassword(context, edtPassword.text!!.trim().toString())
-                            callAPI()
+                            callAPI(edtEmail.text!!.trim().toString(),edtPassword.text!!.trim().toString(),"1")
                             //   callLoginApi(emailTxt.text.toString(), passwordTxt.text.toString())
                         } else {
                             CommonMethods.showLoginErrorPopUp(
@@ -477,7 +715,7 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    private fun callAPI() {
+    private fun callAPI(email:String,password:String,authentication:String) {
         var progressBarDialog: ProgressBarDialog? = null
         progressBarDialog = ProgressBarDialog(this)
         progressBarDialog.show()
@@ -486,8 +724,10 @@ class LoginActivity : AppCompatActivity() {
             try {
 
                 val paramObject = JsonObject().apply {
-                    addProperty("email", edtEmail.text.toString())
-                    addProperty("password",edtPassword.text.toString()) }
+                    addProperty("email", email)
+                    addProperty("password",password)
+                    addProperty("authentication_method",authentication)
+                }
               //  paramObject.put("email", edtEmail.text.toString())
             //    paramObject.put("password", edtPassword.text.toString())
                 val call = RetrofitClient.get.userLogin(paramObject)
@@ -496,7 +736,6 @@ class LoginActivity : AppCompatActivity() {
                     200 -> {
                         progressBarDialog.dismiss()
                         PreferenceManager.saveLoginStatusFlag(this@LoginActivity, "yes")
-
                         var access_token = call.data.credentials.access_token
                         var refresh_token = call.data.credentials.refresh_token
                         var user = call.data.student_name
@@ -510,8 +749,6 @@ class LoginActivity : AppCompatActivity() {
                         PreferenceManager.setStudentStatus(this@LoginActivity, call.data.student_status.toString())
                         val intent: Intent = Intent(this@LoginActivity, HomeBaseUserActivity::class.java)
                         startActivity(intent)
-
-
                         overridePendingTransition(0, 0)
                         finish()
                     }
@@ -535,6 +772,63 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun callAPIOtp(email:String,password:String,authentication:String,dialog: BottomSheetDialog) {
+        var progressBarDialog: ProgressBarDialog? = null
+        progressBarDialog = ProgressBarDialog(this)
+        progressBarDialog.show()
+
+        lifecycleScope.launch {
+            try {
+
+                val paramObject = JsonObject().apply {
+                    addProperty("email", email)
+                    addProperty("password",password)
+                    addProperty("authentication_method",authentication)
+                }
+                //  paramObject.put("email", edtEmail.text.toString())
+                //    paramObject.put("password", edtPassword.text.toString())
+                val call = RetrofitClient.get.userLogin(paramObject)
+                Log.e("Respo",call.toString())
+                when (call.status) {
+                    200 -> {
+                        dialog.dismiss()
+                        progressBarDialog.dismiss()
+                        PreferenceManager.saveLoginStatusFlag(this@LoginActivity, "yes")
+                        var access_token = call.data.credentials.access_token
+                        var refresh_token = call.data.credentials.refresh_token
+                        var user = call.data.student_name
+                        var student_id = call.data.student_id
+                        var notificationStatus = call.data.notification_status
+                        PreferenceManager.saveAccessToken(this@LoginActivity, access_token)
+                        PreferenceManager.saveRefreshToken(this@LoginActivity, refresh_token)
+                        PreferenceManager.saveUserName(this@LoginActivity, user)
+                        PreferenceManager.saveStudentID(this@LoginActivity, student_id)
+                        PreferenceManager.saveNotificationStatus(this@LoginActivity, notificationStatus.toString())
+                        PreferenceManager.setStudentStatus(this@LoginActivity, call.data.student_status.toString())
+                        val intent: Intent = Intent(this@LoginActivity, HomeBaseUserActivity::class.java)
+                        startActivity(intent)
+                        overridePendingTransition(0, 0)
+                        finish()
+                    }
+                }
+
+            } catch (httpException: HttpException) {
+                progressBarDialog.dismiss()
+
+                val responseErrorBody = httpException.response()!!.errorBody()
+                val response = responseErrorBody!!.string()
+                val obj = JSONObject(response)
+                var status_code=obj.getString("status")
+                var message = obj.getString("message")
+                CommonMethods.showLoginErrorPopUp(
+                    context,
+                    "Alert",
+                    message
+                )
+
+            }
+        }
+    }
 
     override fun onBackPressed() {
         super.onBackPressed()
