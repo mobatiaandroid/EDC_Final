@@ -96,7 +96,7 @@ class HomeBaseUserActivity : AppCompatActivity() {
         paymentBtn.setOnClickListener { _ ->
             if (drawerLayout.isOpen) drawerLayout.close()
 
-            navControl?.navigate(R.id.paymentFragment)
+            navControl?.navigate(R.id.paymentFragmentNew)
         }
 
 //        contactBtn.setOnClickListener { _ ->

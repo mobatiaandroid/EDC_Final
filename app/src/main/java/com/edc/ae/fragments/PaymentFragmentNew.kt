@@ -90,7 +90,7 @@ class PaymentFragmentNew : Fragment(), CallbackPaymentInterface {
                     addProperty("order_id", courseID)
                     addProperty("fee_code", valueSelectCourse)
                     addProperty("cource_name", selectedCourse.text.toString())
-                    addProperty("amount", textPrice.toString())
+                    addProperty("amount", textPrice.text.toString())
                     addProperty("device_type", "2")
                     addProperty("device_name", getDeviceName() )
                     addProperty("app_version", "0.0")
@@ -117,6 +117,36 @@ class PaymentFragmentNew : Fragment(), CallbackPaymentInterface {
                                 currency = call.data.currency.toString()
                                 amount = call.data.amount.toString()
                                 initiateSuccess = true
+                                val billingData = PaymentSdkBillingDetails(
+                                    "City",
+                                    "AE",
+                                    "",
+                                    "",
+                                    "", "Abu Dhabi",
+                                    "Abu Dhabi", "" // set values from preference
+                                )
+                                val configData =
+                                    PaymentSdkConfigBuilder(profileID, serverKey, clientKey,
+                                        (amount.toDouble() ?: 0.0) as Double, currency)
+                                        .setCartDescription(valueSelectCourse)
+                                        .setLanguageCode(locale)
+                                        .setBillingData(billingData)
+                                        .setMerchantCountryCode("AE") // ISO alpha 2
+//            .setShippingData(shippingData)
+                                        .setCartId(orderID)
+                                        .setMerchantIcon(resources.getDrawable(R.drawable.playstore_icon))
+                                        .setTransactionType(PaymentSdkTransactionType.SALE)
+                                        .showBillingInfo(true)
+                                        .showShippingInfo(false)
+                                        .forceShippingInfo(false)
+                                        .setScreenTitle(screenTitle)
+//            .setMerchantIcon(resources.getDrawable(R.drawable.playstore_icon))
+                                        .build()
+                                PaymentSdkActivity.startCardPayment(
+                                    context as Activity,
+                                    configData,
+                                    callback = this@PaymentFragmentNew
+                                )
 
                             }
                             302 -> {
@@ -124,13 +154,13 @@ class PaymentFragmentNew : Fragment(), CallbackPaymentInterface {
                             }
                             401 -> {
                                 progressBarDialog.dismiss()
-//                                CommonMethods.callTokenRefreshAPI(requireActivity())
-//                                callCourseCostAPI()
+                                CommonMethods.callTokenRefreshAPI(requireActivity())
+                                callCourseCostAPI()
                             }
                         }
 
                     } catch (httpException: HttpException) {
-                        progressBarDialog!!.dismiss()
+                        progressBarDialog.dismiss()
                         val responseErrorBody = httpException.response()!!.errorBody()
                         val response = responseErrorBody!!.string()
                         val obj = JSONObject(response)
@@ -145,36 +175,36 @@ class PaymentFragmentNew : Fragment(), CallbackPaymentInterface {
                     }
                 }
                 if (initiateSuccess){
-                    val billingData = PaymentSdkBillingDetails(
-                        "City",
-                        "AE",
-                        "",
-                        "",
-                        "", "Abu Dhabi",
-                        "Abu Dhabi", "" // set values from preference
-                    )
-                    val configData =
-                        PaymentSdkConfigBuilder(profileID, serverKey, clientKey,
-                            (amount ?: 0.0) as Double, currency)
-                            .setCartDescription(valueSelectCourse)
-                            .setLanguageCode(locale)
-                            .setBillingData(billingData)
-                            .setMerchantCountryCode("AE") // ISO alpha 2
-//            .setShippingData(shippingData)
-                            .setCartId(orderID)
-                            .setMerchantIcon(resources.getDrawable(R.drawable.playstore_icon))
-                            .setTransactionType(PaymentSdkTransactionType.SALE)
-                            .showBillingInfo(true)
-                            .showShippingInfo(false)
-                            .forceShippingInfo(false)
-                            .setScreenTitle(screenTitle)
-//            .setMerchantIcon(resources.getDrawable(R.drawable.playstore_icon))
-                            .build()
-                    PaymentSdkActivity.startCardPayment(
-                        context as Activity,
-                        configData,
-                        callback = this@PaymentFragmentNew
-                    )
+//                    val billingData = PaymentSdkBillingDetails(
+//                        "City",
+//                        "AE",
+//                        "",
+//                        "",
+//                        "", "Abu Dhabi",
+//                        "Abu Dhabi", "" // set values from preference
+//                    )
+//                    val configData =
+//                        PaymentSdkConfigBuilder(profileID, serverKey, clientKey,
+//                            (amount.toDouble() ?: 0.0) as Double, currency)
+//                            .setCartDescription(valueSelectCourse)
+//                            .setLanguageCode(locale)
+//                            .setBillingData(billingData)
+//                            .setMerchantCountryCode("AE") // ISO alpha 2
+////            .setShippingData(shippingData)
+//                            .setCartId(orderID)
+//                            .setMerchantIcon(resources.getDrawable(R.drawable.playstore_icon))
+//                            .setTransactionType(PaymentSdkTransactionType.SALE)
+//                            .showBillingInfo(true)
+//                            .showShippingInfo(false)
+//                            .forceShippingInfo(false)
+//                            .setScreenTitle(screenTitle)
+////            .setMerchantIcon(resources.getDrawable(R.drawable.playstore_icon))
+//                            .build()
+//                    PaymentSdkActivity.startCardPayment(
+//                        context as Activity,
+//                        configData,
+//                        callback = this@PaymentFragmentNew
+//                    )
 
                 }
 
@@ -341,6 +371,7 @@ class PaymentFragmentNew : Fragment(), CallbackPaymentInterface {
                         AppController.courseList.addAll(call.data)
                     }
                     401 -> {
+                        progressBarDialog?.dismiss()
                         CommonMethods.callTokenRefreshAPI(context as Activity)
                         callCourseDetailsAPI()
                     }
@@ -372,6 +403,11 @@ class PaymentFragmentNew : Fragment(), CallbackPaymentInterface {
             addProperty("merchant_order_reference", transactionRef)
             addProperty("gateway_response", JSONSTRING)
         }
+        callPaymentSuccessAPI(paramObject2,JSONSTRING)
+
+    }
+
+    private fun callPaymentSuccessAPI(paramObject2: JsonObject, jsonString: String) {
         var progressBarDialog: ProgressBarDialog? = null
         progressBarDialog = activity?.let { ProgressBarDialog(it) }
         progressBarDialog?.show()
@@ -392,6 +428,11 @@ class PaymentFragmentNew : Fragment(), CallbackPaymentInterface {
                         progressBarDialog?.dismiss()
                         val intent = Intent(activity, HomeBaseUserActivity::class.java)
                         startActivity(intent)
+                    }
+                    401 -> {
+                        progressBarDialog?.dismiss()
+                        CommonMethods.callTokenRefreshAPI(context as Activity)
+                        callPaymentSuccessAPI( paramObject2,jsonString)
                     }
 
                 }

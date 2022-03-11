@@ -141,6 +141,11 @@ class FeedbackActivity : AppCompatActivity() {
                         Toast.makeText(this@FeedbackActivity, "Feedback registered Successfully", Toast.LENGTH_SHORT).show()
                         finish()
                     }
+                    401 -> {
+                        progressBarDialog.dismiss()
+                        CommonMethods.callTokenRefreshAPI(this@FeedbackActivity)
+                        feedbackAPICall()
+                    }
                     else -> {
                         progressBarDialog.hide()
                         println("Error")

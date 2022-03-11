@@ -174,7 +174,7 @@ interface RetrofitClient {
     suspend fun getValidationResult(
         @Header("Authorization") authHeader: String?,
         @Body json: JsonObject
-    ): ValidationResultModelNew
+    ): TempModel
 
     @Headers("Content-Type: application/json;charset=UTF-8")
     @GET("srs/get-course-details")

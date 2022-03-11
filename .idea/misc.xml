@@ -74,6 +74,7 @@
         <entry key="app/src/main/res/layout/fragment_notification_new.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_payment.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_payment_instruction.xml" value="0.15052083333333333" />
+        <entry key="app/src/main/res/layout/fragment_payment_new.xml" value="0.11587837837837837" />
         <entry key="app/src/main/res/layout/fragment_service.xml" value="0.1287037037037037" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.1287037037037037" />

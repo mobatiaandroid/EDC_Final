@@ -1,6 +1,6 @@
 package com.edc.ae.model
 
-data class ValidationResultModelNew(
+data class TempModel(
     val `data`: Data?,
     val exception: Exception?,
     val message: String?,
@@ -20,7 +20,6 @@ data class ValidationResultModelNew(
         val fullNameArabic: String?,
         val gender: String?,
         val language: String?,
-        val licenseTypeCode: String?,
         val license_type_code: String?,
         val mobileNo: String?,
         val motherTongue: String?,
@@ -29,7 +28,6 @@ data class ValidationResultModelNew(
         val studentNo: String?,
         val trafficNo: String?,
         val trainingLanguage: String?,
-        val trainingTypeCode: String?,
         val training_type_code: String?,
         val tryFileNo: String?,
         val unifiedId: String?,

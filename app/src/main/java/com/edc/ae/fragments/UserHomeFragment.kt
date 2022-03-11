@@ -23,7 +23,6 @@ import com.edc.ae.model.DevRegResponseModel
 import com.edc.ae.model.SocialmediaModel
 import com.edc.ae.util.*
 import com.google.gson.JsonObject
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.fragment_home_user.*
 import kotlinx.coroutines.launch
 import org.json.JSONObject
@@ -114,7 +113,7 @@ class UserHomeFragment : Fragment() {
 
         }
         constraintPayment.setOnClickListener {
-            findNavController().navigate(R.id.paymentFragment)
+            findNavController().navigate(R.id.paymentFragmentNew)
         }
         constraintFeedback.setOnClickListener {
             val intent: Intent = Intent(activity, FeedbackActivity::class.java)
@@ -213,6 +212,10 @@ class UserHomeFragment : Fragment() {
                         // progressBarDialog?.dismiss()
                         devRegResponse = call
                     }
+                    401 -> {
+                        CommonMethods.callTokenRefreshAPI(context as Activity)
+                        callDeviceRegistrationAPI()
+                    }
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -239,6 +242,11 @@ class UserHomeFragment : Fragment() {
                         val intent = Intent(activity, HomeBaseGuestActivity::class.java)
                         startActivity(intent)
                         activity?.finish()
+                    }
+                    401 -> {
+                        progressBarDialog.dismiss()
+                        CommonMethods.callTokenRefreshAPI(context as Activity)
+                        callLogoutApi()
                     }
                 }
             } catch (e: Exception) {

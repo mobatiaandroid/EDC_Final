@@ -1,5 +1,6 @@
 package com.edc.ae.activity
 
+import android.app.Activity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -138,6 +139,11 @@ class ComplaintsActivity : AppCompatActivity() {
                         progressBarDialog.hide()
                         Toast.makeText(this@ComplaintsActivity, "Complaint registered Successfully", Toast.LENGTH_SHORT).show()
                         finish()
+                    }
+                    401 -> {
+                        progressBarDialog.dismiss()
+                        CommonMethods.callTokenRefreshAPI(this@ComplaintsActivity)
+                        registerComplain()
                     }
                     else -> {
                         progressBarDialog.hide()

@@ -27,7 +27,7 @@
             app:destination="@id/contactFragment" />
         <action
             android:id="@+id/action_homeFragment_to_paymentFragment"
-            app:destination="@id/paymentFragment" />
+            app:destination="@id/paymentFragmentNew" />
     </fragment>
     <fragment
         android:id="@+id/newsFragment"
@@ -96,8 +96,8 @@
         android:label="fragment_contact_bottom_sheet"
         tools:layout="@layout/fragment_contact_bottom_sheet" />
     <fragment
-        android:id="@+id/paymentFragment"
-        android:name="com.edc.ae.fragments.PaymentFragment"
-        android:label="PaymentFragment" />
+        android:id="@+id/paymentFragmentNew"
+        android:name="com.edc.ae.fragments.PaymentFragmentNew"
+        android:label="PaymentFragmentNew" />
 
 </navigation>

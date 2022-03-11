@@ -171,8 +171,8 @@ class PaymentFragment : Fragment(), CallbackPaymentInterface {
                             }
                             401 -> {
                                 progressBarDialog?.dismiss()
-//                                CommonMethods.callTokenRefreshAPI(requireActivity())
-//                                callCourseCostAPI()
+                                CommonMethods.callTokenRefreshAPI(requireActivity())
+                                callCourseCostAPI()
                             }
                         }
 
@@ -377,6 +377,11 @@ class PaymentFragment : Fragment(), CallbackPaymentInterface {
                         progressBarDialog?.dismiss()
                         AppController.courseList.addAll(call.data)
                     }
+                    401 -> {
+                        progressBarDialog?.dismiss()
+                        CommonMethods.callTokenRefreshAPI(context as Activity)
+                        callAPI()
+                    }
                 }
 
             } catch (e: Exception) {
@@ -438,6 +443,11 @@ class PaymentFragment : Fragment(), CallbackPaymentInterface {
 //            addProperty("merchant_order_reference",transactionRef)
 //            addProperty("gateway_response", JSONSTRING)
 //        }
+        callPaymentSuccessAPI(JSONSTRING,paramObject2)
+
+    }
+
+    private fun callPaymentSuccessAPI(JSONSTRING: String, paramObject2: JsonObject) {
         Log.e("Paymmenjtsiofhos", JSONSTRING)
         var progressBarDialog: ProgressBarDialog? = null
         progressBarDialog = activity?.let { ProgressBarDialog(it) }
@@ -460,6 +470,11 @@ class PaymentFragment : Fragment(), CallbackPaymentInterface {
                         val intent = Intent(activity, HomeBaseUserActivity::class.java)
                         startActivity(intent)
                     }
+                    401 -> {
+                        progressBarDialog?.dismiss()
+                        CommonMethods.callTokenRefreshAPI(context as Activity)
+                        callPaymentSuccessAPI(JSONSTRING, paramObject2)
+                    }
 
                 }
 
@@ -468,8 +483,6 @@ class PaymentFragment : Fragment(), CallbackPaymentInterface {
             }
         }
     }
-
-
 
 
     //send result to sachu

@@ -24,6 +24,7 @@ import android.util.Log
 import com.edc.ae.activity.WebViewActivity
 import com.edc.ae.model.DevRegResponseModel
 import com.edc.ae.model.SocialmediaModel
+import com.edc.ae.util.CommonMethods
 import com.google.gson.JsonObject
 import java.util.Collections.emptyList
 
@@ -110,6 +111,10 @@ class GuestHomeFragment : Fragment() {
                     201 -> {
                         // progressBarDialog?.dismiss()
                         devRegResponse = call
+                    }
+                    401 -> {
+                        CommonMethods.callTokenRefreshAPI(context as Activity)
+                        callDeviceRegistrationAPI()
                     }
                 }
             } catch (e: Exception) {

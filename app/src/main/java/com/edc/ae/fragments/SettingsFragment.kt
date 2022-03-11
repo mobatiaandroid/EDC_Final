@@ -309,6 +309,11 @@ class SettingsFragment : Fragment() {
                         progressBarDialog.dismiss()
                         dialog.dismiss()
                     }
+                    401 -> {
+                        progressBarDialog.dismiss()
+                        CommonMethods.callTokenRefreshAPI(context as Activity)
+                        callChangePasswordApi(oldPassword,newPassword,confirmPassword, dialog)
+                    }
                 }
 
             } catch (httpException: HttpException) {
@@ -346,6 +351,11 @@ class SettingsFragment : Fragment() {
                         var settingsAdapter= SettingsListAdapter(settingsArrayList,mContext)
                         settingsRecycler.adapter=settingsAdapter
 
+                    }
+                    401 -> {
+                        progressBarDialog.dismiss()
+                        CommonMethods.callTokenRefreshAPI(context as Activity)
+                        callNotificationStatusUpdate()
                     }
                 }
 

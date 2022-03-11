@@ -45,6 +45,8 @@ class EnrollActivity : AppCompatActivity() {
     var registrationType: String? = "1"
     var motherTongue: EnrollDetailsModel.Data.MotherTongue? = EnrollDetailsModel.Data.MotherTongue(0,"")
     var educationLevel: EnrollDetailsModel.Data.EducationLevel? = EnrollDetailsModel.Data.EducationLevel(0,"")
+    var licenseTypeCode = ""
+    var trainingTypeCode = ""
     var cal = Calendar.getInstance()
 
     enum class CurrentTab {
@@ -195,6 +197,17 @@ class EnrollActivity : AppCompatActivity() {
                                 motherTongue = each
                             }
                         }
+//                        trainingTypeCode = call.data.trainingTypeCode
+                        if (call.data.training_type_code == "" || call.data.training_type_code == "0"){
+                            trainingTypeCode = "1"
+                        } else {
+                            trainingTypeCode = call.data.training_type_code.toString()
+                        }
+                        if (call.data.license_type_code == "" || call.data.license_type_code == "0"){
+                            licenseTypeCode = "1"
+                        } else {
+                            licenseTypeCode = call.data.license_type_code.toString()
+                        }
 
 //                        textNameEnglish.text = nameEnglish
 //                        textNameArabic.text = nameArabic
@@ -252,9 +265,16 @@ class EnrollActivity : AppCompatActivity() {
                     }
                     400 -> {
                         // dont know error case
+                        progressBarDialog.dismiss()
+
                         arrowTrafficNo.setImageResource(R.drawable.invalid_close)
                         arrowTryFileNo.setImageResource(R.drawable.invalid_close)
                         Toast.makeText(context, call.validation, Toast.LENGTH_SHORT).show()
+                    }
+                    401 -> {
+                        progressBarDialog.dismiss()
+                        CommonMethods.callTokenRefreshAPI(context as Activity)
+                        callValidateAPI()
                     }
 
                 }
@@ -270,7 +290,7 @@ class EnrollActivity : AppCompatActivity() {
                 CommonMethods.showLoginErrorPopUp(
                     context,
                     "Alert",
-                    "brr"
+                    message
                 )
 
             }
@@ -325,8 +345,8 @@ class EnrollActivity : AppCompatActivity() {
             addProperty("gender", gender)
             addProperty("mobile_number", mobileNo)
             addProperty("registration_type",registrationType)
-            addProperty("license_type_code", "1")
-            addProperty("education_type_code", "1")
+            addProperty("license_type_code", licenseTypeCode)
+            addProperty("education_type_code", trainingTypeCode)
 
 
 
@@ -404,6 +424,11 @@ class EnrollActivity : AppCompatActivity() {
 
 
 
+                    }
+                    401 -> {
+                        progressBarDialog?.dismiss()
+                        CommonMethods.callTokenRefreshAPI(context)
+                        callRegisterAPI()
                     }
                     // handle error cases
                 }

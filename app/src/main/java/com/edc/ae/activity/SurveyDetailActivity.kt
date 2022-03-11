@@ -21,6 +21,7 @@ import com.edc.ae.adapter.SurveyAnswerAdapter
 import com.edc.ae.api.RetrofitClient
 import com.edc.ae.model.SurveySubmitModel
 import com.edc.ae.model.SurveySubmitQuestionModel
+import com.edc.ae.util.CommonMethods
 import com.edc.ae.util.OnItemClickListener
 import com.edc.ae.util.PreferenceManager
 import com.edc.ae.util.addOnItemClickListener
@@ -448,6 +449,10 @@ class SurveyDetailActivity : AppCompatActivity() {
 //                        finish()
 
                         showSurveySuccess(mContext)
+                    }
+                    401 -> {
+                        CommonMethods.callTokenRefreshAPI(this@SurveyDetailActivity)
+                        callSubmitApi(model)
                     }
                     else -> {
                         println("Error")

@@ -16,6 +16,7 @@ import com.edc.ae.activity.HomeBaseGuestActivity
 import com.edc.ae.activity.SurveyDetailActivity
 import com.edc.ae.adapter.SurveyListAdapter
 import com.edc.ae.api.RetrofitClient
+import com.edc.ae.util.CommonMethods
 import com.edc.ae.util.OnItemClickListener
 import com.edc.ae.util.PreferenceManager
 import com.edc.ae.util.addOnItemClickListener
@@ -88,6 +89,10 @@ class SurveyFragment : Fragment() {
                         dataArrayList.addAll(call.data)
                         var surveyAdapter= SurveyListAdapter(dataArrayList,mContext)
                         surveyListRecycler.adapter=surveyAdapter
+                    }
+                    401 -> {
+                        CommonMethods.callTokenRefreshAPI(context as Activity)
+                        getSurveyApi()
                     }
                     else -> {
 
