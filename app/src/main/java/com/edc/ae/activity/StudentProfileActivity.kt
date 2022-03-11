@@ -45,7 +45,7 @@ class StudentProfileActivity : AppCompatActivity() {
     var studentNumber:String?=""
     var trafficNumber:String?=""
     var tryfileNumber:String?=""
-    var branchNumber:Int?=-1
+    var branchNumber:String?=""
     var branchName:String?=""
     var gender:String?=""
     var email:String?=""
