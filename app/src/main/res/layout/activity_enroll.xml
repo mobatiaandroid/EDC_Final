@@ -405,14 +405,12 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <EditText
                     android:id="@+id/textEmiratesID"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_margin="8dp"
                     android:background="@null"
-                    android:inputType="none"
-                    android:editable="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/arrowEmiratesID"
                     app:layout_constraintStart_toStartOf="parent"

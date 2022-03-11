@@ -339,17 +339,18 @@ class EnrollActivity : AppCompatActivity() {
         progressBarDialog.show()
 
         val paramObject = JsonObject().apply {
-            addProperty("try_file_number", PreferenceManager.getTryFileNo(context))
+
             addProperty("traffic_number", PreferenceManager.getTrafficNo(context))
+            addProperty("try_file_number", PreferenceManager.getTryFileNo(context))
             addProperty("name_english", nameEnglish)
             addProperty("name_arabic", nameArabic)
-            addProperty("emirates_id", emiratesID)
+            addProperty("emirates_id", textEmiratesID.text.toString())
             addProperty("branch","1")
             addProperty("training_language", trainingLanguage!!.languageCode)
             addProperty("nationality", nationality!!.id.toString())
             addProperty("mother_tongue", motherTongue!!.id.toString())
             addProperty("education_level", educationLevel!!.id.toString())
-            addProperty("date_of_birth", dob)
+            addProperty("date_of_birth", "2016-02-22")
             addProperty("gender", gender)
             addProperty("mobile_number", mobileNo)
             addProperty("registration_type",registrationType)
