@@ -415,6 +415,7 @@ class EnrollActivity : AppCompatActivity() {
                             startActivity(intent)
                         } else {
                             CommonMethods.showLoginErrorPopUp(context,"",call.data.message.toString())
+                            finish()
                         }
 
 
