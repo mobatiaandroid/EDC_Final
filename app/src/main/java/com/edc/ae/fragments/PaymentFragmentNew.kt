@@ -16,6 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edc.ae.R
+import com.edc.ae.activity.HomeBaseGuestActivity
 import com.edc.ae.activity.HomeBaseUserActivity
 import com.edc.ae.adapter.CostAdapter
 import com.edc.ae.adapter.SelectorListAdapter
@@ -28,6 +29,7 @@ import com.payment.paymentsdk.PaymentSdkConfigBuilder
 import com.payment.paymentsdk.integrationmodels.*
 import com.payment.paymentsdk.sharedclasses.interfaces.CallbackPaymentInterface
 import kotlinx.android.synthetic.main.activity_payment.recycler
+import kotlinx.android.synthetic.main.fragment_news_letter.*
 import kotlinx.android.synthetic.main.fragment_payment.paymentButton
 import kotlinx.android.synthetic.main.fragment_payment.selectedCourse
 import kotlinx.coroutines.launch
@@ -78,6 +80,15 @@ class PaymentFragmentNew : Fragment(), CallbackPaymentInterface {
         textPrice2 = view.findViewById(R.id.totalPrice2)
 
         callCourseDetailsAPI()
+        navBtn.setOnClickListener { _ ->
+            if (activity?.let { PreferenceManager.getLoginStatus(it) } == "no") {
+                (activity as HomeBaseGuestActivity).openNav()
+
+            } else {
+                (activity as HomeBaseUserActivity).openNav()
+
+            }
+        }
         selectCourse.setOnClickListener {
             showCourseSelectSheet()
         }
@@ -368,7 +379,11 @@ class PaymentFragmentNew : Fragment(), CallbackPaymentInterface {
                 when (call.status) {
                     200 -> {
                         progressBarDialog?.dismiss()
-                        AppController.courseList.addAll(call.data)
+                        if(call.data.isEmpty()) {
+                            CommonMethods.showLoginErrorPopUp(context as Activity,"Alert","There are no available courses!")
+                        } else {
+                            AppController.courseList.addAll(call.data)
+                        }
                     }
                     401 -> {
                         progressBarDialog?.dismiss()

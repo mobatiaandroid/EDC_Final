@@ -72,6 +72,10 @@ class EnrollActivity : AppCompatActivity() {
                 registrationType = "2"
                 clearAllFields()
                 showFieldsPartial()
+                // remove click listener from edit text fields
+                editTryFileNo.setOnClickListener (null)
+                editTrafficNo.setOnClickListener (null)
+                editStudentNo.setOnClickListener (null)
                 if (editStudentNo.hasFocus()
                     || editTrafficNo.hasFocus()
                     || editTryFileNo.hasFocus()
@@ -97,6 +101,9 @@ class EnrollActivity : AppCompatActivity() {
                 registrationType = "1"
                 clearAllFields()
                 showFieldsPartial()
+                editTryFileNo.setOnClickListener (null)
+                editTrafficNo.setOnClickListener (null)
+                editStudentNo.setOnClickListener (null)
                 if (editStudentNo.hasFocus() || editTrafficNo.hasFocus() || editTryFileNo.hasFocus() || editMobileNo.hasFocus()) currentFocus!!.clearFocus()
                 constraintNewStudent.setBackgroundResource(R.drawable.curved_rectangle)
                 constraintExistingStudent.setBackgroundResource(0)
@@ -130,6 +137,7 @@ class EnrollActivity : AppCompatActivity() {
                     } else if(editStudentNo.text.isEmpty()) {
                         Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
                     } else {
+
                         callValidateAPI()
                     }
                 } else {
@@ -664,7 +672,7 @@ class EnrollActivity : AppCompatActivity() {
         PreferenceManager.setStudentNo(context,"")
         textNameEnglish.setText("")
         textNameArabic.setText("")
-        textEmiratesID.text.clear()
+        textEmiratesID.setText("")
         textTrainingLanguage.text = ""
         textNationality.text = ""
         textMotherTongue.text = ""
