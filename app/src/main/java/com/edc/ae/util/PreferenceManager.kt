@@ -346,6 +346,29 @@ object PreferenceManager {
         editor.putString("education_level", text.toString())
         editor.apply()
     }
+
+    fun getGender(context: Activity): String? {
+        val settings: SharedPreferences
+        val text: String?
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        text = settings.getString("gender", "")
+        return text
+    }
+
+    fun setGender(context: Context, text: Int) {
+        val settings: SharedPreferences
+        val editor: SharedPreferences.Editor
+        settings = context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+        editor = settings.edit()
+        editor.putString("gender", text.toString())
+        editor.apply()
+    }
     fun getEmail(context: Activity): String? {
         val settings: SharedPreferences
         val text: String?

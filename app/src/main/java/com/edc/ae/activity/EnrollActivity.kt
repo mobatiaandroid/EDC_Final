@@ -351,8 +351,8 @@ class EnrollActivity : AppCompatActivity() {
             addProperty("mother_tongue", motherTongue!!.id.toString())
             addProperty("education_level", educationLevel!!.id.toString())
             addProperty("date_of_birth", "2016-02-22")
-            addProperty("gender", gender)
-            addProperty("mobile_number", mobileNo)
+            addProperty("gender", textGender.text.toString().trim())
+            addProperty("mobile_number", editMobileNo.text.toString().trim())
             addProperty("registration_type",registrationType)
             addProperty("license_type_code", licenseTypeCode)
             addProperty("education_type_code", trainingTypeCode)
@@ -530,6 +530,11 @@ class EnrollActivity : AppCompatActivity() {
         }
         constraintEducation.setOnClickListener {
             showSelectorEducation()
+
+        }
+
+        constraintGender.setOnClickListener {
+            showGender()
 
         }
         
@@ -731,4 +736,37 @@ class EnrollActivity : AppCompatActivity() {
         buttonMode = ButtonMode.SUBMIT
         textRegisterButton.text = getString(R.string.submit)
     }
+
+
+    private fun showGender() {
+        val dialog = BottomSheetDialog(this,R.style.AppBottomSheetDialogTheme)
+        val view = layoutInflater.inflate(R.layout.bottom_sheet_selct, null)
+        val title = view.findViewById<TextView>(R.id.selectTitle)
+        val recycler = view.findViewById<RecyclerView>(R.id.recycler)
+        title.text = "Select Gender"
+        var selectorList :ArrayList<String> =  ArrayList()
+        selectorList.add("M")
+        selectorList.add("F")
+        var selectAdapter = SelectorListAdapter(selectorList,context)
+        recycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)
+        recycler.adapter = selectAdapter
+        recycler.addOnItemClickListener(object : OnItemClickListener{
+            override fun onItemClicked(position: Int, view: View) {
+                if (position==0)
+                {
+                    textGender.text = "M"
+                }
+                else
+                {
+                    textGender.text = "F"
+                }
+
+                dialog.dismiss()
+            }
+        })
+        dialog.setCancelable(true)
+        dialog.setContentView(view)
+        dialog.show()
+    }
+
 }

@@ -2,9 +2,7 @@ package com.edc.ae.model
 
 data class TempModel(
     val `data`: Data?,
-    val exception: Exception?,
     val message: String?,
-    val srs_exception: SrsException?,
     val status: Int?,
     val success: Boolean?,
     val validation: String?
