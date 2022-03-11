@@ -12,6 +12,7 @@
         <entry key="app/src/main/res/drawable/curved_rectangle.xml" value="0.16666666666666666" />
         <entry key="app/src/main/res/drawable/curved_rectangle_grey.xml" value="0.3315" />
         <entry key="app/src/main/res/drawable/curved_rectangle_orange_survey.xml" value="0.16666666666666666" />
+        <entry key="app/src/main/res/drawable/curved_rectangle_white.xml" value="0.145" />
         <entry key="app/src/main/res/drawable/dialog_bottom_curve_red.xml" value="0.1755" />
         <entry key="app/src/main/res/drawable/dialog_bottom_curve_white.xml" value="0.158" />
         <entry key="app/src/main/res/drawable/dialog_top_curve_red.xml" value="0.158" />
@@ -36,7 +37,7 @@
         <entry key="app/src/main/res/layout/activity_enroll.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_feedback.xml" value="0.14" />
         <entry key="app/src/main/res/layout/activity_guest_base.xml" value="0.17" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_news_detail.xml" value="0.16" />
         <entry key="app/src/main/res/layout/activity_notification_detail.xml" value="0.19270833333333334" />
         <entry key="app/src/main/res/layout/activity_payment.xml" value="0.33" />

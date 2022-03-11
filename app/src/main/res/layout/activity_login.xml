@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFBF8">
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -199,16 +200,17 @@
         app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/txtForgotPassword" />
 
-    <com.dev.edc.manager.CustomButtonOrange
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonOTPLogin"
+        android:theme="@style/AppTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login via OTP"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:textColor="@color/black"
         android:textAllCaps="false"
-        android:background="@drawable/curved_rectangle_grey"
+        android:textColor="@color/edc_orange"
+        android:background="@drawable/curved_rectangle_white"
         app:layout_constraintBottom_toTopOf="@+id/txtCreateAccount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
