@@ -38,7 +38,7 @@ class EnrollActivity : AppCompatActivity() {
     var emiratesID: String? = ""
     var branch: String? = ""
     var trainingLanguage: EnrollDetailsModel.Data.TrainingLanguage? = EnrollDetailsModel.Data.TrainingLanguage("","")
-    var nationality: EnrollDetailsModel.Data.Nationality? = EnrollDetailsModel.Data.Nationality(0,"")
+    var nationality: EnrollDetailsModel.Data.Nationality? = EnrollDetailsModel.Data.Nationality(0,"","")
     var dob: String? = ""
     var gender: String? = ""
     var mobileNo: String? = ""
@@ -347,7 +347,7 @@ class EnrollActivity : AppCompatActivity() {
             addProperty("emirates_id", textEmiratesID.text.toString())
             addProperty("branch","1")
             addProperty("training_language", trainingLanguage!!.languageCode)
-            addProperty("nationality", nationality!!.id.toString())
+            addProperty("nationality", nationality!!.code.toString())
             addProperty("mother_tongue", motherTongue!!.id.toString())
             addProperty("education_level", educationLevel!!.id.toString())
             addProperty("date_of_birth", "2016-02-22")
@@ -409,9 +409,14 @@ class EnrollActivity : AppCompatActivity() {
                 when (call.status) {
                     200 -> {
                         progressBarDialog.dismiss()
-                        PreferenceManager.setStudentStatus(context,"3")
-                        val intent = Intent(this@EnrollActivity, HomeBaseUserActivity::class.java)
-                        startActivity(intent)
+                        if (call.data!!.status.equals("success")) {
+                            PreferenceManager.setStudentStatus(context,"3")
+                            val intent = Intent(this@EnrollActivity, HomeBaseUserActivity::class.java)
+                            startActivity(intent)
+                        } else {
+                            CommonMethods.showLoginErrorPopUp(context,"",call.data.message.toString())
+                        }
+
 
                     }
                     400->
@@ -421,13 +426,13 @@ class EnrollActivity : AppCompatActivity() {
                             CommonMethods.showLoginErrorPopUp(
                                 context,
                                 "Alert",
-                                call.message
+                                call.data?.message.toString()
                             )
                         } else {
                             CommonMethods.showLoginErrorPopUp(
                                 context,
                                 "Alert",
-                                call.validation
+                                call.validation.toString()
                             )
                         }
 

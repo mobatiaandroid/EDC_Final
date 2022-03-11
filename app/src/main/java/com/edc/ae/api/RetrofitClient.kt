@@ -198,7 +198,7 @@ interface RetrofitClient {
     suspend fun getRegisterResult(
         @Header("Authorization") authHeader: String?,
         @Body json: JsonObject
-    ): RegisterResponseModel
+    ): RegisterResultModelNew
 
 
     @Headers("Content-Type: application/json;charset=UTF-8")

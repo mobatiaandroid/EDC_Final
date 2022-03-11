@@ -26,7 +26,8 @@ data class EnrollDetailsModel(
 
         data class Nationality(
             val id: Int,
-            val name: String
+            val name: String,
+            val code: String
         )
 
         data class TrainingLanguage(
