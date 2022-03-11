@@ -136,7 +136,7 @@ interface RetrofitClient {
     @GET("srs/get-student-profile")
     suspend fun getStudentProfile(
         @Header("Authorization") authHeader: String?
-    ): StudentProfileModelNew
+    ): TempModelProfile
 
     @Headers("Content-Type: application/json;charset=UTF-8")
     @GET("auth/logout")

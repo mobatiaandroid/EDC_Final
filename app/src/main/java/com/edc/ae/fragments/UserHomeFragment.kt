@@ -148,34 +148,46 @@ class UserHomeFragment : Fragment() {
 
     private fun callAPI() {
 
+
+        //  dataArrayList= ArrayList()
+
         lifecycleScope.launch {
             try {
-                Log.e("email",PreferenceManager.getEmail(context as Activity).toString())
-                Log.e("email",PreferenceManager.getPassword(context as Activity).toString())
 
-                val paramObject = JsonObject().apply {
-                    addProperty("email", PreferenceManager.getEmail(context as Activity).toString())
-                    addProperty("password",PreferenceManager.getPassword(context as Activity).toString()) }
-                //  paramObject.put("email", edtEmail.text.toString())
-                //    paramObject.put("password", edtPassword.text.toString())
-                val call = RetrofitClient.get.userLogin(paramObject)
+                val call = RetrofitClient.get.getStudentProfile(
+                    "Bearer "+ PreferenceManager.getAccessToken(mContext as Activity)
+                )
 
-                when (call.status) {
-                    200 -> {
-                        PreferenceManager.setStudentStatus(context as Activity, call.data.student_status.toString())
-                        PreferenceManager.saveNotificationStatus(context as Activity, call.data.notification_status.toString())
+                when(call.status){
+                    200,201 -> {
+                        PreferenceManager.setStudentStatus(context as Activity, call.data!!.student_status.toString())
+
+                    }
+                    401 -> {
+                        CommonMethods.callTokenRefreshAPI(context as Activity)
+                        callAPI()
+                    }
+                    else -> {
+
                     }
                 }
 
-            } catch (httpException: HttpException) {
+            }
+
+            catch (httpException: HttpException) {
 
                 val responseErrorBody = httpException.response()!!.errorBody()
                 val response = responseErrorBody!!.string()
                 val obj = JSONObject(response)
                 var status_code=obj.getString("status")
                 var message = obj.getString("message")
+                if(status_code.equals("401"))
+                {
+                    CommonMethods.callTokenRefreshAPI(context as Activity)
+                    callAPI()
+                }
                 CommonMethods.showLoginErrorPopUp(
-                    context as Activity,
+                    mContext,
                     "Alert",
                     message
                 )
