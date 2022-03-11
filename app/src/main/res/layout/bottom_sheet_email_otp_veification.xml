@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.10" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.90" />
+
+        <com.edc.ae.util.CustomTextViewBoldBlack
+            android:id="@+id/customTextViewBoldBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:textSize="24dp"
+            android:text="@string/otp_verification_title"
+            app:layout_constraintStart_toStartOf="@+id/guideline12"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.dev.edc.manager.CustomTextViewGrey
+            android:id="@+id/customTextViewGrey"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/otp_verification_message"
+            app:layout_constraintEnd_toStartOf="@+id/guideline13"
+            app:layout_constraintStart_toStartOf="@+id/guideline12"
+            app:layout_constraintTop_toBottomOf="@+id/customTextViewBoldBlack" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintTrafficNo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/roundedbg"
+            app:layout_constraintEnd_toStartOf="@+id/guideline13"
+            app:layout_constraintStart_toStartOf="@+id/guideline12"
+            app:layout_constraintTop_toBottomOf="@+id/customTextViewGrey">
+
+
+            <com.edc.ae.util.CustomTextViewBoldGrey
+                android:id="@+id/textEmailID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="EMAIL ID"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editEmailOtp"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_margin="8dp"
+                android:background="@null"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textEmailID" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:weightSum="6"
+            app:layout_constraintEnd_toStartOf="@+id/guideline13"
+            app:layout_constraintStart_toStartOf="@+id/guideline12"
+            app:layout_constraintTop_toBottomOf="@+id/constraintTrafficNo">
+
+            <EditText
+                android:id="@+id/edt1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/rectangle_white_with_orange_border"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1" />
+
+            <EditText
+                android:id="@+id/edt2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/rectangle_white_with_orange_border"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1" />
+
+            <EditText
+                android:id="@+id/edt3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/rectangle_white_with_orange_border"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1" />
+
+            <EditText
+                android:id="@+id/edt4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/rectangle_white_with_orange_border"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1" />
+
+            <EditText
+                android:id="@+id/edt5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/rectangle_white_with_orange_border"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1" />
+
+            <EditText
+                android:id="@+id/edt6"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/rectangle_white_with_orange_border"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1" />
+
+        </LinearLayout>
+
+
+        <com.dev.edc.manager.CustomTextViewOrange
+            android:id="@+id/resendOtpTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Resend OTP"
+            android:textSize="16sp"
+            android:padding="5sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline13"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonSubmit"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/rounded_rect_orange"
+            android:text="@string/submit"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline13"
+            app:layout_constraintStart_toStartOf="@+id/guideline12"
+            app:layout_constraintTop_toBottomOf="@+id/resendOtpTxt" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

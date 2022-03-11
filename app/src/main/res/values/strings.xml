@@ -54,7 +54,9 @@
     <string name="enroll_title">Enroll</string>
     <string name="forgot_password"><font fgcolor='#F37021'>Forgot Password?</font></string>
     <string name="forgot_password_title">Forgot Password?</string>
+    <string name="otp_verification_title">OTP Verification</string>
     <string name="forgot_password_message">Enter your email for the verification process.We will send instructions to reset password to your email.</string>
+    <string name="otp_verification_message">Enter your email for the verification process.We will send instructions to otp to your email.</string>
     <string name="register">Register</string>
     <string name="payment">Payment</string>
 

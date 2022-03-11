@@ -9,6 +9,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.DisplayMetrics
 import android.util.Log
+import android.view.KeyEvent
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -37,6 +38,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var passwordTxt: EditText
     lateinit var emailTxt: EditText
     lateinit var submitBtn: Button
+    lateinit var buttonOTPLogin: Button
     lateinit var createAccount: TextView
     lateinit var forgotPassword: TextView
     lateinit var logo: ImageView
@@ -67,6 +69,7 @@ class LoginActivity : AppCompatActivity() {
         constraintEmail = findViewById(R.id.clEmail)
         constraintPassword = findViewById(R.id.clPasword)
         forgotPassword = findViewById(R.id.txtForgotPassword)
+        buttonOTPLogin = findViewById(R.id.buttonOTPLogin)
 
 //        carImg = findViewById(R.id.carImg)
     //    txtEmailHint = findViewById(R.id.emailHintTxt)
@@ -283,6 +286,152 @@ class LoginActivity : AppCompatActivity() {
             dialog.setContentView(view)
             dialog.show()
         }
+
+        buttonOTPLogin.setOnClickListener {
+            val dialog = BottomSheetDialog(this,R.style.AppBottomSheetDialogTheme)
+            val view = layoutInflater.inflate(R.layout.bottom_sheet_email_otp_veification, null)
+            val buttonSubmit = view.findViewById<Button>(R.id.buttonSubmit)
+            val editEmailOtp = view.findViewById<EditText>(R.id.editEmailOtp)
+            val edt1 = view.findViewById<EditText>(R.id.edt1)
+            val edt2 = view.findViewById<EditText>(R.id.edt2)
+            val edt3 = view.findViewById<EditText>(R.id.edt3)
+            val edt4 = view.findViewById<EditText>(R.id.edt4)
+            val edt5 = view.findViewById<EditText>(R.id.edt5)
+            val edt6 = view.findViewById<EditText>(R.id.edt6)
+
+            val resendOtpTxt = view.findViewById<TextView>(R.id.resendOtpTxt)
+            val linearLayout = view.findViewById<LinearLayout>(R.id.linearLayout)
+            buttonSubmit.alpha = 0.5f
+            buttonSubmit.isEnabled = false
+            buttonSubmit.isClickable = false
+            linearLayout.visibility=View.GONE
+            resendOtpTxt.visibility=View.GONE
+            buttonSubmit.setText("Submit")
+
+            edt1.addTextChangedListener(GenericTextWatcher(edt1, edt2))
+            edt2.addTextChangedListener(GenericTextWatcher(edt2, edt3))
+            edt3.addTextChangedListener(GenericTextWatcher(edt3, edt4))
+            edt4.addTextChangedListener(GenericTextWatcher(edt4, edt5))
+            edt5.addTextChangedListener(GenericTextWatcher(edt5, edt6))
+            edt6.addTextChangedListener(GenericTextWatcher(edt6, null))
+
+//GenericKeyEvent here works for deleting the element and to switch back to previous EditText
+//first parameter is the current EditText and second parameter is previous EditText
+            edt1.setOnKeyListener(GenericKeyEvent(edt1, null))
+            edt2.setOnKeyListener(GenericKeyEvent(edt2, edt1))
+            edt3.setOnKeyListener(GenericKeyEvent(edt3, edt2))
+            edt4.setOnKeyListener(GenericKeyEvent(edt4,edt3))
+            edt5.setOnKeyListener(GenericKeyEvent(edt5,edt4))
+            edt6.setOnKeyListener(GenericKeyEvent(edt6,edt5))
+
+            editEmailOtp.addTextChangedListener(object : TextWatcher{
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    if (s!!.isNotEmpty()){
+                        val emailPattern =
+                            CommonMethods.isEmailValid(s.toString().trim())
+                        if(emailPattern)
+                        {
+                            buttonSubmit.alpha = 1.0f
+                            buttonSubmit.isEnabled = true
+                            buttonSubmit.isClickable = true
+                        }
+                        else
+                        {
+                            buttonSubmit.alpha = 0.5f
+                            buttonSubmit.isEnabled = false
+                            buttonSubmit.isClickable = false
+                        }
+
+                    }else{
+                        buttonSubmit.alpha = 0.5f
+                        buttonSubmit.isEnabled = false
+                        buttonSubmit.isClickable = false
+                    }
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+                }
+
+            })
+            buttonSubmit.setOnClickListener {
+                if (editEmailOtp.text?.trim()?.length!! > 0)
+                {
+                    val emailPattern = CommonMethods.isEmailValid(editEmailOtp.text.toString())
+                    if (!emailPattern) {
+                        Toast.makeText(this, "Enter a Valid Email", Toast.LENGTH_SHORT).show()
+                    } else{
+
+                        lifecycleScope.launch {
+                            try {
+
+                                val paramObject = JsonObject().apply {
+                                    addProperty("email", editEmailOtp.text.toString().trim())
+                                }
+                                //  paramObject.put("email", edtEmail.text.toString())
+                                //    paramObject.put("password", edtPassword.text.toString())
+                                val call = RetrofitClient.get.generateOTP(paramObject)
+
+                                when (call.status) {
+                                    200 -> {
+
+                                        Toast.makeText(context, "A mail was sent to your email ID", Toast.LENGTH_SHORT).show()
+                                        linearLayout.visibility=View.VISIBLE
+                                        resendOtpTxt.visibility=View.VISIBLE
+                                        buttonSubmit.setText("Verify")
+                                        buttonSubmit.alpha = 0.5f
+                                        buttonSubmit.isEnabled = false
+                                        buttonSubmit.isClickable = false
+
+                                    }
+                                }
+
+                            } catch (httpException: HttpException) {
+
+                                val responseErrorBody = httpException.response()!!.errorBody()
+                                val response = responseErrorBody!!.string()
+                                val obj = JSONObject(response)
+                                var status_code=obj.getString("status")
+                                var message = obj.getString("message")
+                                linearLayout.visibility=View.GONE
+                                resendOtpTxt.visibility=View.GONE
+                                CommonMethods.showLoginErrorPopUp(
+                                    context,
+                                    "Alert",
+                                    message
+                                )
+
+                            }
+                        }
+
+
+
+
+
+                    }
+                } else{
+                    Toast.makeText(this, "Cannot be left empty", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+
+
+
+
+            dialog.setCancelable(true)
+            dialog.setContentView(view)
+            dialog.show()
+        }
+
+
+
         submitBtn.setOnClickListener(View.OnClickListener {
 
             if (edtEmail.text.toString().trim().equals("")) {
@@ -435,5 +584,53 @@ class LoginActivity : AppCompatActivity() {
 
             }
         }
+    }
+
+
+
+    class GenericKeyEvent internal constructor(private val currentView: EditText, private val previousView: EditText?) : View.OnKeyListener{
+        override fun onKey(p0: View?, keyCode: Int, event: KeyEvent?): Boolean {
+            if(event!!.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_DEL && currentView.id != R.id.edt1 && currentView.text.isEmpty()) {
+                //If current is empty then previous EditText's number will also be deleted
+                previousView!!.text = null
+                previousView.requestFocus()
+                return true
+            }
+            return false
+        }
+
+
+    }
+
+    class GenericTextWatcher internal constructor(private val currentView: View, private val nextView: View?) :
+        TextWatcher {
+        override fun afterTextChanged(editable: Editable) { // TODO Auto-generated method stub
+            val text = editable.toString()
+            when (currentView.id) {
+                R.id.edt1 -> if (text.length == 1) nextView!!.requestFocus()
+                R.id.edt2 -> if (text.length == 1) nextView!!.requestFocus()
+                R.id.edt3 -> if (text.length == 1) nextView!!.requestFocus()
+                R.id.edt4 -> if (text.length == 1) nextView!!.requestFocus()
+                R.id.edt5 -> if (text.length == 1) nextView!!.requestFocus()
+                //You can use EditText4 same as above to hide the keyboard
+            }
+        }
+
+        override fun beforeTextChanged(
+            arg0: CharSequence,
+            arg1: Int,
+            arg2: Int,
+            arg3: Int
+        ) { // TODO Auto-generated method stub
+        }
+
+        override fun onTextChanged(
+            arg0: CharSequence,
+            arg1: Int,
+            arg2: Int,
+            arg3: Int
+        ) { // TODO Auto-generated method stub
+        }
+
     }
 }

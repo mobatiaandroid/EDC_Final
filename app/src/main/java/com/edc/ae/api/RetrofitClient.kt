@@ -75,6 +75,10 @@ interface RetrofitClient {
     @POST("auth/forgot-password")
     suspend fun forgotPassword(@Body json:JsonObject): ForgetPasswordResponseModel
 
+    //@FormUrlEncoded
+    @POST("auth/generate-otp")
+    suspend fun generateOTP(@Body json:JsonObject): ForgetPasswordResponseModel
+
 
     @Headers("Content-Type: application/json;charset=UTF-8")
     @POST("srs/auth/change-passowrd")
