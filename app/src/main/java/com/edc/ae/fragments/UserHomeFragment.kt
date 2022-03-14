@@ -375,7 +375,7 @@ class UserHomeFragment : Fragment() {
 
     private fun checkBiometricFeatureState() {
         when (biometricManager.canAuthenticate()) {
-            BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE -> setErrorNotice("Sorry. It seems your device has no biometric hardware")
+//            BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE -> setErrorNotice("Sorry. It seems your device has no biometric hardware")
             BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE -> setErrorNotice("Biometric features are currently unavailable.")
             BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> setErrorNotice("You have not registered any biometric credentials")
             BiometricManager.BIOMETRIC_SUCCESS -> {
