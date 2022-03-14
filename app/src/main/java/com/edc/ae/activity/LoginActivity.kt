@@ -685,7 +685,7 @@ class LoginActivity : AppCompatActivity() {
                 constraintEmail.startAnimation(shake)
                 CommonMethods.showLoginErrorPopUp(context, "Alert", "Field cannot be empty.")
             } else {
-                var emailPattern = CommonMethods.isEmailValid(edtEmail.text.toString())
+                var emailPattern = CommonMethods.isEmailValid(edtEmail.text!!.trim().toString())
                 if (!emailPattern) {
                     CommonMethods.showLoginErrorPopUp(context, "Alert", "Enter a Valid Email.")
                 } else {

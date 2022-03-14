@@ -232,7 +232,7 @@ class EnrollActivity : AppCompatActivity() {
                         textMotherTongue.text = motherTongue!!.name
                         textTrainingLanguage.text = trainingLanguage!!.languageName
 //                        textEducation.text = call.data.educationLevel.toString()
-                        textDOB.text = dob
+//                        textDOB.text = dob
                         textGender.text = gender
                         arrowTryFileNo.setImageResource(R.drawable.valid_check)
                         arrowTrafficNo.setImageResource(R.drawable.valid_check)
@@ -267,7 +267,7 @@ class EnrollActivity : AppCompatActivity() {
                         editTryFileNo.setOnClickListener { showEditBottomSheet() }
                         editTrafficNo.setOnClickListener { showEditBottomSheet() }
                         editStudentNo.setOnClickListener { showEditBottomSheet() }
-                        textDOB.setOnClickListener { showDatePicker() }
+                        constraintDOB.setOnClickListener { showDatePicker() }
 
 
                     }
@@ -317,9 +317,9 @@ class EnrollActivity : AppCompatActivity() {
                 cal.set(Calendar.YEAR, year)
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                val myFormat = "MM/dd/yyyy" // mention the format you need
+                val myFormat = "yyyy-MM-dd" // mention the format you need
                 val sdf = SimpleDateFormat(myFormat, Locale.US)
-                textDOB!!.text = sdf.format(cal.getTime())
+                textDOB!!.text = sdf.format(cal.time)
             }
         constraintDOB!!.setOnClickListener {
             DatePickerDialog(
@@ -350,7 +350,7 @@ class EnrollActivity : AppCompatActivity() {
             addProperty("nationality", nationality!!.code.toString())
             addProperty("mother_tongue", motherTongue!!.id.toString())
             addProperty("education_level", educationLevel!!.id.toString())
-            addProperty("date_of_birth", "2016-02-22")
+            addProperty("date_of_birth", textDOB.text.toString())
             addProperty("gender", textGender.text.toString().trim())
             addProperty("mobile_number", editMobileNo.text.toString().trim())
             addProperty("registration_type",registrationType)
@@ -409,12 +409,17 @@ class EnrollActivity : AppCompatActivity() {
                 when (call.status) {
                     200 -> {
                         progressBarDialog.dismiss()
-                        if (call.data!!.status.equals("success")) {
-                            PreferenceManager.setStudentStatus(context,"3")
-                            val intent = Intent(this@EnrollActivity, HomeBaseUserActivity::class.java)
-                            startActivity(intent)
+                        if (call.success!!) {
+                            if(call.data!!.status!!.equals("Success")){
+                                PreferenceManager.setStudentStatus(context,"3")
+                                val intent = Intent(this@EnrollActivity, HomeBaseUserActivity::class.java)
+                                startActivity(intent)
+                            } else if (call.data.status.equals("failure")) {
+                                CommonMethods.showLoginErrorPopUp(context,"", call.data.message.toString())
+                            }
+
                         } else {
-                            CommonMethods.showLoginErrorPopUp(context,"",call.data.message.toString())
+                            CommonMethods.showLoginErrorPopUp(context,"", call.message.toString())
 //                            finish()
                         }
 

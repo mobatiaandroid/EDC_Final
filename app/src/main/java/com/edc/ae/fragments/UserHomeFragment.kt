@@ -50,6 +50,8 @@ class UserHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        callAPI()// to check status
+
         if (activity?.let { PreferenceManager.getLoginStatus(it) } == "no") {
             txtLogin.text = "LOGIN"
         } else {
@@ -65,15 +67,21 @@ class UserHomeFragment : Fragment() {
         if (activity?. let { PreferenceManager.getStudentStatus(it) } == "2") {
             constraintEnroll.visibility = View.VISIBLE
 
-        } else if(activity?. let { PreferenceManager.getStudentStatus(it) } == "3") {
+        }  else {
+            constraintEnroll.visibility = View.GONE
+
+        }
+        if(activity?. let { PreferenceManager.getStudentStatus(it) } == "3") {
             constraintNewsLetter.visibility = View.GONE
             constraintPayment.visibility = View.VISIBLE
             constraintEnroll.visibility = View.GONE
-        } else if(activity?. let { PreferenceManager.getStudentStatus(it) } == "4") {
-            constraintNewsLetter.visibility = View.VISIBLE
-            constraintPayment.visibility = View.GONE
-            constraintEnroll.visibility = View.GONE
-        } else {
+        }
+//        else if(activity?. let { PreferenceManager.getStudentStatus(it) } == "4") {
+//            constraintNewsLetter.visibility = View.VISIBLE
+//            constraintPayment.visibility = View.GONE
+//            constraintEnroll.visibility = View.GONE
+//        }
+        else {
             constraintEnroll.visibility = View.GONE
 
         }
@@ -93,8 +101,8 @@ class UserHomeFragment : Fragment() {
 
             }
         }
+
         callDeviceRegistrationAPI()
-        callAPI()// to check status
         callHomeAPI()
         constraintNewsLetter.setOnClickListener {
             findNavController().navigate(R.id.newsLetterFragment)
