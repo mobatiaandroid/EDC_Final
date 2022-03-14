@@ -57,6 +57,7 @@
         <entry key="app/src/main/res/layout/bottom_sheet_email_otp_veification.xml" value="0.22" />
         <entry key="app/src/main/res/layout/bottom_sheet_forgot_password.xml" value="0.33" />
         <entry key="app/src/main/res/layout/bottom_sheet_selct.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/bottom_sheet_training_booking.xml" value="0.18659420289855072" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.1287037037037037" />
         <entry key="app/src/main/res/layout/courses_adapter.xml" value="0.14814814814814814" />
         <entry key="app/src/main/res/layout/custom_text_field.xml" value="0.14814814814814814" />
